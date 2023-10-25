@@ -11,6 +11,7 @@ import { UserProvider } from "../app/context/userContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { store } from "redux/store";
 import { Provider } from "react-redux";
+import MenuLeft from "../app/project/MenuLeft";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -64,7 +65,14 @@ function MyApp({ Component, pageProps }) {
             <HomeSchema />
             <div className="app">
               <Menu />
-              <Component {...pageProps} />
+              <div className="container-root">
+                <div className="menu-root">
+                  <MenuLeft/>
+                </div>
+                <div className="content-root">
+                  <Component {...pageProps} />
+                </div>
+              </div>
             </div>
             <div id="__modal"></div>
             <Footer />

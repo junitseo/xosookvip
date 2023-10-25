@@ -15,29 +15,6 @@ const MenuPC = () => {
   const [menuBottom, setMenuBottom] = useState([]);
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
-  const [totalMoney, setTotalMoney] = useState(0);
-
-  useEffect(() => {
-    const fetchDataDonate = async () => {
-      try {
-        const [response] = await Promise.all([
-          axios.get(`${API_URL}/api/transaction/getAll`),
-        ]);
-        const data = response?.data;
-        let inMoney = 0;
-        let outMoney = 0;
-        data?.map(item => {
-          item.type === "in" ? inMoney += parseInt(item.money) : outMoney += parseInt(item.money)
-        });
-        const calculatedTotalMoney = inMoney - outMoney;
-        setTotalMoney(calculatedTotalMoney);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchDataDonate();
-  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -87,16 +64,16 @@ const MenuPC = () => {
       <nav className={stylesCss["menu-container"]}>
         <div className={stylesCss["navMenu-container"]}>
           <a onClick={() => router.push("/")}>
-            <img className={stylesCss.logo} src="/logo.png" alt="logo" width="85" height="35" />
+            <img className={stylesCss.logo} src="/logo.png" alt="logo"/>
           </a>
 
-          <div className={stylesCss["menu-warpper"]}>
+          {/* <div className={stylesCss["menu-warpper"]}>
             {menuBottom?.map((val, key) => {
               return <Fragment key={key}>{val.element}</Fragment>;
             })}
-          </div>
+          </div> */}
 
-          <div className={stylesCss["menu-toggle"]}>
+          {/* <div className={stylesCss["menu-toggle"]}>
             <svg
               onClick={toggleMenu}
               stroke="currentColor"
@@ -122,11 +99,11 @@ const MenuPC = () => {
                 })}
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
 
       </nav >
-      {menuScroll && (
+      {/* {menuScroll && (
         <div
           onClick={() => {
             scrollView.top();
@@ -135,7 +112,7 @@ const MenuPC = () => {
           <IconTop />
         </div>
       )
-      }
+      } */}
     </>
   );
 };

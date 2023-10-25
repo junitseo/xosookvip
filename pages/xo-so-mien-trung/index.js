@@ -1,6 +1,6 @@
 import React from "react";
 
-const ThreeTegionLottery = () => {
+const ThreeCentralLottery = () => {
   return (
     <>
         {/* <div>
@@ -10,4 +10,4 @@ const ThreeTegionLottery = () => {
   );
 };
 
-export default ThreeTegionLottery;
+export default ThreeCentralLottery;

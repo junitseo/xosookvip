@@ -1,11 +1,11 @@
 .footer {
-  background: #FFDB20;
+  background: #f8f8f8;
 }
 
 .footer-container {
   display: flex;
   justify-content: center;
-  padding: 60px 30px;
+  padding: 10PX 0px;
 }
 
 .footer-container-item {}
@@ -13,9 +13,9 @@
 .footer-title {
   width: 100%;
   font-style: normal;
-  font-weight: 900;
-  font-size: 36px;
-  line-height: 42px;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 20px;
   color: #000000;
 }
 
@@ -39,6 +39,8 @@
 .footer-container-profile {
   display: flex;
   padding-left: 10px;
+  align-items: center;
+  height: 25px;
 }
 
 .footer-container-profile-img {
@@ -52,6 +54,7 @@
 
 .footer-container-profile-text {
   width: 90%;
+  padding-left: 5px;
 }
 
 .footer-container-text {
@@ -72,7 +75,7 @@
 }
 
 .footer-container-text img {
-  width: 350px
+  width: 270px;
 }
 
 
