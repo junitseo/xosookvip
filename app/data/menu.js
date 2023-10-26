@@ -1,4 +1,4 @@
-import { FaTachometerAlt } from "react-icons/fa";
+import { FaEdit, FaRegChartBar, FaTable, FaTachometerAlt } from "react-icons/fa";
 
 export const listMenu = [
     {
@@ -32,14 +32,14 @@ export const listMenu = [
     {
         name: "Sổ kết quả",
         slug: "so-ket-qua",
-        icon: <FaTachometerAlt />,
+        icon: <FaTable />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Thống kê giải đặc biệt",
         slug: "thong-ke-giai-dac-biet",
-        icon: <FaTachometerAlt />,
+        icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [
             {
@@ -111,7 +111,7 @@ export const listMenu = [
     {
         name: "Soi cầu xổ số miền bắc",
         slug: "soi-cau-xo-so-mien-bac",
-        icon: <FaTachometerAlt />,
+        icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [
             {
@@ -151,7 +151,7 @@ export const listMenu = [
     {
         name: "Thống kê lô miền Bắc",
         slug: "thong-ke-lo-mien-bac",
-        icon: <FaTachometerAlt />,
+        icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [
             {
@@ -199,42 +199,42 @@ export const listMenu = [
     {
         name: "Giải mã những giấc mơ",
         slug: "giai-ma-nhung-giac-mo",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Lịch vạn niên",
         slug: "lich-van-nien",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Tin tức",
         slug: "tin-tuc",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Liên hệ",
         slug: "lien-he",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Giới thiệu",
         slug: "gioi-thieu",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
     {
         name: "Chính sách bảo mật",
         slug: "chinh-sach-bao-mat",
-        icon: <FaTachometerAlt />,
+        icon: <FaEdit />,
         iconChildren: false,
         menuChildren: []
     },
