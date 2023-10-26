@@ -2101,7 +2101,28 @@ img {
 .menu-root{
   width: 20%;
 }
+
 .content-root{
   width: 80%;
+}
+
+.react-datepicker__header  {
+  background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%);
+}
+
+.react-datepicker__current-month {
+  color: #fff !important;
+}
+
+.react-datepicker__day-name {
+  color: #fff !important;
+}
+
+.react-datepicker {
+  width: 100%;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
   border-left: 1px solid #e7e7e7;
 }
