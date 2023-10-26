@@ -6,6 +6,9 @@ const Contact = () => {
         <div className={stylesCss["contact-form"]}>
             <div className={stylesCss["container-form"]}>
                 <form>
+                    <div className={stylesCss["title"]}>
+                        <h1>Liên hệ</h1>
+                    </div>
                     <div className={stylesCss["form-contact-twocolm"]}>
                         <div className={stylesCss["info-left"]}>
                             <p>

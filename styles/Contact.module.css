@@ -12,6 +12,10 @@
     max-width: 66.6666666667%;
 }
 
+.title{
+    text-align: center;
+}
+
 .form-contact-twocolm {
     display: block;
     height: 60px;
