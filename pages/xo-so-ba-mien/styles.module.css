@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
+}
+.title {
+  text-transform: uppercase;
+  size: 18px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.tab_select {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.tab_select li {
+  color: #333;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 12px;
+  padding: 9px 8px;
+}
