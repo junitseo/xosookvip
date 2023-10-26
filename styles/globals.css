@@ -2096,7 +2096,6 @@ img {
 
 .container-root{
   display: flex;
-  padding: 10px 0px;
 }
 
 .menu-root{
@@ -2104,4 +2103,5 @@ img {
 }
 .content-root{
   width: 80%;
+  border-left: 1px solid #e7e7e7;
 }
