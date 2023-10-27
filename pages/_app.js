@@ -12,7 +12,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { store } from "redux/store";
 import { Provider } from "react-redux";
 import MenuLeft from "../app/project/MenuLeft";
-
+import "react-datepicker/dist/react-datepicker.css";
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
 

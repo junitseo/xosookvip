@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import stylesCss from './styles.module.css'
+import stylesCss from '../../../styles/ComponentCSS/SideBarRight.module.css'
 import DatePicker, { registerLocale  } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import vi from "date-fns/locale/vi";
 registerLocale("vi", vi); // re
 function SideBarRight() {
@@ -9,6 +8,7 @@ function SideBarRight() {
   return (
     <div className={stylesCss['wrapper']}>
        <DatePicker
+          className={stylesCss['wrapper']}
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           locale={vi}

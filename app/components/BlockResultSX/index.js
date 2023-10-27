@@ -1,9 +1,10 @@
 import React from 'react'
-import stylesCss from './styles.module.css'
-function BlockResultSX() {
+import stylesCss from '../../../styles/ComponentCSS/BlockResultSX.module.css'
+
+function BlockResultSX({title}) {
   return (
     <div className={stylesCss['wrapper']}>
-      <div className={stylesCss['head']}>xsmn thứ 3, xsmn ngày 24/10/2023</div>
+      <div className={stylesCss['head']}>{title}</div>
       <div className="content">
         <table
           width="100%"
