@@ -28,7 +28,7 @@ const MenuLeftPC = () => {
                                     <li index={index} className={stylesCss["menu-item"]} style={menuName === item?.slug ? { backgroundColor: '#eeeeee' } : { backgroundColor: '#ffffff' }}>
                                         <div className={stylesCss["menu-item-content"]}>
                                             {item?.icon}
-                                            <Link href={item?.slug} className={stylesCss["menu-item-text"]}>
+                                            <Link href={`/${item?.slug}`} className={stylesCss["menu-item-text"]}>
                                                 {item?.name}
                                             </Link>
                                             {
@@ -52,7 +52,7 @@ const MenuLeftPC = () => {
                                                         return (
                                                             <li key={indexItem} className={stylesCss["menu-item-item"]} style={menuName === menuItem.slug ? { backgroundColor: '#eee' } : { backgroundColor: '#f8f8f8' }}>
                                                                 <div className={stylesCss["menu-item-content"]}>
-                                                                    <Link href={menuItem?.slug} className={stylesCss["menu-item-text"]}>
+                                                                    <Link href={`/${menuItem?.slug}`} className={stylesCss["menu-item-text"]}>
                                                                         {menuItem?.name}
                                                                     </Link>
                                                                 </div>

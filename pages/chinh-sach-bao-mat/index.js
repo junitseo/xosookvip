@@ -4,8 +4,8 @@ import stylesCss from "../../styles/PrivacyPolicy.module.css";
 const PrivacyPolicy = () => {
     return (
         <div className={stylesCss["container"]}>
-            <div className={stylesCss["title"]}>
-                <h1>Chính sách bảo mật</h1>
+            <div>
+                <h1 className={stylesCss["title"]}>Chính sách bảo mật</h1>
             </div>
             <div className={stylesCss["content"]}>
                 <div className={stylesCss["content-item"]}>

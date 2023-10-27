@@ -6,7 +6,7 @@ const Introduce = () => {
     return (
         <div className={stylesCss["container"]}>
             <div className={stylesCss["title"]}>
-                <h1>Giới thiệu về chúng tôi</h1>
+                <h1 className={stylesCss["title"]}>Giới thiệu về chúng tôi</h1>
             </div>
             <div className={stylesCss["content"]}>
                 <div className={stylesCss["content-item"]}>

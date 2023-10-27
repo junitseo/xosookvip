@@ -7,9 +7,15 @@
 
 .title {
     width: 100%;
-    font-size: 14px;
-    line-height: 1.42857143;
     color: #333;
+    font-size: 25px;
+    line-height: 20px;
+    margin: 10px 0;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
 }
 
 .content-item {
@@ -19,6 +25,7 @@
 .link {
     color: #337ab7 !important;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .content-privacy-policy {
@@ -45,6 +52,8 @@
     min-height: 15px
 }
 
-.content-item-end{
-    margin: 0px; font-stretch: normal; line-height: normal
+.content-item-end {
+    margin: 0px;
+    font-stretch: normal;
+    line-height: normal
 }
