@@ -70,7 +70,7 @@ function MyApp({ Component, pageProps }) {
                   <MenuLeft/>
                 </div>
                 <div className="content-root">
-                  <Component {...pageProps} />
+                  <Component {...pageProps}/>
                 </div>
               </div>
             </div>

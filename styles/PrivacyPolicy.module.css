@@ -1,0 +1,53 @@
+.container {
+    position: relative;
+    min-height: 1px;
+    padding: 15px;
+    float: left;
+}
+
+.title {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+.content-item {
+    margin-top: 15px;
+}
+
+.link {
+    color: #337ab7 !important;
+    text-decoration: none;
+}
+
+.content-privacy-policy {
+    margin: 0px 0px 2px;
+    font-stretch: normal;
+    font-size: 16px;
+    line-height: normal;
+    font-family: 'Helvetica Neue'
+}
+
+.content-item-content {
+    margin: 0px;
+    text-align: justify;
+    font-stretch: normal;
+    font-size: 13px;
+    line-height: normal;
+    font-family: 'Helvetica Neue'
+}
+
+.content-item-content-add {
+    margin: 0px;
+    text-align: justify;
+    font-stretch: normal;
+    font-size: 13px;
+    line-height: normal;
+    font-family: 'Helvetica Neue';
+    min-height: 15px
+}
+
+.content-item-end{
+    margin: 0px; font-stretch: normal; line-height: normal
+}

@@ -1,0 +1,23 @@
+.container {
+    position: relative;
+    min-height: 1px;
+    padding: 15px;
+    float: left;
+}
+
+.title {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+.content-item {
+    margin-top: 15px;
+}
+
+.link {
+    color: #337ab7 !important;
+    text-decoration: none;
+
+}
