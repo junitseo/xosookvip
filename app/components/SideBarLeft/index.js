@@ -1,5 +1,5 @@
 import React from 'react'
-import stylesCss from './styles.module.css'
+import stylesCss from '../../../styles/ComponentCSS/SideBarLeft.module.css'
 
 function SideBarLeft() {
   return (

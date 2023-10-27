@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemLoto from './Item'
-import stylesCss from './styles.module.css'
+import stylesCss from '../../../styles/ComponentCSS/BlockResultLoto.module.css'
 
 function Loto() {
   return (

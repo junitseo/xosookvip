@@ -3,9 +3,9 @@ import BlockResultSX from 'components/BlockResultSX'
 import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
 import SideBarLeft from 'components/SideBarLeft'
-import stylesCss from './styles.module.css'
-
-function Page() {
+import stylesCss from '../../styles/ThreeRegionLottery.module.css'
+import Link from 'next/link'
+function ThreeRegionLottery() {
   return (
     <div className={stylesCss['wrapper']}>
       <SideBarLeft />
@@ -13,48 +13,51 @@ function Page() {
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ HÔM NAY</h2>
           <ul className={stylesCss['tab_select']}>
             <li>
-              <a title="Miền Nam - Xem tất cả" href="">
+              <Link title="Miền Nam - Xem tất cả" href="">
                 <span>Miền Nam </span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ hai" href="">
+              <Link title="Thứ hai" href="">
                 <span>Thứ hai</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ ba" href="">
+              <Link title="Thứ ba" href="">
                 <span>Thứ ba</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ tư" href="">
+              <Link title="Thứ tư" href="">
                 <span>Thứ tư</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ năm" href="">
+              <Link title="Thứ năm" href="">
                 <span>Thứ năm</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ sáu" href="">
+              <Link title="Thứ sáu" href="">
                 <span>Thứ sáu</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Thứ bảy" href="">
+              <Link title="Thứ bảy" href="">
                 <span>Thứ bảy</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a title="Chủ nhật" href="">
+              <Link title="Chủ nhật" href="">
                 <span>Chủ nhật</span>
-              </a>
+              </Link>
             </li>
           </ul>
 
-        <BlockResultSX />
+        <BlockResultSX title="xsmn thứ 3, xsmn ngày 24/10/2023" />
+        <BlockResultLoto />
+        <div style={{marginTop: 20}}></div>
+        <BlockResultSX title="xsmb thứ 3, xsmn ngày 24/10/2023" />
         <BlockResultLoto />
       </div>
       <SideBarRight />
@@ -62,4 +65,4 @@ function Page() {
   )
 }
 
-export default Page
+export default ThreeRegionLottery
