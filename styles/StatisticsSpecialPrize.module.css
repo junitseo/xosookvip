@@ -1,0 +1,40 @@
+.wrapper {
+  padding: 0 10px;
+  overflow: scroll;
+}
+.choose-day {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.title {
+  text-transform: uppercase;
+  size: 18px;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.day {
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+.month {
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.num {
+  width: 100px;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
