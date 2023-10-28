@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import stylesCss from "../../../../styles/MenuCSS/MenuLeft.module.css";
 import { FaChevronDown, FaChevronLeft } from 'react-icons/fa';
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { listMenu } from "data/menu";
 
 const MenuLeftPC = () => {
@@ -15,8 +15,8 @@ const MenuLeftPC = () => {
 
     useEffect(() => {
         setMenuName(router.pathname.replace('/',''));
-    }, [router.pathname])
-    console.log(menuName);
+    }, [router.pathname]);
+    
     return (
         <>
             <div>
@@ -52,7 +52,7 @@ const MenuLeftPC = () => {
                                                         return (
                                                             <li key={indexItem} className={stylesCss["menu-item-item"]} style={menuName === menuItem.slug ? { backgroundColor: '#eee' } : { backgroundColor: '#f8f8f8' }}>
                                                                 <div className={stylesCss["menu-item-content"]}>
-                                                                    <Link href={`/${menuItem?.slug}`} className={stylesCss["menu-item-text"]}>
+                                                                    <Link href={`${menuItem?.slug}`} className={stylesCss["menu-item-text"]}>
                                                                         {menuItem?.name}
                                                                     </Link>
                                                                 </div>
