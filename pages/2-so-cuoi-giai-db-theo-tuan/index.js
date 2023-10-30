@@ -7,7 +7,7 @@ function StatisticsSpecialPrize() {
 
   return (
     <div className={stylesCss['wrapper']}>
-      <div className={stylesCss['title']}>Thống kê Giải ĐB năm 2022 theo tháng</div>
+      <div className={stylesCss['title']}>Thống kê 2 số cuối Giải ĐB năm 2023 theo tuần</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>
         <Select defaultValue={year} options={dataYear} onChange={v => setYear(v)}>
@@ -19,7 +19,7 @@ function StatisticsSpecialPrize() {
           cellSpacing={0}
           cellPadding={0}
           border={0}
-          className=""
+          className="bkqmiennam"
           style={{width: 100, margin: "0 auto"}}
         >
           <tbody>
@@ -38,11 +38,11 @@ function StatisticsSpecialPrize() {
                         <a
                           className="date"
                         >
-                          Ngày\Tháng
+                          Tuần\Thứ
                         </a>
                       </td>
                     </tr>
-                    {Array.from({length: 31}, (_, i) => i + 1).map(i => (
+                    {Array.from({length: 53}, (_, i) => i + 1).map(i => (
                       <tr>
                         <td className={stylesCss['day']}>{i}</td>
                       </tr>
@@ -54,7 +54,7 @@ function StatisticsSpecialPrize() {
                 <table width="100%" cellSpacing={0} cellPadding={0} border={0}>
                   <tbody>
                     <tr>
-                    {Array.from({length: 12}, (_, i) => i + 1).map(i => (
+                    {data.map(i => (
                       <td width="33.333333333333336%" valign="top">
                         <table
                           width="100%"
@@ -69,7 +69,7 @@ function StatisticsSpecialPrize() {
                             {Array.from({length: 31}).map(i => (
                               <tr>
                                 <td className={stylesCss['num']}>
-                                  <div>123213</div>
+                                  <div>13</div>
                                 </td>
                               </tr>
                             ))}
@@ -90,3 +90,5 @@ function StatisticsSpecialPrize() {
 }
 
 export default StatisticsSpecialPrize
+
+const data = ["T2","T3","T4","T5","T6","T7","CN"]
