@@ -319,7 +319,7 @@
     background-color: #FFFFFF;
 }
 
-.table-bordered{
+.table-bordered {
     border-spacing: 0;
     border-collapse: collapse;
     border: 1px solid #ddd;
@@ -328,7 +328,7 @@
     margin-bottom: 20px;
 }
 
-.table-bordered tr th{
+.table-bordered tr th {
     background-color: #f9f9f9;
 }
 
@@ -337,4 +337,53 @@
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
+}
+
+.form-label {
+    position: relative;
+    top: -2px;
+}
+
+.container-triangular {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.triangular-title {
+    height: 25px;
+    font-weight: bold;
+}
+
+.title-bar-box-content {
+    width: 180px;
+    float: left;
+    line-height: 25px;
+    font-size: 14px;
+    margin-left: 50px;
+}
+
+.clb {
+    clear: both;
+}
+
+.table-bordered-full {
+    width: 100px;
+}
+
+.botop {
+    font-size: 13px;
+}
+
+.botop-title {
+    font-size: 13px;
+    font-weight: bold;
+
+}
+
+.botop-title-text{
+    font-size: 16px
+}
+
+.botop-title-text-16{
+    font-size: 16px;
 }
