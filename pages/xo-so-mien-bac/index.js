@@ -4,9 +4,13 @@ import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
 import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../../styles/ThreeRegionLottery.module.css'
+import Meta from "app/components/Meta"
+
 function NorthernLottery() {
   return (
-    <div className={stylesCss['wrapper']}>
+    <>
+      <Meta title="Xổ số miền bắc"/>
+      <div className={stylesCss['wrapper']}>
       <SideBarLeft />
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN BẮC</h2>
@@ -15,6 +19,8 @@ function NorthernLottery() {
       </div>
       <SideBarRight />
     </div>
+    </>
+
   )
 }
 

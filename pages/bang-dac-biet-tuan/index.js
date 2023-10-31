@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticsSpecialWeek.module.css'
 import moment from 'moment';
 import { Button, Radio } from 'antd';
+import Meta from "app/components/Meta"
 
 function Page() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
 
   return (
     <div  className={stylesCss['wrapper']}>
+    <Meta title="Thống kê kết quả đặc biệt theo tuần"/>
       <h2 className={stylesCss['title']}>Thống kê kết quả đặc biệt theo tuần</h2>
       <div className={stylesCss['choose']}>
         <span>Từ ngày : (Ngày/Tháng/Năm) </span> 

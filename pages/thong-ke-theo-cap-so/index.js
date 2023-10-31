@@ -2,13 +2,17 @@ import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticFrequencyPairs.module.css'
 import { Button, Select } from 'antd';
 import moment from 'moment';
+import Meta from "app/components/Meta"
+
 function StatisticFrequencyPairs() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
   const [type, setType] = useState("00");
   const [number, setNumber] = useState("00")
   return (
     <div className={stylesCss['wrapper']}>
-    <h2 className={stylesCss['title']}>Thống kê tần suất các cặp số loto rơi theo từng giải </h2>
+    <Meta title="Thống kê 2 số cuối của kết quả xổ số"/>
+
+    <h2 className={stylesCss['title']}>TThống kê 2 số cuối của kết quả xổ số</h2>
     <div className={stylesCss['choose']}>
         <span>Nhập 2 số cuối </span> 
         <input type="string" value={number} onChange={e => setNumber(e.target.value)}/>

@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticsSpecialGan.module.css'
 import { Button, Radio } from 'antd';
 import moment from 'moment';
+import Meta from "app/components/Meta"
 
 function Page() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
 
   return (
     <div className={stylesCss['wrapper']}>
+      <Meta title="Thống kê giải đặc biệt Gan"/>
       <h2 className={stylesCss['title']}>Thống kê đặc biệt Gan</h2>
       <div className={stylesCss['choose']}>
         <span>Biên ngày : (Ngày/Tháng/Năm) </span> 

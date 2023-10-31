@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import stylesCss from '../../styles/SpecialStagingStatistics.module.css'
 import { Button, Select } from 'antd';
+import Meta from "app/components/Meta"
+
 import moment from 'moment';
 function SpecialStagingStatistics() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
   const [numbers, setNumbers] = useState("00, 11, 22, 33, 44, 55, 66, 77, 88, 01")
   return (
     <div className={stylesCss['wrapper']}>
-    <h2 className={stylesCss['title']}>Thống kê tần suất các cặp số loto rơi theo từng giải </h2> 
+    <Meta title="Thống kê dàn đặc biệt"/>
+    <h2 className={stylesCss['title']}>Thống kê dàn đặc biệt </h2> 
       <div>Dãy số đặc biệt cần thống kê: (các cặp số cách nhau bởi dấu phẩy. VD: 00,11,22,33,44,55,66,77,88,01)</div> 
       <div className={stylesCss['choose']}>
       <input style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>

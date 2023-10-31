@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import stylesCss from '../../styles/SpecialCycleStatistics.module.css'
 import { Button } from 'antd';
 import moment from 'moment';
+import Meta from "app/components/Meta"
 
 function SpecialCycleStatistics() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
 
   return (
     <div className={stylesCss['wrapper']}>
+        <Meta title="Tổng hợp chu kỳ của giải đặc biệt"/>
         <div className={stylesCss['title']}>Tổng hợp chu kỳ của giải đặc biệt</div>
         <div className={stylesCss['choose']}>
           <span>Biên ngày : (Ngày/Tháng/Năm) </span> 

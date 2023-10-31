@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticFrequencyPrize.module.css'
 import { Button, Select } from 'antd';
 import moment from 'moment';
+import Meta from "app/components/Meta"
+
 function StatisticFrequencyPrize() {
   const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
   const [type, setType] = useState("00")
   return (
     <div className={stylesCss['wrapper']}>
+    <Meta title="Thống kê tần suất giải đặc biệt "/>
     <h2 className={stylesCss['title']}>Thống kê tần suất giải đặc biệt </h2>
       <div className={stylesCss['choose']}>
         <span>Từ ngày : (Ngày/Tháng/Năm) </span> 

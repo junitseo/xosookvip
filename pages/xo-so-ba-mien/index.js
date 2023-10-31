@@ -5,9 +5,13 @@ import SideBarRight from 'components/SideBarRight'
 import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../../styles/ThreeRegionLottery.module.css'
 import Link from 'next/link'
+import Meta from "app/components/Meta"
+
 function ThreeRegionLottery() {
   return (
-    <div className={stylesCss['wrapper']}>
+    <>
+      <Meta title="Xổ số ba miền"/>
+      <div className={stylesCss['wrapper']}>
       <SideBarLeft />
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ HÔM NAY</h2>
@@ -62,6 +66,7 @@ function ThreeRegionLottery() {
       </div>
       <SideBarRight />
     </div>
+    </>
   )
 }
 

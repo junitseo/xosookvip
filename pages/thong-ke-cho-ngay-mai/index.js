@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticsTomorrow.module.css'
-import DatePicker from 'react-datepicker';
 import { Button } from 'antd';
 import moment from 'moment';
+import Meta from "app/components/Meta"
 
 function StatisticsTomorrow() {
   const [startDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
   console.log(startDate);
   return (
     <div className={stylesCss['wrapper']}>
+      <Meta title="Thống kê dự báo kết quả sổ xố ngày mai"/>
       <h2 className={stylesCss['title']}>Thống kê dự báo kết quả xổ số ngày mai</h2>
       <div className={stylesCss['choose-day']}>
         <span>Biên ngày (dd/mm/YYYY):</span>
