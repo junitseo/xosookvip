@@ -1,9 +1,11 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const CheckBridgeHistory = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Kiểm tra lịch sử cầu lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

@@ -1,9 +1,11 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const LotterySlipPrediction = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Soi cầu giải đặc biệt" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

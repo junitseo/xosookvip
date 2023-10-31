@@ -3,6 +3,7 @@ import { listWeekdays } from "../../app/data/listWeekdays"
 import { dataNorthernLotteryStatistics } from "../../app/data/dataNorthernLotteryStatistics"
 import { useState } from "react";
 import { Table } from "antd";
+import Meta from "app/components/Meta"
 
 const NorthernLotteryStatistics = () => {
     const [data, setData] = useState(dataNorthernLotteryStatistics);
@@ -28,6 +29,7 @@ const NorthernLotteryStatistics = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê lotto theo thứ" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

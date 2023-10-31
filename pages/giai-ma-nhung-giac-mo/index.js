@@ -2,7 +2,7 @@ import { Table } from "antd";
 import stylesCss from "../../styles/InterpretTheDreams.module.css";
 import {interpretTheDreams} from "../../app/data/interpretTheDreams";
 import { useState } from "react";
-
+import Meta from "app/components/Meta"
 
 const InterpretTheDreams = () => {
     const [data, setData] = useState(interpretTheDreams);
@@ -40,6 +40,7 @@ const InterpretTheDreams = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Giải mã những giấc mơ" />
             <div className={stylesCss["container"]}>
                 <h1>Giải mã bí ẩn của những giấc mơ (tham khảo)</h1>
                 <div className={stylesCss["example-wrapper"]}>

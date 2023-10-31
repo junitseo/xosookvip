@@ -2,6 +2,7 @@ import { useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { listNumber } from "../../app/data/listNumber"
 import { list } from "postcss";
+import Meta from "app/components/Meta"
 
 const LotDetailCycle = () => {
     const [dataNumber, setDataNumber] = useState(listNumber);
@@ -9,6 +10,7 @@ const LotDetailCycle = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Chu kỳ chi tiết dàn lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

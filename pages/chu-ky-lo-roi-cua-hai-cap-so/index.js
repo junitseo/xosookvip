@@ -1,6 +1,7 @@
 import { useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { listNumber } from "../../app/data/listNumber"
+import Meta from "app/components/Meta"
 
 const FrequencyOfOccurrenceOfTwoNumbers = () => {
     const [dataNumber, setDataNumber] = useState(listNumber);
@@ -8,6 +9,7 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Chu kỳ lô rơi của hai cặp số" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

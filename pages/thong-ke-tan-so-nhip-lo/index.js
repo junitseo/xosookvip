@@ -2,6 +2,7 @@ import { Table } from "antd";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { statisticsOfLotteryRhythmFrequency } from "../../app/data/statisticsOfLotteryRhythmFrequency"
 import { useState } from "react";
+import Meta from "app/components/Meta"
 
 const StatisticsOfLotteryRhythmFrequency = () => {
     const columns = [
@@ -27,6 +28,7 @@ const StatisticsOfLotteryRhythmFrequency = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê tần số nhịp lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
