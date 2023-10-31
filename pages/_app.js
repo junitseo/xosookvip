@@ -5,7 +5,6 @@ import Menu from "../app/project/Menu";
 import Footer from "../app/project/Footer/Footer";
 import { Router } from "next/router";
 import { useState, useEffect } from "react";
-import HomeSchema from "../app/project/HomeSchema";
 import Script from "next/script";
 import { UserProvider } from "../app/context/userContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -13,6 +12,7 @@ import { store } from "redux/store";
 import { Provider } from "react-redux";
 import MenuLeft from "../app/project/MenuLeft";
 import "react-datepicker/dist/react-datepicker.css";
+import Meta from "../app/components/Meta"
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +62,7 @@ function MyApp({ Component, pageProps }) {
               `,
               }}
             />
-            <HomeSchema />
+            <Meta />
             <div className="app">
               <Menu />
               <div className="container-root">

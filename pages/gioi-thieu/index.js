@@ -1,10 +1,12 @@
 import Link from "next/link";
 import stylesCss from "../../styles/Introduce.module.css";
+import Meta from "app/components/Meta"
 
 const Introduce = () => {
 
     return (
         <div className={stylesCss["container"]}>
+            <Meta title="Giới thiệu"/>
             <div className={stylesCss["title"]}>
                 <h1>Giới thiệu về chúng tôi</h1>
             </div>

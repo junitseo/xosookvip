@@ -2,9 +2,12 @@ import React from 'react'
 import BlockResultSX from 'components/BlockResultSX'
 import BlockResultLoto from 'components/BlockResultLoto'
 import stylesCss from '../../styles/ThreeRegionLottery.module.css'
+import Meta from "app/components/Meta"
+
 function ThreeRegionLottery() {
   return (
     <div className={stylesCss['wrapper']}>
+      <Meta title="Sổ kết quả"/>
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ</h2>
         <BlockResultSX title="xsmn thứ 3, xsmn ngày 24/10/2023" />

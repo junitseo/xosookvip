@@ -1,12 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import stylesCss from '../../styles/StatisticsSpecialPrize.module.css'
 import { Button, Select } from 'antd';
+import Meta from "app/components/Meta"
+
 const dataYear = Array.from({length: 30}, (_, i) => i + 1999).map(i => ({value: i, label: i}));
 function StatisticsSpecialPrize() {
   const [year, setYear] = useState("2022");
 
   return (
     <div className={stylesCss['wrapper']}>
+      <Meta title="Thống kê 2 số cuối giải đặc biệt theo tuần"/>
+
       <div className={stylesCss['title']}>Thống kê 2 số cuối Giải ĐB năm 2023 theo tuần</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>

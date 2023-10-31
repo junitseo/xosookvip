@@ -1,9 +1,11 @@
 import stylesCss from "../../styles/Contact.module.css";
 import { FaComments, FaMailBulk, FaPhone, FaTelegram, FaUser } from 'react-icons/fa';
+import Meta from "app/components/Meta"
 
 const Contact = () => {
     return (
         <div className={stylesCss["contact-form"]}>
+            <Meta title="Liên hệ"/>
             <div className={stylesCss["container-form"]}>
                 <form>
                     <div className={stylesCss["form-contact-twocolm"]}>
