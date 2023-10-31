@@ -1,0 +1,157 @@
+.container {
+    position: relative;
+    min-height: 1px;
+    padding: 15px;
+    float: left;
+    width: 100%;
+}
+
+.title {
+    width: 100%;
+    color: #333;
+    font-size: 25px;
+    line-height: 20px;
+    margin: 10px 0;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.content-item {
+    margin-top: 15px;
+    line-height: 30px;
+}
+
+.title-item {
+    color: #337ab7;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px solid;
+    line-height: 40px;
+    margin-bottom: 15px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.content-add {
+    width: 15px;
+}
+
+.content-title-title {
+    padding-left: 0px;
+    line-height: normal;
+    height: auto;
+}
+
+.content-content {
+    padding-top: 5px;
+    padding-bottom: 6px;
+    border-bottom: 1px dotted #d9d9d9;
+}
+
+.list {
+    padding-bottom: 0px;
+    padding-top: 4px;
+    padding-left: 15px;
+}
+
+.link {
+    color: #337ab7 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.content-title {}
+
+.pagination {
+    text-align: center;
+}
+
+.container-detail {
+    position: relative;
+    min-height: 1px;
+    padding: 15px;
+    float: left;
+    width: 100%;
+}
+
+.panel-default {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #ddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+}
+
+.panel-heading h1 {
+    background: url(https://www.xoso88.info/style/favicon/android-icon-36x36.png) top left no-repeat;
+    padding-left: 38px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.panel-body {
+    padding: 5px;
+}
+
+.news-detail {
+    padding-top: 10px;
+}
+
+.list-panel {
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.list-panel-item {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.list-panel-link {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.list-panel-title {
+    display: inline-block;
+    width: calc(100% - 80px);
+    margin-left: 10px;
+}
+
+.list-panel-title{
+    display: inline-block;
+    width: calc(100% - 80px);
+    margin-left: 10px;
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.link-item {
+    color: #337ab7 !important;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    margin-left: 10px;
+}
+

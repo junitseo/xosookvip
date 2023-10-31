@@ -8,6 +8,9 @@ const Contact = () => {
             <Meta title="Liên hệ"/>
             <div className={stylesCss["container-form"]}>
                 <form>
+                    <div>
+                        <h1 className={stylesCss["title"]}>Liên hệ</h1>
+                    </div>
                     <div className={stylesCss["form-contact-twocolm"]}>
                         <div className={stylesCss["info-left"]}>
                             <p>
