@@ -1,6 +1,6 @@
 import { Table } from "antd";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
-import { statisticsOfLotteryRhythmFrequency } from "../../app/data/statisticsOfLotteryRhythmFrequency"
+import { dataStatisticsOfLotteryRhythmFrequency } from "../../app/data/dataStatisticsOfLotteryRhythmFrequency"
 import { useState } from "react";
 import Meta from "app/components/Meta"
 
@@ -24,7 +24,7 @@ const StatisticsOfLotteryRhythmFrequency = () => {
         },
     ];
 
-    const [data, setData] = useState(statisticsOfLotteryRhythmFrequency);
+    const [data, setData] = useState(dataStatisticsOfLotteryRhythmFrequency);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
