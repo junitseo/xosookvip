@@ -15,9 +15,9 @@ const nextConfig = {
     },
   },
   env: {
-    NEXT_PUBLIC_API_DOMAIN: "https://api.dongdoi.com/",
-    NEXT_PUBLIC_SCHEMA_NAME: "dongdoi",
-    NEXT_PUBLIC_SCHEMA_URL: "https://dongdoi.com",
+    NEXT_PUBLIC_API_DOMAIN: "https://api.xosookvip.com/",
+    NEXT_PUBLIC_SCHEMA_NAME: "xosookvip",
+    NEXT_PUBLIC_SCHEMA_URL: "https://xosookvip.com",
   },
   eslint: {
     ignoreDuringBuilds: true,

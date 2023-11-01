@@ -1,8 +1,10 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const CellularLotoFrequencyStatistics = () => {
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê tần suất lotto kiểu ô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -23,9 +25,9 @@ const CellularLotoFrequencyStatistics = () => {
                                     <tr>
                                         <td colSpan="2" align="center" style={{ marginTop: '15px' }}>
                                             <input type="radio" name="kieu_soi" id="kieu_soi_0" value="0" checked="checked" />
-                                            <label for="kieu_soi_0">Xem theo chiều dọc</label>
+                                            <label for="kieu_soi_0">&nbsp;Xem theo chiều dọc&nbsp;</label>
                                             <input type="radio" name="kieu_soi" id="kieu_soi_1" value="1" />
-                                            <label for="kieu_soi_1">Xem theo chiều ngang</label>
+                                            <label for="kieu_soi_1">&nbsp;Xem theo chiều ngang&nbsp;</label>
                                         </td>
                                     </tr>
                                     <tr>

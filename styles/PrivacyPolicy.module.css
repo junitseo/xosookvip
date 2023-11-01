@@ -1,8 +1,5 @@
 .container {
-    position: relative;
-    min-height: 1px;
     padding: 15px;
-    float: left;
 }
 
 .title {
@@ -26,6 +23,7 @@
     color: #337ab7 !important;
     text-decoration: none;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .content-privacy-policy {
@@ -36,11 +34,7 @@
 }
 
 .content-item-content {
-    margin: 0px;
-    text-align: justify;
-    font-stretch: normal;
     font-size: 13px;
-    font-family: 'Helvetica Neue'
 }
 
 .content-item-content-add {
@@ -56,4 +50,17 @@
     margin: 0px;
     font-stretch: normal;
     line-height: normal
+}
+
+.title {
+    width: 100%;
+    color: #333;
+    font-size: 25px;
+    line-height: 20px;
+    margin: 10px 0;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
 }

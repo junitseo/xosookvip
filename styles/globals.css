@@ -2089,22 +2089,22 @@ img {
   }
 }
 
-.container-root{
+.container-root {
   display: flex;
 }
 
-.menu-root{
+.menu-root {
   width: 20%;
 }
 
-.content-root{
+.content-root {
   width: 80%;
   border-left: 1px solid #e7e7e7;
   min-height: 942px;
 }
 
-.react-datepicker__header  {
-  background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%);
+.react-datepicker__header {
+  background: linear-gradient(180deg, rgba(156, 143, 142, 1) 30%, rgba(93, 90, 86, 0.9865196078431373) 100%);
 }
 
 .react-datepicker__current-month {
@@ -2132,10 +2132,21 @@ img {
 }
 @media screen and (max-width: 800px) {
   .menu-root {
-      display: none;
+    display: none !important;
   }
+
   .content-root {
-    width: 100%;
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .menu-root {
+    width: 30%;
+  }
+
+  .content-root {
+    width: 70%;
   }
   .menu-mobi {
     display: block;

@@ -1,8 +1,10 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const LotteryStatistics = () => {
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê lô gan" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -11,17 +13,15 @@ const LotteryStatistics = () => {
                         </div>
                         <div className={stylesCss["panel-body"]}>
                             <div className={stylesCss["dataTable-wrapper"]}>
-                                <div className={stylesCss["form-group-form-inline"]}>
+                                <div className={stylesCss["form-group-form-inline-check"]}>
                                     <table cellPadding="5" cellSpacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td width="100" align="right">Từ ngày: </td>
-                                                <td width="180">Ngày/Tháng/Năm
+                                                <td>Từ ngày: Ngày/Tháng/Năm
                                                     <br></br>
                                                     <input className={stylesCss["form-control"]} type="text" name="date_start" value="01/01/2020" />
                                                 </td>
-                                                <td width="100" align="right">Đến ngày: </td>
-                                                <td width="180">Ngày/Tháng/Năm
+                                                <td>Đến ngày: Ngày/Tháng/Năm
                                                     <br></br>
                                                     <input type="text" className={stylesCss["form-control"]} name="date_end" value="28/10/2023" />
                                                 </td>

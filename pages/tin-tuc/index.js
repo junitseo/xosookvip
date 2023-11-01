@@ -4,12 +4,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { listMenu } from "../../app/data/new";
 import { Pagination } from "antd";
+import Meta from "app/components/Meta"
 
 const New = () => {
     const [news, setNew] = useState(listMenu);
     
     return (
         <div className={stylesCss["container"]}>
+            <Meta title="Tin tức" />
             <div>
                 <h1 className={stylesCss["title"]}>TIN TỨC HÀNG NGÀY</h1>
             </div>

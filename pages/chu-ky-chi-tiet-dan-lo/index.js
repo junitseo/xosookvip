@@ -2,6 +2,7 @@ import { useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { listNumber } from "../../app/data/listNumber"
 import { list } from "postcss";
+import Meta from "app/components/Meta"
 
 const LotDetailCycle = () => {
     const [dataNumber, setDataNumber] = useState(listNumber);
@@ -9,6 +10,7 @@ const LotDetailCycle = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Chu kỳ chi tiết dàn lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -25,10 +27,14 @@ const LotDetailCycle = () => {
                                                 <br></br>
                                                 <input type="text" name="day_so" value="02,47,60" className={stylesCss["form-control"]} />
                                                 <div className={stylesCss["form-group-form-inline"]}>
-                                                    Từ ngày (Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_from" value="01/01/2005" maxLength="10" />
-                                                    Đến ngày (Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                    <span className={stylesCss["item-select"]}>
+                                                        Từ ngày (Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_from" value="01/01/2005" maxLength="10" />
+                                                    </span>
+                                                    <span className={stylesCss["item-select"]}>
+                                                        &nbsp;Đến ngày (Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>

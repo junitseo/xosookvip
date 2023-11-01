@@ -1,8 +1,10 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const PairLotteryPrediction = () => {
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Soi cầu lô cặp" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -691,6 +693,7 @@ const PairLotteryPrediction = () => {
                                 <div class="clb"></div>
                             </div>
 
+                            <div className={stylesCss["clb"]}></div>
                             <div className={stylesCss["title-bar-box"]}>
                                 <b>Có 204 cầu mới</b> - là những cầu có chiều dài cầu bằng số ngày cầu chạy bạn nhập vào
                             </div>
@@ -902,6 +905,7 @@ const PairLotteryPrediction = () => {
                                 <div class="clb"></div>
                             </div>
 
+                            <div className={stylesCss["clb"]}></div>
                             <div className={stylesCss["title-bar-box"]}>
                                 <b>Tổng số các cầu xuất hiện theo các cặp số là:</b>
                             </div>

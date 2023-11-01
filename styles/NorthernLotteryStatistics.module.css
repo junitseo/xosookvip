@@ -53,6 +53,12 @@
     margin-bottom: 15px;
 }
 
+.form-group-form-inline-check {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
 .form-control {
     display: inline-block;
     width: auto;
@@ -380,10 +386,37 @@
 
 }
 
-.botop-title-text{
+.botop-title-text {
     font-size: 16px
 }
 
-.botop-title-text-16{
+.botop-title-text-16 {
     font-size: 16px;
+}
+
+.table {
+    width: 100%;
+}
+
+@media screen and (max-width: 380px) {
+    .form-control {
+        width: 138px !important;
+    }
+    .item-select .form-control{
+        width: auto !important;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .form-control {
+        width: 170px;
+    }
+
+    .item-select{
+        width: 100%;
+        display: block;
+    }
+    .item-select .form-control{
+        width: auto;
+    }
 }
