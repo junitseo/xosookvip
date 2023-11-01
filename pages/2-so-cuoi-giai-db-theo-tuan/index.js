@@ -70,7 +70,7 @@ function StatisticsSpecialPrize() {
                             <tr>
                               <td className={stylesCss['month']}>{i}</td>
                             </tr>
-                            {Array.from({length: 31}).map(i => (
+                            {Array.from({length: 53}).map(i => (
                               <tr>
                                 <td className={stylesCss['num']}>
                                   <div>13</div>

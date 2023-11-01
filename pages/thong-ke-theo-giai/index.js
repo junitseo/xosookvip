@@ -24,7 +24,8 @@ function StatisticFrequencyPrize() {
         </Select>
         <Button>Xem kết quả</Button>
       </div>
-      <table
+      <div className="wrapper-table">
+        <table
           width="100%"
           cellSpacing={0}
           cellPadding={0}
@@ -102,6 +103,7 @@ function StatisticFrequencyPrize() {
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
   )
 }

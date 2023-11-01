@@ -189,11 +189,6 @@ a {
   max-width: 1200px;
 }
 
-/* custom scrollbar */
-::-webkit-scrollbar {
-  width: 20px;
-}
-
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
@@ -2128,7 +2123,13 @@ img {
   width: 100%;
   border-left: 1px solid #e7e7e7;
 }
-
+.menu-mobi {
+  display: none;
+}
+.wrapper-table {
+  width: 100%;
+  overflow: scroll;
+}
 @media screen and (max-width: 800px) {
   .menu-root {
     display: none !important;
@@ -2146,5 +2147,8 @@ img {
 
   .content-root {
     width: 70%;
+  }
+  .menu-mobi {
+    display: block;
   }
 }

@@ -29,6 +29,7 @@ function Page() {
         </Radio.Group>
       </div>
       <Button style={{marginBottom: 10}}>Xem kết quả</Button>
+      <div className="wrapper-table">
       <table
           cellPadding={5}
           cellSpacing={5}
@@ -89,7 +90,7 @@ function Page() {
           
           </tbody>
         </table>
-
+      </div>          
     </div>
   )
 }

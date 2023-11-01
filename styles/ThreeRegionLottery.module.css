@@ -15,6 +15,10 @@
   list-style-type: none;
   display: flex;
   justify-content: center;
+  padding-inline-start: 0;
+  margin: 10px 0px;
+  flex-wrap: wrap;
+
 }
 .tab_select li {
   color: #333;
@@ -23,4 +27,11 @@
   font-weight: 700;
   line-height: 12px;
   padding: 9px 8px;
+  white-space: nowrap;
+}
+@media screen and (max-width: 800px) {
+  .tab_select li {
+    font-size: 10px;
+    padding: 4px 5px;
+  }
 }

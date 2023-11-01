@@ -40,7 +40,7 @@ function SpecialStagingStatistics() {
         <span className={stylesCss['text2']}>3 ngày</span>
       </div>
 
-      <div style={{display: "flex", gap: 15, marginTop: 10}}>
+      <div className={stylesCss['wrap-table']} style={{display: "flex", gap: 15, marginTop: 10}}>
       <table
         >
           <tbody>

@@ -75,10 +75,6 @@ export const listMenu = [
                 slug: "bang-dac-biet-theo-tong",
             },
             {
-                name: "Bảng đặc biệt theo tổng",
-                slug: "bang-dac-biet-theo-tong",
-            },
-            {
                 name: "Thống kê tần suất giải đặc biệt",
                 slug: "thong-ke-tan-suat-giai-dac-biet",
             },

@@ -17,6 +17,7 @@ function StatisticsSpecialPrize() {
         </Select>
         <Button>Xem kết quả</Button>
       </div>
+      <div className="wrapper-table">
         <table
           width="100%"
           cellSpacing={0}
@@ -88,6 +89,7 @@ function StatisticsSpecialPrize() {
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
   )
 }

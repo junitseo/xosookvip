@@ -20,7 +20,8 @@ function Page() {
         <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
       </div>
       <Button style={{marginBottom: 10}}>Xem kết quả</Button>
-      <table
+      <div className="wrapper-table">
+        <table
           cellPadding={5}
           cellSpacing={5}
           width="100%"
@@ -92,7 +93,7 @@ function Page() {
           
           </tbody>
         </table>
-
+      </div>       
     </div>
   )
 }

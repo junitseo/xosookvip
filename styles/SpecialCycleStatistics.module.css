@@ -18,6 +18,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 .choose input {
   height: 34px;

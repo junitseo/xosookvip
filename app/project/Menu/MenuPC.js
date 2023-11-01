@@ -1,60 +1,19 @@
-import { scrollView, SizeOfElement } from "@function";
 import React, {
-  Fragment,
   useEffect,
   useState,
 } from "react";
-import IconTop from "./IconMenu/IconTop";
 import stylesCss from "../../../styles/MenuCSS/Menu.module.css";
 import { API_URL } from "@function/wsCode";
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import MenuMobile from "project/MenuMobile";
 
 const MenuPC = () => {
-  const [menuScroll, setMenuScroll] = useState(false);
-  const [menuBottom, setMenuBottom] = useState([]);
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      let { elementBottom } = SizeOfElement(document.body);
-      if (elementBottom > 110) {
-        setMenuScroll(true);
-      } else {
-        setMenuScroll(false);
-      }
-    });
-  }, [typeof window !== "undefined" && window]);
-
-  useEffect(() => {
-    const isActive = (path) => {
-      return router.pathname.includes(path);
-    };
-
-    axios.get(`${API_URL}/api/menu/getAll`)
-      .then((response) => {
-        const data = response.data;
-        const menuList = data?.map((item, i) => {
-          const active = isActive(item.menuSlug) ? stylesCss["menu_bottom_item_active"] : "";
-          return {
-            element: (
-              <a onClick={() => router.push(`/${item.menuSlug}`)}>
-                <div className={`${stylesCss["menu_bottom_item"]} ${active}`}>{item.menuName}</div>
-              </a>
-            ),
-            event: () => { },
-            status: true,
-            path: `${item.menuSlug}`,
-          };
-        });
-        setMenuBottom(menuList);
-      })
-      .catch((error) => {
-        console.error('Error fetching menu:', error);
-      });
-  }, [router.pathname]);
-
+    setShowMenu(false);
+  },[router.pathname])
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -67,13 +26,7 @@ const MenuPC = () => {
             <img className={stylesCss.logo} src="/logo.png" alt="logo"/>
           </a>
 
-          {/* <div className={stylesCss["menu-warpper"]}>
-            {menuBottom?.map((val, key) => {
-              return <Fragment key={key}>{val.element}</Fragment>;
-            })}
-          </div> */}
-
-          {/* <div className={stylesCss["menu-toggle"]}>
+          <div className={stylesCss["menu-toggle"]}>
             <svg
               onClick={toggleMenu}
               stroke="currentColor"
@@ -82,8 +35,8 @@ const MenuPC = () => {
               viewBox="0 0 24 24"
               strokeLinecap="round"
               strokeLinejoin="round"
-              height="20px"
-              width="20px"
+              height="35px"
+              width="35px"
               xmlns="http://www.w3.org/2000/svg"
             >
               <desc></desc>
@@ -92,27 +45,10 @@ const MenuPC = () => {
               <line x1="4" y1="12" x2="20" y2="12"></line>
               <line x1="4" y1="18" x2="20" y2="18"></line>
             </svg>
-            <div className={showMenu ? stylesCss["menu-toggle-show"] : stylesCss["menu-toggle-hide"]}>
-              <span>
-                {menuBottom?.map((val, key) => {
-                  return val.element;
-                })}
-              </span>
-            </div>
-          </div> */}
+          </div>
         </div>
-
       </nav >
-      {/* {menuScroll && (
-        <div
-          onClick={() => {
-            scrollView.top();
-          }}
-          className={stylesCss.arowTop}>
-          <IconTop />
-        </div>
-      )
-      } */}
+      {showMenu &&  <MenuMobile />}
     </>
   );
 };
