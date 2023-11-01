@@ -57,6 +57,7 @@
   font-weight: normal;
   color: #666666;
   display: block;
+  white-space: nowrap;
 }
 .wrapper tr:nth-child(odd) {
   background-color: #F5F5F5;

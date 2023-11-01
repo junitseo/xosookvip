@@ -8,7 +8,8 @@ function StatisticsSpecialPrize() {
   const [year, setYear] = useState("2022");
 
   return (
-    <div className={stylesCss['wrapper']}>
+    <>
+      <div className={stylesCss['wrapper']}>
       <Meta title="Thống kê giải đặc biệt theo tháng"/>
       <div className={stylesCss['title']}>Thống kê Giải ĐB năm 2022 theo tháng</div>
       <div className={stylesCss['choose-day']}>
@@ -17,7 +18,8 @@ function StatisticsSpecialPrize() {
         </Select>
         <Button>Xem kết quả</Button>
       </div>
-        <table
+      <div className="wrapper-table">
+      <table
           width="100%"
           cellSpacing={0}
           cellPadding={0}
@@ -88,7 +90,11 @@ function StatisticsSpecialPrize() {
             </tr>
           </tbody>
         </table>
+      </div>
+       
     </div>
+    </>
+
   )
 }
 

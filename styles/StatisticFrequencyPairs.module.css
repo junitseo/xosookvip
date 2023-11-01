@@ -44,3 +44,12 @@
 .wrapper tr:nth-child(odd) {
   background-color: #F5F5F5;
 }
+.wrap-table {
+  display: flex;
+  gap: 15px;
+}
+@media (max-width: 800px) {
+  .wrap-table {
+    flex-wrap: wrap;
+  }
+}

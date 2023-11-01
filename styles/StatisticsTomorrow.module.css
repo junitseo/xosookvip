@@ -16,6 +16,7 @@
 }
 .choose-day {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
@@ -39,4 +40,21 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+}
+@media screen and (max-width: 800px) {
+  .list {
+    display: block;
+  }
+  .block1 {
+    width: 100%;
+    font-size: 12px;
+    padding: 3px 5px;
+
+  }
+  .strong1 {
+    font-size: 12px;
+  }
+  .strong2 {
+    font-size: 12px;
+  }
 }

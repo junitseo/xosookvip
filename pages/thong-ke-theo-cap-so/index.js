@@ -30,7 +30,7 @@ function StatisticFrequencyPairs() {
         </Select>
         <Button>Xem kết quả</Button>
       </div>
-      <div style={{display: "flex", gap: 15}}>
+      <div className={stylesCss['wrap-table']}>
       <table
         >
           <tbody>
