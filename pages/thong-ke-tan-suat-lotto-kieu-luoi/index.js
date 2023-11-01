@@ -25,9 +25,9 @@ const GridStyleLotoFrequencyStatistics = () => {
                                     <tr>
                                         <td colSpan="2" align="center" style={{ marginTop: '15px' }}>
                                             <input type="radio" name="kieu_soi" id="kieu_soi_0" value="0" checked="checked" />
-                                            <label for="kieu_soi_0">Xem theo chiều dọc</label>
+                                            <label for="kieu_soi_0">&nbsp;Xem theo chiều dọc&nbsp;</label>
                                             <input type="radio" name="kieu_soi" id="kieu_soi_1" value="1" />
-                                            <label for="kieu_soi_1">Xem theo chiều ngang</label>
+                                            <label for="kieu_soi_1">&nbsp;Xem theo chiều ngang&nbsp;</label>
                                         </td>
                                     </tr>
                                     <tr>

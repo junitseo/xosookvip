@@ -45,8 +45,8 @@ const InterpretTheDreams = () => {
                 <h1>Giải mã bí ẩn của những giấc mơ (tham khảo)</h1>
                 <div className={stylesCss["example-wrapper"]}>
                     <div className={stylesCss["row"]}>
-                        <div className={stylesCss["col-sm-6"]}></div>
-                        <div className={stylesCss["col-sm-6"]}>
+                        <div className={stylesCss["col-sm-6-left"]}></div>
+                        <div className={stylesCss["col-sm-6-right"]}>
                             <div className={stylesCss["dataTables-filter"]}>
                                 <label>Search:
                                     <input onChange={(e)=> searchInterpretTheDreams(e.target.value)} className={stylesCss["input-sm"]} type="search" placeholder="" aria-controls="example" />

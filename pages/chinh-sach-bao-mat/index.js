@@ -6,8 +6,8 @@ const PrivacyPolicy = () => {
     return (
         <div className={stylesCss["container"]}>
             <Meta title="Chính sách bảo mật" />
-            <div className={stylesCss["title"]}>
-                <h1>Chính sách bảo mật</h1>
+            <div>
+                <h1 className={stylesCss["title"]}>Chính sách bảo mật</h1>
                 <div>
                     <div className={stylesCss["content"]}>
                         <div className={stylesCss["content-item"]}>

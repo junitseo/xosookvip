@@ -107,6 +107,15 @@
     position: relative;
 }
 
+.info-right-full p {
+    position: relative;
+}
+
+.info-right-full {
+    width: 100%;
+    float: right;
+}
+
 .form-control-mail {
     position: relative;
     margin: 0;
@@ -213,4 +222,16 @@
 .form-control-textarea:focus-visible {
     outline: 0px solid currentColor;
     outline-offset: 2px;
+}
+
+@media screen and (max-width: 600px){
+    .container-form {
+        padding: 15PX;
+    }
+    .info-left {
+        width: 100%;
+    }
+    .info-right {
+        width: 100%;
+    }
 }

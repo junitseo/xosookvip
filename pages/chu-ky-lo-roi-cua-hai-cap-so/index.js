@@ -22,30 +22,36 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                     <tbody>
                                         <tr>
                                             <td align="center">
-                                                2 cặp số khảo sát:&nbsp;
-                                                <select name="cap_so_1" className={stylesCss["form-control"]}>
-                                                    {
-                                                        dataNumber?.map((item, index) => {
-                                                            return (
-                                                                <option key={index} value={item}>{item}</option>
-                                                            );
-                                                        })
-                                                    }
-                                                </select>
-                                                &nbsp;
-                                                <select name="cap_so_2" className={stylesCss["form-control"]}>
-                                                    {
-                                                        dataNumber?.map((item, index) => {
-                                                            return (
-                                                                <option key={index} value={item}>{item}</option>
-                                                            );
-                                                        })
-                                                    }
-                                                </select>
-                                                &nbsp;
-                                                Từ ngày(Ngày/Tháng/Năm)&nbsp;
-                                                <input type="text" className={stylesCss["form-control"]} name="day_from" value="28/10/2022" maxLength="10" /> Đến ngày(Ngày/Tháng/Năm)&nbsp;
-                                                <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                <span className={stylesCss["item-select"]}>
+                                                    2 cặp số khảo sát:&nbsp;
+                                                    <select name="cap_so_1" className={stylesCss["form-control"]}>
+                                                        {
+                                                            dataNumber?.map((item, index) => {
+                                                                return (
+                                                                    <option key={index} value={item}>{item}</option>
+                                                                );
+                                                            })
+                                                        }
+                                                    </select>
+                                                    &nbsp;
+                                                    <select name="cap_so_2" className={stylesCss["form-control"]}>
+                                                        {
+                                                            dataNumber?.map((item, index) => {
+                                                                return (
+                                                                    <option key={index} value={item}>{item}</option>
+                                                                );
+                                                            })
+                                                        }
+                                                    </select>
+                                                </span>
+                                                <span className={stylesCss["item-select"]}>
+                                                    &nbsp;Từ ngày(Ngày/Tháng/Năm)&nbsp;
+                                                    <input type="text" className={stylesCss["form-control"]} name="day_from" value="28/10/2022" maxLength="10" />
+                                                </span>
+                                                <span className={stylesCss["item-select"]}>
+                                                    &nbsp;Đến ngày(Ngày/Tháng/Năm)&nbsp;
+                                                    <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                </span>
                                             </td>
                                         </tr>
                                         <tr>

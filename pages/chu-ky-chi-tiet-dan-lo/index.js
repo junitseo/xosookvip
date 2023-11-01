@@ -27,10 +27,14 @@ const LotDetailCycle = () => {
                                                 <br></br>
                                                 <input type="text" name="day_so" value="02,47,60" className={stylesCss["form-control"]} />
                                                 <div className={stylesCss["form-group-form-inline"]}>
-                                                    Từ ngày (Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_from" value="01/01/2005" maxLength="10" />
-                                                    Đến ngày (Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                    <span className={stylesCss["item-select"]}>
+                                                        Từ ngày (Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_from" value="01/01/2005" maxLength="10" />
+                                                    </span>
+                                                    <span className={stylesCss["item-select"]}>
+                                                        &nbsp;Đến ngày (Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>

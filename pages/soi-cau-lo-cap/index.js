@@ -693,6 +693,7 @@ const PairLotteryPrediction = () => {
                                 <div class="clb"></div>
                             </div>
 
+                            <div className={stylesCss["clb"]}></div>
                             <div className={stylesCss["title-bar-box"]}>
                                 <b>Có 204 cầu mới</b> - là những cầu có chiều dài cầu bằng số ngày cầu chạy bạn nhập vào
                             </div>
@@ -904,6 +905,7 @@ const PairLotteryPrediction = () => {
                                 <div class="clb"></div>
                             </div>
 
+                            <div className={stylesCss["clb"]}></div>
                             <div className={stylesCss["title-bar-box"]}>
                                 <b>Tổng số các cầu xuất hiện theo các cặp số là:</b>
                             </div>
