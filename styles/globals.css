@@ -2099,6 +2099,8 @@ img {
 
 .content-root{
   width: 80%;
+  border-left: 1px solid #e7e7e7;
+  min-height: 942px;
 }
 
 .react-datepicker__header  {

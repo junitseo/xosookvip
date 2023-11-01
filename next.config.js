@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // images.unoptimized : true,
   swcMinify: true,
   images: {
-    domains: ["vncdn.sabasports.com", "thethao789.b-cdn.net"],
+    domains: ["api.xosoaladin.com"],
     unoptimized: true,
   },
   compiler: {
@@ -21,8 +20,6 @@ const nextConfig = {
     NEXT_PUBLIC_SCHEMA_URL: "https://dongdoi.com",
   },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
 };

@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
             <Meta title="Chính sách bảo mật"/>
             <div className={stylesCss["title"]}>
                 <h1>Chính sách bảo mật</h1>
-            </div>
+            <div>
             <div className={stylesCss["content"]}>
                 <div className={stylesCss["content-item"]}>
                     <p className={stylesCss["content-privacy-policy"]}>

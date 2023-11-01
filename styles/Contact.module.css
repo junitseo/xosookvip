@@ -12,6 +12,19 @@
     max-width: 66.6666666667%;
 }
 
+.title{
+    text-align: center;
+    width: 100%;
+    color: #333;
+    font-size: 25px;
+    line-height: 20px;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
 .form-contact-twocolm {
     display: block;
     height: 60px;

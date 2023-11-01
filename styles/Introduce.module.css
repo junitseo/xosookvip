@@ -7,17 +7,24 @@
 
 .title {
     width: 100%;
-    font-size: 14px;
-    line-height: 1.42857143;
     color: #333;
+    font-size: 25px;
+    line-height: 20px;
+    margin: 10px 0;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
 }
 
 .content-item {
     margin-top: 15px;
+    line-height: 30px;
 }
 
 .link {
     color: #337ab7 !important;
     text-decoration: none;
-
+    cursor: pointer;
 }
