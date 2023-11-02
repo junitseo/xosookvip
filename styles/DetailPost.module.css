@@ -1,3 +1,6 @@
+.wrapper {
+  padding: 10px 5px;
+}
 .title {
   text-transform: uppercase;
   size: 18px;

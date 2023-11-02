@@ -41,7 +41,7 @@
 }
 .item {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 .item img {
   min-width: 52px;
