@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BlockResultSX from 'components/BlockResultSX'
 import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
@@ -7,6 +7,8 @@ import stylesCss from '../../styles/ThreeRegionLottery.module.css'
 import Meta from "app/components/Meta"
 
 function NorthernLottery() {
+
+
   return (
     <>
       <Meta title="Xổ số miền bắc"/>
