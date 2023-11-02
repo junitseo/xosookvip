@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BlockResultSX from 'components/BlockResultSX'
 import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
+import DetailPost from 'components/DetailPost'
 import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../../styles/ThreeRegionLottery.module.css'
 import Link from 'next/link'
 import Meta from "app/components/Meta"
 
 function ThreeRegionLottery() {
+  const [dataPost, setDataPost] = useState(null)
   return (
     <>
       <Meta title="Xổ số ba miền"/>
       <div className={stylesCss['wrapper']}>
-      <SideBarLeft />
+      <SideBarLeft setDataPost={setDataPost} />
+      {dataPost?
+        <div style={{flex: 1, width: "5%"}}>
+          <DetailPost data={dataPost}/>
+        </div>
+      :
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ HÔM NAY</h2>
           <ul className={stylesCss['tab_select']}>
@@ -57,13 +64,13 @@ function ThreeRegionLottery() {
               </Link>
             </li>
           </ul>
-
-        <BlockResultSX title="xsmn thứ 3, xsmn ngày 24/10/2023" />
-        <BlockResultLoto />
-        <div style={{marginTop: 20}}></div>
-        <BlockResultSX title="xsmb thứ 3, xsmn ngày 24/10/2023" />
-        <BlockResultLoto />
+          <BlockResultSX title="xsmn thứ 3, xsmn ngày 24/10/2023" />
+          <BlockResultLoto />
+          <div style={{marginTop: 20}}></div>
+          <BlockResultSX title="xsmb thứ 3, xsmn ngày 24/10/2023" />
+          <BlockResultLoto />
       </div>
+      }
       <SideBarRight />
     </div>
     </>
