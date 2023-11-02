@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import HomePage from "./home"
+import ThreeRegionLottery from "./xo-so-ba-mien";
 
 function Home({}) {
   const [showChild, setShowChild] = useState(false);
@@ -15,7 +16,7 @@ function Home({}) {
   return (
     <>
       <div className="body">
-        <HomePage />
+        <ThreeRegionLottery />
       </div>
     </>
   );

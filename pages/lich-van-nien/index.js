@@ -1,8 +1,10 @@
 import stylesCss from "../../styles/PerpetualCalendar.module.css";
+import Meta from "app/components/Meta"
 
 const PerpetualCalendar = () => {
     return (
         <div>
+            <Meta title="Lịch vạn niên" />
             <form className={stylesCss["calendar-form"]}>
                 <div className={stylesCss["perpetual-calendar"]}>
                     <div className={stylesCss["calendar-title"]}>

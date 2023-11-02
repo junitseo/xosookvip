@@ -1,4 +1,4 @@
-export const statisticsOfLotteryRhythmFrequency = [
+export const dataStatisticsOfLotteryRhythmFrequency = [
     {
         date: "26-10-2023",
         weekdays: "Thứ năm",

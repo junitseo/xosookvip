@@ -1,7 +1,8 @@
 import { Table } from "antd";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
-import { statisticsOfLotteryRhythmFrequency } from "../../app/data/statisticsOfLotteryRhythmFrequency"
+import { dataStatisticsOfLotteryRhythmFrequency } from "../../app/data/dataStatisticsOfLotteryRhythmFrequency"
 import { useState } from "react";
+import Meta from "app/components/Meta"
 
 const StatisticsOfLotteryRhythmFrequency = () => {
     const columns = [
@@ -23,10 +24,11 @@ const StatisticsOfLotteryRhythmFrequency = () => {
         },
     ];
 
-    const [data, setData] = useState(statisticsOfLotteryRhythmFrequency);
+    const [data, setData] = useState(dataStatisticsOfLotteryRhythmFrequency);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê tần số nhịp lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -35,24 +37,22 @@ const StatisticsOfLotteryRhythmFrequency = () => {
                         </div>
                         <div className={stylesCss["panel-body"]}>
                             <div className={stylesCss["dataTable-wrapper"]}>
-                                <div className={stylesCss["form-group-form-inline"]}>
+                                <div className={stylesCss["form-group-form-inline-check"]}>
                                     <table cellPadding="5" cellSpacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td width="100" align="right">Từ ngày: </td>
-                                                <td width="180">Ngày/Tháng/Năm
+                                                <td>Từ ngày: Ngày/Tháng/Năm
                                                     <br></br>
                                                     <input className={stylesCss["form-control"]} type="text" name="date_start" value="01/01/2020" />
                                                 </td>
-                                                <td width="100" align="right">Đến ngày: </td>
-                                                <td width="180">Ngày/Tháng/Năm
+                                                <td>&nbsp;Đến ngày: Ngày/Tháng/Năm
                                                     <br></br>
                                                     <input type="text" className={stylesCss["form-control"]} name="date_end" value="28/10/2023" />
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" align="center">
-                                                    nhập số ngày&nbsp;
+                                                &nbsp;nhập số ngày&nbsp;
                                                     <input type="text" name="biendo" value="10" className={stylesCss["form-control"]} />&nbsp;
                                                     <input type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
                                                 </td>

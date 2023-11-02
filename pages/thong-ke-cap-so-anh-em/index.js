@@ -1,6 +1,7 @@
 import { useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { statisticsOnSiblingPairs } from "../../app/data/statisticsOnSiblingPairs"
+import Meta from "app/components/Meta"
 
 const StatisticsOnSiblingPairs = () => {
     const [data, setData] = useState(statisticsOnSiblingPairs);
@@ -14,6 +15,7 @@ const StatisticsOnSiblingPairs = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Thống kê cặp số anh em" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

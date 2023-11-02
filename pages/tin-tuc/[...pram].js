@@ -3,12 +3,14 @@ import stylesCss from "../../styles/New.module.css";
 import Image from "next/image";
 import { listMenu } from "../../app/data/new";
 import { useState } from "react";
+import Meta from "app/components/Meta"
 
 const NewDetail = ({data}) => {
     const [news, setNew] = useState(data);
 
     return (
         <div className={stylesCss["container-detail"]}>
+            <Meta title="Chi tiết Tin tức" />
             <div className={stylesCss["panel-default"]}>
                 <div className={stylesCss["panel-heading"]}>
                     <h1>Bên ngoài lịch lãm - về nhà đảm đang: “biệt đội trai đảm” trình làng khiến hội chị em không tiếc lời khen</h1>

@@ -1,9 +1,11 @@
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
+import Meta from "app/components/Meta"
 
 const CheckBridgeHistory = () => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
+            <Meta title="Kiểm tra lịch sử cầu lô" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -13,9 +15,14 @@ const CheckBridgeHistory = () => {
                         <div className={stylesCss["panel-body"]}>
                             <div className={stylesCss["dataTable-wrapper"]}>
                                 <div className={stylesCss["form-group-form-inline"]} align="center">
-                                    Vị trí 1:&nbsp;<input type="text" name="index_i" value="0" class="form-control" maxLength="3" />
-                                    Vị trí 2:&nbsp;<input type="text" name="index_j" value="0" class="form-control" maxLength="3" />
-                                    &nbsp;<input type="submit" name="sbtsubmit" value="Thống kê lịch sử cầu" class="btn btn-default" />
+                                    <span className={stylesCss["item-select"]}>
+                                    Vị trí 1:&nbsp;<input type="text" name="index_i" value="0" className={stylesCss["form-control"]} maxLength="3" />
+                                    </span>
+                                    <span className={stylesCss["item-select"]}>
+                                        &nbsp;Vị trí 2:&nbsp;<input type="text" name="index_j" value="0" className={stylesCss["form-control"]} maxLength="3" />
+                                    </span>
+                                    
+                                    &nbsp;<input type="submit" name="sbtsubmit" value="Thống kê lịch sử cầu" className={stylesCss["btn-btn-default"]} />
                                     <br></br>Dữ liệu được khảo sát từ 01/01/2005 đến ngày 30/10/2023
                                 </div>
                             </div>
