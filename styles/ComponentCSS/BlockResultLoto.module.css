@@ -1,5 +1,5 @@
 .wrapper {
-
+  font-size: 12px;
 }
 .head {
   background: #EFEFEF;
@@ -10,6 +10,10 @@
   font-size: 16px;
   font-weight: bold;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 .loto-title {
   background-color: #CCCCCC;
@@ -17,6 +21,7 @@
 }
 .loto-center {
   background-color: #EFEFEF;
+  max-width: 70px;
 }
 .wrapper-item tr {
   display: flex;
