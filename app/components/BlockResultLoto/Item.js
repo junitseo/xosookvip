@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import stylesCss from '../../../styles/ComponentCSS/BlockResultLoto.module.css'
 
-function ItemLoto() {
+function ItemLoto({data}) {
+
+  const mergedData = useMemo(() => {
+    const d = [];
+    for(let key = 0; key <= 9 ; key++) {
+      const mergedItem = {
+        resultHead: data.resultHead[key] || [],
+        resultEnd: data.resultEnd[key] || []
+      }
+      d.push(mergedItem);
+    }
+    return d;
+  },[data])
   return (
     <table className={stylesCss['wrapper-item']} width="100%" cellSpacing={0} cellPadding={2}>
       <tbody>
         <tr>
           <td colSpan={3} className={stylesCss['loto-title']}>
-            <strong>Khánh Hòa</strong>
+            <strong>{data.provinceName}</strong>
           </td>
         </tr>
         <tr>
@@ -17,80 +29,23 @@ function ItemLoto() {
           </td>
           <td>Đơn Vị</td>
         </tr>
-        <tr>
-          <td>0</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>0</strong>
-          </td>
-          <td>0 6</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>1</strong>
-          </td>
-          <td>2 7 9</td>
-        </tr>
-        <tr>
-          <td>1 5</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>2</strong>
-          </td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>3 9</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>3</strong>
-          </td>
-          <td>
-            3 <span style={{ color: "#FF3322" }}>9</span>
-          </td>
-        </tr>
-        <tr>
-          <td>5 6 9</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>4</strong>
-          </td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>4 6 8</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>5</strong>
-          </td>
-          <td>2 4</td>
-        </tr>
-        <tr>
-          <td>0 7</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>6</strong>
-          </td>
-          <td>4 5 9</td>
-        </tr>
-        <tr>
-          <td>1 8</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>7</strong>
-          </td>
-          <td>6</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>8</strong>
-          </td>
-          <td>5 7</td>
-        </tr>
-        <tr>
-          <td>
-            1 <span style={{ color: "#FF3322" }}>3</span> 6
-          </td>
-          <td  className={stylesCss['loto-center']}>
-            <strong>9</strong>
-          </td>
-          <td>3 4</td>
-        </tr>
+        {mergedData.map((item, index) => (
+          <tr>
+            <td>
+            {item.resultEnd.map(i=> (
+              <span>{i.loto.slice(0,1)} </span>
+            ))}
+            </td>
+            <td  className={stylesCss['loto-center']}>
+              <strong>{index}</strong>
+            </td>
+            <td>
+            {item.resultHead.map(i=> (
+              <span>{i.loto.slice(1,2)} </span>
+            ))}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

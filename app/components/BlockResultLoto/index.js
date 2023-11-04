@@ -1,16 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ItemLoto from './Item'
 import stylesCss from '../../../styles/ComponentCSS/BlockResultLoto.module.css'
-
-function Loto() {
+import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai'
+function Loto({dataLoto=[], title}) {
+  const [show, setShow] = useState(false)
   return (
     <div className={stylesCss['wrapper']}>
-      <div className={stylesCss['head']}>Bảng Loto xổ số Miền Nam -  24/10/2023</div>
-      <div style={{display: 'flex', gap: 10}}>
-        <ItemLoto />
-        <ItemLoto />
-      </div>
-
+      <div className={stylesCss['head']}>{title} <span onClick={() => setShow(!show)}>{show?<AiOutlineCaretUp/>:<AiOutlineCaretDown />}</span></div>
+      {
+        show &&
+        <div className={dataLoto.length >= 4?'grid-2': 'flex'} style={{gap: 5}}>
+          {dataLoto.map(i => (
+            <ItemLoto data={i} />
+          )) }
+        </div>
+      }
     </div>
   )
 }
