@@ -1,0 +1,101 @@
+.wrapper {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.head {
+  background: #d00e0e;
+  height: 36px;
+  line-height: 34px;
+  color: #fff;
+  font-family: "Times New Roman",Times,serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.leftcl td {
+  border: 1px #ddd solid;
+  text-align: center;
+  padding: 0px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #322c20;
+}
+
+.rightcl td {
+  border: 1px #ddd solid;
+  border-top: 0px;
+  border-left: 0px;
+  text-align: center;
+  padding: 0px;
+}
+.day {
+  font-size: 13px;
+  font-weight: bold;
+  height: 32px;
+  background-color: #f3f3f3;
+}
+.rank {
+  font-size: 13px;
+  font-weight: bold;
+  height: 32px;
+}
+.tinh {
+  font-size: 13px;
+  font-weight: bold;
+  height: 32px;
+}
+.matinh {
+  background-color: #f3f3f3;
+  font-size: 13px;
+  font-weight: bold;
+  height: 32px;
+}
+.giai7 {
+  background-color: #f3f3f3;
+  font-size: 18px;
+  font-weight: bold;
+  height: 32px;
+}
+.giai6 {
+  font-size: 18px;
+  font-weight: bold;
+  height: 32px;
+}
+.giai5 {
+  background-color: #f3f3f3;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 120%;
+  height: 57px;
+}
+.giai4 {
+  font-size: 18px;
+  font-weight: bold;
+  height: 57px;
+  line-height: 120%;
+}
+.giai3 {
+  background-color: #f3f3f3;
+  font-size: 18px;
+  font-weight: bold;
+  height: 57px;
+  line-height: 120%;
+}
+.giai2 {
+  font-size: 18px;
+  font-weight: bold;
+  height: 32px;
+}
+.giai1 {
+  background-color: #f3f3f3;
+  font-size: 18px;
+  font-weight: bold;
+  height: 32px;
+}
+.giaidb {
+  color: #ff0000;
+  font-size: 18px;
+  font-weight: bold;
+  height: 32px;
+}
