@@ -3,7 +3,7 @@ import { FaEdit, FaRegChartBar, FaTable, FaTachometerAlt } from "react-icons/fa"
 export const listMenu = [
     {
         name: "Xổ số ba miền",
-        slug: "xo-so-ba-mien",
+        slug: "/",
         icon: <FaTachometerAlt />,
         iconChildren: false,
         menuChildren: []
