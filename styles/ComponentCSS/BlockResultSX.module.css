@@ -14,14 +14,6 @@
   text-transform: uppercase;
   vertical-align: middle;
 }
-.leftcl td {
-  border: 1px #ddd solid;
-  text-align: center;
-  padding: 0px;
-  font-weight: 400;
-  font-size: 13px;
-  color: #322c20;
-}
 
 .rightcl td {
   border: 1px #ddd solid;
@@ -29,6 +21,16 @@
   border-left: 0px;
   text-align: center;
   padding: 0px;
+}
+.rightcl tr td:first-child {
+  border: 1px #ddd solid;
+  text-align: center;
+  padding: 0px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #322c20;
+  max-width: 100px;
+  width: 100px;
 }
 .day {
   font-size: 13px;

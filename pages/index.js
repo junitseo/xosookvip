@@ -3,16 +3,15 @@ import BlockResultSX from 'components/BlockResultSX'
 import BlockResultSX2 from 'components/BlockResultSX2'
 import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
-import DetailPost from 'components/DetailPost'
 import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../styles/ThreeRegionLottery.module.css'
-import Link from 'next/link'
 import Meta from "app/components/Meta"
 import { getKqxsMb, getKqxsMn, getKqxsMt } from 'app/api/kqxsApi'
 import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
-function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt}) {
-
+import { useRouter } from 'next/router'
+function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate}) {
+  const router = useRouter();
   const dataLotoMn = useMemo(() => {
     if(!dataMn) return [];
     return dataMn.map((item) => (
@@ -26,71 +25,99 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt}) {
   },[dataMb])
   const dataLotoMt = useMemo(() => {
     if(!dataMt) return [];
-    return [{resultHead: dataMt.resultHead, resultEnd: dataMt.resultEnd, provinceName: dataMt.provinceName}]
+    return dataMt.map((item) => (
+      {resultHead: item.resultHead, resultEnd: item.resultEnd, provinceName: item.provinceName}
+    ))
   },[dataMt])
+
+ 
   const dayofWeek = useMemo(() => getDayOfWeek(dateMb))
-  const dateFormat = useMemo(() => moment(dateMb).format("MM/DD/YYYY"))
+  const dateFormat = useMemo(() => dateMb.replace(/-/g, '/'))
   const dayofWeekMn = useMemo(() => getDayOfWeek(dateMn))
-  const dateFormatMn = useMemo(() => moment(dateMn).format("MM/DD/YYYY"))
+  const dateFormatMn = useMemo(() => dateMn.replace(/-/g, '/'))
   const dayofWeekMt = useMemo(() => getDayOfWeek(dateMt))
-  const dateFormatMt = useMemo(() => moment(dateMt).format("MM/DD/YYYY"))
+  const dateFormatMt = useMemo(() => dateMt.replace(/-/g, '/'))
+
+
+  const handleChangeDateOfWeek = (value) => {
+    const toDay = new Date().getDay()
+    const diff = toDay - value
+    let haveResultDate = 0
+    if (diff < 0) {
+        haveResultDate = 7
+    }
+    const dateToGetData = new Date(
+        new Date().setDate(new Date().getDate() - diff - haveResultDate)
+    )
+    const date = moment(dateToGetData).format("DD-MM-YYYY");
+    router.push(`/?date=${date}`)
+  }
   return (
     <>
       <Meta title="Xổ số ba miền"/>
       <div className={stylesCss['wrapper']}>
       <SideBarLeft />
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ HÔM NAY</h2>
-          <ul className={stylesCss['tab_select']}>
-            <li>
-              <Link title="Miền Nam - Xem tất cả" href="">
-                <span>Miền Nam </span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ hai" href="">
-                <span>Thứ hai</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ ba" href="">
-                <span>Thứ ba</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ tư" href="">
-                <span>Thứ tư</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ năm" href="">
-                <span>Thứ năm</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ sáu" href="">
-                <span>Thứ sáu</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Thứ bảy" href="">
-                <span>Thứ bảy</span>
-              </Link>
-            </li>
-            <li>
-              <Link title="Chủ nhật" href="">
-                <span>Chủ nhật</span>
-              </Link>
-            </li>
+        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ {isQueryDate?`NGÀY ${dateFormat}`: "HÔM NAY"}</h2>
+           <ul className={stylesCss['tab_select']}>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(1)}>
+               <span>Thứ hai</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(2)}>
+               <span>Thứ ba</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(3)}>
+               <span>Thứ tư</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(4)}>
+               <span>Thứ năm</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(5)}>
+               <span>Thứ sáu</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(6)}>
+               <span>Thứ bảy</span>
+             </div>
+           </li>
+           <li>
+             <div onClick={() => handleChangeDateOfWeek(0)}>
+               <span>Chủ nhật</span>
+             </div>
+           </li>
           </ul>
-          <BlockResultSX data={dataMn} title={`xsmn ${dayofWeekMn}, xsmn ngày ${dateFormatMn}`} />
-          <BlockResultLoto dataLoto={dataLotoMn} title={`Bảng Loto xổ số Miền Nam -  ${dateFormatMn}`}/>
-          <div style={{marginTop: 20}}></div>
-          <BlockResultSX2 data={dataMb} title={`xsmb ${dayofWeek}, xsmb ngày ${dateFormat}`} />
-          <BlockResultLoto dataLoto={dataLotoMb} title={`Bảng Loto xổ số Miền Bắc -  ${dateFormat}`}/>
-          <div style={{marginTop: 20}}></div>
-          <BlockResultSX2 data={dataMb} title={`xsmb ${dayofWeekMt}, xsmb ngày ${dateFormatMt}`} />
-          <BlockResultLoto dataLoto={dataLotoMt} title={`Bảng Loto xổ số Miền Bắc -  ${dateFormatMt}`}/>
+         
+          {dataMn && dataMn.length > 0 && 
+            <>
+                <BlockResultSX data={dataMn} title={`xsmn ${dayofWeekMn}, xsmn ngày ${dateFormatMn}`} />
+                <BlockResultLoto dataLoto={dataLotoMn} title={`Bảng Loto xổ số Miền Nam -  ${dateFormatMn}`}/>
+            </>
+          }
+        
+          {dataMb && 
+            <>
+                  <div style={{marginTop: 20}}></div>
+                  <BlockResultSX2 data={dataMb} title={`xsmb ${dayofWeek}, xsmb ngày ${dateFormat}`} />
+                  <BlockResultLoto dataLoto={dataLotoMb} title={`Bảng Loto xổ số Miền Bắc -  ${dateFormat}`}/>
+            </>
+          }
+          {dataMt && dataMt.length >0 && 
+            <>
+                  <div style={{marginTop: 20}}></div>
+                  <BlockResultSX data={dataMt} title={`xsmt ${dayofWeekMt}, xsmt ngày ${dateFormatMt}`} />
+                  <BlockResultLoto dataLoto={dataLotoMt} title={`Bảng Loto xổ số Miền Trung -  ${dateFormatMt}`}/>
+            </>
+          }
       </div>
       <SideBarRight />
     </div>
@@ -99,26 +126,33 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt}) {
 }
 
 export default Home
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({query}) => {
   const dateNow = moment();
   let dateMb = ""
-  if(dateNow - moment().hours(18).minutes(45) > 0){
-    dateMb = dateNow.format("DD-MM-YYYY");
-  }else {
-    dateMb = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
-  }
   let dateMn = ""
-  if(dateNow - moment().hours(16).minutes(45) > 0){
-    dateMn = dateNow.format("DD-MM-YYYY");
-  }else {
-    dateMn = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
-  }
   let dateMt = ""
-  if(dateNow - moment().hours(17).minutes(45) > 0){
-    dateMt = dateNow.format("DD-MM-YYYY");
+  let isQueryDate = false;
+  if(query.date && moment(query.date, 'DD-MM-YYYY', true).isValid()){
+    dateMb = dateMn = dateMt = query.date;
+    isQueryDate = true;
   }else {
-    dateMt = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
+    if(dateNow - moment().hours(18).minutes(45) > 0){
+      dateMb = moment().format("DD-MM-YYYY");
+    }else {
+      dateMb = moment().subtract(1, 'days').format("DD-MM-YYYY");
+    }
+    if(dateNow - moment().hours(16).minutes(45) > 0){
+      dateMn = moment().format("DD-MM-YYYY");
+    }else {
+      dateMn = moment().subtract(1, 'days').format("DD-MM-YYYY");
+    }
+    if(dateNow - moment().hours(17).minutes(45) > 0){
+      dateMt = moment().format("DD-MM-YYYY");
+    }else {
+      dateMt = moment().subtract(1, 'days').format("DD-MM-YYYY");
+    }
   }
+ 
   const [dataMb, dataMn, dataMt] = await Promise.all([
     getKqxsMb(dateMb),
     getKqxsMn(dateMn),
@@ -131,7 +165,8 @@ export const getServerSideProps = async () => {
       dataMn,
       dateMb,
       dateMn,
-      dateMt
+      dateMt,
+      isQueryDate
     }
   }
 }

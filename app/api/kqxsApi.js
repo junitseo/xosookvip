@@ -3,7 +3,7 @@ import AxiosClient from "./baseApi";
 export const getKqxsMb = async (day) => {
   try {
     const res = await AxiosClient.get(`/kqxs/xsmb/${day}`);
-    return res.data.resultObj[0];
+    return res.data.resultObj[0] || null;
   } catch (error) {
     return error; 
   }
@@ -24,10 +24,10 @@ export const getKqxsMt = async (day) => {
     return error; 
   }
 }
-export const getKqxsProvince = async (day,provinceId) => {
+export const getKqxsProvince = async (provinceId, day) => {
   try {
     const res = await AxiosClient.get(`/kqxs/xsTinh`, { params: { day, provinceId } });
-    return res.data.resultObj[0];
+    return res.data;
   } catch (error) {
     return error; 
   }

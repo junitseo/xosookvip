@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import MenuLeft from "../app/project/MenuLeft";
 import "react-datepicker/dist/react-datepicker.css";
 import Meta from "../app/components/Meta"
+import LoadingPage from "app/components/LoadingPage"
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
 
@@ -62,6 +63,7 @@ function MyApp({ Component, pageProps }) {
               `,
               }}
             />
+            {loadPage && <LoadingPage />}
             <Meta />
             <div className="app">
               <Menu />

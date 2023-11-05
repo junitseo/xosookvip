@@ -20,7 +20,7 @@ function SouthernLottery({data, date}) {
   },[data])
 
   const dayofWeek = useMemo(() => getDayOfWeek(date))
-  const dateFormat = useMemo(() => moment(date).format("MM/DD/YYYY"))
+  const dateFormat = useMemo(() => date.replace(/-/g, '/'))
   return (
     <>
       <Meta title="Xổ số miền nam"/>
