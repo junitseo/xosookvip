@@ -25,7 +25,7 @@ const MenuLeftPC = () => {
                         listMenu?.map((item, index) => {
                             return (
                                 <>
-                                    <li index={index} className={stylesCss["menu-item"]} style={menuName === item?.slug ? { backgroundColor: '#eeeeee' } : { backgroundColor: '#ffffff' }}>
+                                    <li key={item.name} index={index} className={stylesCss["menu-item"]} style={menuName === item?.slug ? { backgroundColor: '#eeeeee' } : { backgroundColor: '#ffffff' }}>
                                         <div className={stylesCss["menu-item-content"]}>
                                             {item?.icon}
                                             <Link href={`/${item?.slug}`} className={stylesCss["menu-item-text"]}>
@@ -50,7 +50,7 @@ const MenuLeftPC = () => {
                                                 {
                                                     item.menuChildren?.map((menuItem, indexItem)=>{
                                                         return (
-                                                            <li key={indexItem} className={stylesCss["menu-item-item"]} style={menuName === menuItem.slug ? { backgroundColor: '#eee' } : { backgroundColor: '#f8f8f8' }}>
+                                                            <li key={menuItem.slug} className={stylesCss["menu-item-item"]} style={menuName === menuItem.slug ? { backgroundColor: '#eee' } : { backgroundColor: '#f8f8f8' }}>
                                                                 <div className={stylesCss["menu-item-content"]}>
                                                                     <Link href={`${menuItem?.slug}`} className={stylesCss["menu-item-text"]}>
                                                                         {menuItem?.name}

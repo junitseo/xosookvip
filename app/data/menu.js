@@ -29,13 +29,13 @@ export const listMenu = [
         iconChildren: false,
         menuChildren: []
     },
-    {
-        name: "Sổ kết quả",
-        slug: "so-ket-qua",
-        icon: <FaTable />,
-        iconChildren: false,
-        menuChildren: []
-    },
+    // {
+    //     name: "Sổ kết quả",
+    //     slug: "so-ket-qua",
+    //     icon: <FaTable />,
+    //     iconChildren: false,
+    //     menuChildren: []
+    // },
     {
         name: "Thống kê giải đặc biệt",
         slug: "thong-ke-giai-dac-biet",

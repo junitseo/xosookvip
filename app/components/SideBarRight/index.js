@@ -2,15 +2,23 @@ import React, { useState } from 'react'
 import stylesCss from '../../../styles/ComponentCSS/SideBarRight.module.css'
 import DatePicker, { registerLocale  } from "react-datepicker";
 import vi from "date-fns/locale/vi";
+import { useRouter } from 'next/router';
+import moment from 'moment';
 registerLocale("vi", vi); // re
 function SideBarRight() {
   const [startDate, setStartDate] = useState(new Date());
+  const router = useRouter();
+  const handleChangeDate = (date) => {
+    setStartDate(date);
+    const day = moment(date).format("DD-MM-YYYY");
+    router.push(`/?date=${day}`)
+  }
   return (
     <div className={stylesCss['wrapper']}>
        <DatePicker
           className={stylesCss['wrapper']}
           selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          onChange={(date) => handleChangeDate(date)}
           locale={vi}
           inline
         />
