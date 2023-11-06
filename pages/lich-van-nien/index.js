@@ -1,182 +1,254 @@
+import { useState } from "react";
+import { getPerpetualCalendar } from "../../stores/perpetualCalendar";
 import stylesCss from "../../styles/PerpetualCalendar.module.css";
 import Meta from "app/components/Meta"
+import { FormatDateCalendar } from "../../app/@function/formatDate";
 
-const PerpetualCalendar = () => {
+const PerpetualCalendar = (props) => {
+    const [data, setData] = useState(props.data)
+
+    const dateNow = new Date();
+    const dateFrom = dateNow.setDate(dateNow.getDate() - 1);
+    const dateTo = dateNow.setDate(dateNow.getDate() + 2);
+
+    const [dateTime, setDateTime] = useState(dateNow);
+    const [fromDateTime, setFromDateTime] = useState(dateFrom);
+    const [toDateTime, setToDateTime] = useState(dateTo);
+
+    const handleBefore = (date) => {
+        const dateBefore = new Date(date).setDate(new Date(date).getDate() - 1);
+        const dateAfter = new Date(date).setDate(new Date(date).getDate() + 1);
+        
+        setFromDateTime(dateBefore);
+        setToDateTime(dateAfter);
+        setDateTime(new Date(date));
+
+        loadData(new Date(date));
+    }
+
+    const handleAfter = (date) => {
+        const dateBefore = new Date(date).setDate(new Date(date).getDate() - 1);
+        const dateAfter = new Date(date).setDate(new Date(date).getDate() + 1);
+
+        setFromDateTime(dateBefore);
+        setToDateTime(dateAfter);
+        setDateTime(new Date(date));
+
+        loadData(new Date(date));
+    }
+
+    const loadData = async (date) => {
+        const dateFormat = FormatDateCalendar(date);
+        const res = await getPerpetualCalendar(dateFormat);
+        if (res) {
+            setData(res);
+        }
+    }
+
     return (
         <div>
             <Meta title="Lịch vạn niên" />
             <form className={stylesCss["calendar-form"]}>
                 <div className={stylesCss["perpetual-calendar"]}>
                     <div className={stylesCss["calendar-title"]}>
-                        <h1 className={stylesCss["calendar-title-title"]}>Xem lịch vạn niên ngày 03 tháng 11 năm 2023</h1>
+                        <h1 className={stylesCss["calendar-title-title"]}>{data?.title}</h1>
                     </div>
                     <div className={stylesCss["calendar-content"]}>
-                        <div className={stylesCss["content-title"]}>Tháng 11 Năm 2023</div>
+                        <div className={stylesCss["content-title"]}>{data?.title_calendar}</div>
                         <div className={stylesCss["content-day"]}>
-                            <span className={stylesCss["content-day-prev"]}></span>
-                            <div className={stylesCss["content-day-now"]}>03</div>
-                            <span className={stylesCss["content-day-next"]}></span>
+                            <span className={stylesCss["content-day-prev"]} onClick={() => handleBefore(fromDateTime)}></span>
+                            <div className={stylesCss["content-day-now"]}>{data?.date_calendar}</div>
+                            <span className={stylesCss["content-day-next"]} onClick={() => handleAfter(toDateTime)}></span>
                         </div>
                     </div>
-                    <div className={stylesCss["calendar-day-info"]}>Quảng kết chúng duyên, chính là không làm tổn thương bất cứ người nào.</div>
-                    <div className={stylesCss["calendar-day-of-week"]}>Thứ Sáu</div>
+                    <div className={stylesCss["calendar-day-info"]}>{data?.day_info_calendar}</div>
+                    <div className={stylesCss["calendar-day-of-week"]}>{data?.calendar_day_of_week}</div>
                     <div className={stylesCss["calendar-day-al"]}>
                         <ul>
-                            <li>Ngày Ất Sửu</li>
-                            <li className={stylesCss["calendar-number"]}>20</li>
-                            <li>Tháng Nhâm Tuất</li>
+                            <li>{data?.number_one}</li>
+                            <li className={stylesCss["calendar-number"]}>{data?.number_calendar}</li>
+                            <li>{data?.number_two}</li>
                         </ul>
                         <ul>
-                            <li>Giờ Bính Tý</li>
-                            <li className={stylesCss["calendar-month"]}>Tháng 9</li>
-                            <li>Năm Quý Mão</li>
+                            <li>{data?.month_one}</li>
+                            <li className={stylesCss["calendar-month"]}>{data?.month_calendar}</li>
+                            <li>{data?.month_two}</li>
                         </ul>
                     </div>
                     <div className={stylesCss["qc_mgid"]}>
                     </div>
-                    <div className={stylesCss["calendar-day-tho"]}>
-                        <div>*****</div>
-                        Khuê tinh tạo tác đắc trinh tường,
-                        <br />Gia hạ vinh hòa đại cát xương,
-                        <br />Nhược thị táng mai âm tốt tử,
-                        <br />Đương niên định chủ lưỡng tam tang.
-                        <br />Khán khán vận kim, hình thương đáo,
-                        <br />Trùng trùng quan sự, chủ ôn hoàng.
-                        <br />Khai môn phóng thủy chiêu tai họa,
-                        <br />Tam niên lưỡng thứ tổn nhi lang.
-                        <br />
-                        <div>--------------------------</div>
-                    </div>
+                    <div className={stylesCss["calendar-day-tho"]}>{data?.calendar_day_tho}</div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Thông tin chung</h2>
+                        <h2>{data?.calendar_day_row_title}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
                         <div className={stylesCss["calendar-lich-bold"]}>
-                            Ngày dương: 02 tháng 11 năm 2023
+                            {data?.calendar_day_row_desc_one}
                         </div>
                         <div className={stylesCss["calendar-lich-bold"]}>
-                            Ngày âm: 19 tháng 9 năm 2023
+                            {data?.calendar_day_row_desc_two}
                         </div>
                         <div className={stylesCss["calendar-lich-bold"]}>
-                            Giờ Giáp Tý, Ngày Giáp T, Tháng Nhâm Tuất, Năm Quý Mão
+                            {data?.calendar_day_row_title_three}
                         </div>
                     </div>
                     <div className={stylesCss["calendar-day-row-title-red"]}>
-                        <h2>Kết quả xổ số Miền Bắc</h2>
+                        <h2>{data?.calendar_day_row_title_xo_so_mb}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Đợi quay thưởng ...
+                        {data?.calendar_day_row_desc_xo_so_mb ? data?.calendar_day_row_desc_xo_so_mb : "Đợi quay thưởng ..."}
                     </div>
                     <div className={stylesCss["calendar-day-row-title-red"]}>
-                        <h2>KẾT QUẢ XỔ SỐ MIỀN TRUNG</h2>
+                        <h2>{data?.calendar_day_row_title_xo_so_mt}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Đợi quay thưởng ...
+                        {
+                            data?.calendar_day_row_desc_xo_so_mt_one &&
+                                data?.calendar_day_row_desc_xo_so_mt_two &&
+                                data?.calendar_day_row_desc_xo_so_mt_three ?
+                                <>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mt_one}
+                                    </div>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mt_two}
+                                    </div>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mt_three}
+                                    </div>
+                                </>
+                                :
+                                "Đợi quay thưởng ..."
+
+                        }
                     </div>
                     <div className={stylesCss["calendar-day-row-title-red"]}>
-                        <h2>KẾT QUẢ XỔ SỐ MIỀN NAM</h2>
+                        <h2>{data?.calendar_day_row_title_xo_so_mn}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Đợi quay thưởng ...
+                        {
+                            data?.calendar_day_row_desc_xo_so_mn_one &&
+                                data?.calendar_day_row_desc_xo_so_mn_two &&
+                                data?.calendar_day_row_desc_xo_so_mn_three ?
+                                <>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mn_one}
+                                    </div>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mn_two}
+                                    </div>
+                                    <div className={stylesCss["lich-xs-item"]}>
+                                        {data?.calendar_day_row_desc_xo_so_mn_three}
+                                    </div>
+                                </>
+                                :
+                                "Đợi quay thưởng ..."
+                        }
                     </div>
                     <div className={stylesCss["qc_mgid"]}>
                         <div className={stylesCss["M786807ScriptRootC1275180"]}></div>
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Giờ hoàng đạo</h2>
+                        <h2>{data?.calendar_day_row_title_time}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Tý (23-1)  ,  Mão (5-7)  ,  Thân (15-17)    ,  Sửu (1-3)  ,  Ngọ (11-13)  ,  Dậu (17-19)
+                        {data?.calendar_day_row_desc_time}
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Mệnh</h2>
+                        <h2>{data?.life}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Vàng trong biển (Kim)
+                        {data?.life_desc}
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Tiết khí</h2>
+                        <h2>{data?.gas_secretion}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Sương giáng
+                        {data?.gas_secretion_desc}
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Trực</h2>
+                        <h2>{data?.direct}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Mãn (Nên cầu tài, cầu phúc, tế tự)
+                        {data?.direct_desc}
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Tuổi xung khắc</h2>
+                        <h2>{data?.conflicting_ages}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        Mậu Ngọ, Nhâm Ngọ, Canh Dần, Canh Thân
+                        {data?.conflicting_ages_desc}
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Hướng xuất hành</h2>
+                        <h2>{data?.departure_direction}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        <div className={stylesCss["calendar-row-item"]}>Hỷ Thần: Đông Bắc</div>
-                        <div className={stylesCss["calendar-row-item"]}>Tài Thần: Đông Nam</div>
-                        <div className={stylesCss["calendar-row-item"]}>Hắc Thần: Đông Nam</div>
-                        <div className={stylesCss["calendar-row-item"]}>Ngày này, hướng Đông Nam vừa là hướng tốt, vừa là hướng xấu nên tốt xấu trung hòa chỉ là bình thường!<br /></div>
+                        <div className={stylesCss["calendar-row-item"]}>{data?.departure_direction_desc_winter}</div>
+                        <div className={stylesCss["calendar-row-item"]}>{data?.departure_direction_desc_west}</div>
+                        <div className={stylesCss["calendar-row-item"]}>{data?.departure_direction_desc_male}</div>
+                        <div className={stylesCss["calendar-row-item"]}>{data?.departure_direction_desc_north}</div>
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>Sao tốt</h2>
+                        <h2>{data?.good_stars}</h2>
                     </div>
                     <div class="calendar-day-row-desc">
-                        <span className={stylesCss["calendar-row-item"]}>Thiên phú: Tốt mọi việc, nhất là xây nhà, khai trương an tang
-                            <br />Minh tinh trùng với Thiên lao Hắc đạo (xấu): Tốt mọi việc
-                            <br />Dân nhật, Thời đức: Tốt mọi việc
-                            <br />Lộc Khố Thiên phú: Tốt cho việc cầu tài lộc, khai trương, giao dịch
-                            <br />Phổ hô: Tốt cho việc làm phúc, giá thú, xuất hành
-                        </span>
+                        <div>
+                            <span class="left-item">{data?.good_stars_desc_one}</span>
+                            <span class="left-item">{data?.good_stars_desc_two}</span>
+                            <span class="left-item">{data?.good_stars_desc_three}</span>
+                            <span class="left-item">{data?.good_stars_desc_four}</span>
+                        </div>
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>SAO XẤU</h2>
+                        <h2>{data?.bad_stars}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        <div className={stylesCss["calendar-row-item"]}>
-                            Âm thác: Kỵ xuất hành, giá thú, an tang<br />
-                            Thổ ôn (Thiên cẩu): Kỵ xây dựng, đào ao, đào giếng, xấu về tế tự
+                        <div>
+                            <span class="left-item">{data?.bad_stars_desc_one}</span>
+                            <span class="left-item">{data?.bad_stars_desc_two}</span>
+                            <span class="left-item">{data?.bad_stars_desc_three}</span>
+                            <span class="left-item">{data?.bad_stars_desc_four}</span>
+                            <span class="left-item">{data?.bad_stars_desc_five}</span>
                         </div>
-                        <div className={stylesCss["calendar-row-item"]}>Thiên ngục thiên hoả: Xấu mọi việc, xấu về lợp nhà</div>
-                        <div className={stylesCss["calendar-row-item"]}>Phi ma sát (tái sát): Kỵ giá thú, nhập trạch</div>
-                        <div className={stylesCss["calendar-row-item"]}>Hoàng sa: Xấu về xuất hành</div>
-                        <div className={stylesCss["calendar-row-item"]}>Ngũ quỷ: Kỵ xuất hành</div>
-                        <div className={stylesCss["calendar-row-item"]}>Quả tú: Xấu về giá thú</div>
                     </div>
                     <div className={stylesCss["calendar-day-row-title"]}>
-                        <h2>NHỊ THẬP BÁT TÚ</h2>
+                        <h2>{data?.twenty_eight_stars}</h2>
                     </div>
                     <div className={stylesCss["calendar-day-row-desc"]}>
-                        <div className={stylesCss["calendar-row-item"]}>
-                            Sao: Khuê
-                        </div>
-                        <div className={stylesCss["calendar-row-item"]}>Ngũ hành: Mộc</div>
-                        <div className={stylesCss["calendar-row-item"]}>Động vật: Lang (Sói)</div>
-                        <div className={stylesCss["calendar-row-item"]}>KHUÊ MỘC LANG : Mã Vũ: xấu </div>
-                        <div className={stylesCss["calendar-row-item"]}>(Bình Tú) Tướng tinh con chó sói, chủ trị ngày thứ 5.</div>
-                        <div className={stylesCss["calendar-row-item"]}>Nên làm: Tạo dựng nhà phòng, nhập học, ra đi cầu công danh, cắt áo.</div>
-                        <div className={stylesCss["calendar-row-item"]}>Kiêng cữ: Chôn cất, khai trương, trổ cửa dựng cửa, khai thông đường nước, đào ao móc giếng, thưa kiện, đóng giường lót giường.</div>
-                        <div className={stylesCss["calendar-row-item"]}>Ngoại lệ: Sao Khuê là một trong Thất Sát Tinh, nếu đẻ con nhằm ngày này thì nên lấy tên Sao Khuê hay lấy tên Sao của năm tháng mà đặt cho trẻ dễ nuôi.</div>
-                        <div className={stylesCss["calendar-row-item"]}>
-                            Sao Khuê hãm địa tại ngày Thân: Văn khoa thất bại.
-                            Tại ngày Ngọ là chỗ Tuyệt gặp Sanh, mưu sự đắc lợi, nhất là gặp ngày Canh Ngọ.
-                        </div>
-                        <div className={stylesCss["calendar-row-item"]}>
-                            Tại ngày Thìn tốt vừa vừa.
-                            Tại ngày Thân sao Khuê đăng viên: Tiến thân danh.
-                        </div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_one}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_two}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_three}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_four}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_five}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_six}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_seven}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_eight}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_nine}</div>
+                        <div class="lich-row-item">{data?.twenty_eight_stars_desc_ten}</div>
                     </div>
                     <div className={stylesCss["calendar-day-bottom"]}>
-                        <div className={stylesCss["calendar-day-prev"]}>01-11-2023</div>
-                        <div className={stylesCss["calendar-day-next"]}>03-11-2023</div>
+                        <div className={stylesCss["calendar-day-prev"]} onClick={() => handleBefore(fromDateTime)}>{FormatDateCalendar(fromDateTime)}</div>
+                        <div className={stylesCss["calendar-day-next"]} onClick={() => handleAfter(toDateTime)}>{FormatDateCalendar(toDateTime)}</div>
                     </div>
                 </div>
             </form>
         </div>
     );
+}
+
+export const getServerSideProps = async () => {
+    const dateNow = FormatDateCalendar(new Date());
+
+    const [
+        data
+    ] = await Promise.all([
+        getPerpetualCalendar(dateNow)
+    ]);
+
+    return {
+        props: {
+            data: data || {},
+        },
+    }
 }
 
 
