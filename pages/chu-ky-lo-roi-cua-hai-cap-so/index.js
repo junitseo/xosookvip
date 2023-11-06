@@ -21,9 +21,10 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                 <table cellPadding="5" cellSpacing="5" width="100%" className={stylesCss["form-group-form-inline"]}>
                                     <tbody>
                                         <tr>
-                                            <td align="center">
+                                            <td align="center" className="display-center-col">
                                                 <span className={stylesCss["item-select"]}>
-                                                    2 cặp số khảo sát:&nbsp;
+                                                    <div className={stylesCss["choose"]}>
+                                                    2 cặp số khảo sát:
                                                     <select name="cap_so_1" className={stylesCss["form-control"]}>
                                                         {
                                                             dataNumber?.map((item, index) => {
@@ -33,7 +34,6 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                                             })
                                                         }
                                                     </select>
-                                                    &nbsp;
                                                     <select name="cap_so_2" className={stylesCss["form-control"]}>
                                                         {
                                                             dataNumber?.map((item, index) => {
@@ -43,15 +43,20 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                                             })
                                                         }
                                                     </select>
+                                                    </div>
                                                 </span>
-                                                <span className={stylesCss["item-select"]}>
-                                                    &nbsp;Từ ngày(Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_from" value="28/10/2022" maxLength="10" />
-                                                </span>
-                                                <span className={stylesCss["item-select"]}>
-                                                    &nbsp;Đến ngày(Ngày/Tháng/Năm)&nbsp;
-                                                    <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
-                                                </span>
+                                                <div className={stylesCss["choose"]}>
+                                                    <span className={stylesCss["item-select"]}>
+                                                        &nbsp;Từ ngày(Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_from" value="28/10/2022" maxLength="10" />
+                                                    </span>
+                                                </div>
+                                                <div className={stylesCss["choose"]}>
+                                                    <span className={stylesCss["item-select"]}>
+                                                        &nbsp;Đến ngày(Ngày/Tháng/Năm)&nbsp;
+                                                        <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                    </span>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>

@@ -15,9 +15,12 @@ const TriangularLotteryPrediction = () => {
                             <div className={stylesCss["dataTable-wrapper"]}>
                                 <div className={stylesCss["form-group-form-inline"]}>
                                     <div align="center">
-                                        <div>
-                                            Biên ngày&nbsp;
-                                            <input type="text" name="todate" value="2023-10-30" className={stylesCss["form-control"]} />
+                                        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                                            <div className={stylesCss["choose"]}>
+                                                Biên ngày&nbsp;
+                                                <input type="text" name="todate" value="2023-10-30" className={stylesCss["form-control"]} />
+                                            </div>
+                                            <div className={stylesCss["choose"]}>
                                             &nbsp;Soi theo :&nbsp;
                                             <select name="level" className={stylesCss["form-control"]}>
                                                 <option selected="selected" value="00">G00 - Giải đặc biệt</option>
@@ -48,6 +51,8 @@ const TriangularLotteryPrediction = () => {
                                                 <option value="73">G73 - Giải bẩy thứ 3</option>
                                                 <option value="74">G74 - Giải bẩy thứ 4</option>
                                             </select>
+                                            </div>
+                                           <div className={stylesCss["choose"]}>
                                             &nbsp;Số ngày cầu chạy&nbsp;
                                             <select name="days" className={stylesCss["form-control"]}>
                                                 <option value="1" selected="selected">1</option>
@@ -56,6 +61,8 @@ const TriangularLotteryPrediction = () => {
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
                                             </select>
+                                           </div>
+                                           
                                         </div>
                                         <div style={{ padding: '10px' }} >
                                             <input type="radio" name="type" id="type_0" value="0" checked="chected" />
