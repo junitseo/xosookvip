@@ -10,7 +10,9 @@ import { useRouter } from 'next/router'
 import { provincesMN, provincesMT } from 'app/data/provinces';
 import { getKqxsProvince } from 'app/api/kqxsApi'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
-function ThreeRegionLottery({data, province, date}) {
+import { getPosts } from 'api/postApi';
+
+function ThreeRegionLottery({data, province, date, dataPost}) {
   const router = useRouter();
 
   const dataLoto = useMemo(() => {
@@ -23,24 +25,12 @@ function ThreeRegionLottery({data, province, date}) {
   const dayofWeek = useMemo(() => getDayOfWeek(date))
   const dateFormat = useMemo(() => date.replace(/-/g, '/'))
 
-  const handleChangeDateOfWeek = (value) => {
-    const toDay = new Date().getDay()
-    const diff = toDay - value
-    let haveResultDate = 0
-    if (diff < 0) {
-        haveResultDate = 7
-    }
-    const dateToGetData = new Date(
-        new Date().setDate(new Date().getDate() - diff - haveResultDate)
-    )
-    const date = moment(dateToGetData).format("DD-MM-YYYY");
-    router.push(`/?date=${date}`)
-  }
+
   return (
     <>
       <Meta title="Xổ số ba miền"/>
       <div className={stylesCss['wrapper']}>
-      <SideBarLeft />
+      <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ {province.name}</h2>
         {data && 
@@ -72,7 +62,10 @@ export const getServerSideProps = async ({query, params}) => {
     }
   }
  
-  let data = await getKqxsProvince(province._id)
+  let [data, dataPost] = await Promise.all([
+    getKqxsProvince(province._id),
+    getPosts()
+  ])
   let date = ""
   if(data && Array.isArray(data)){
     date = data[0].listXSTT[0].dayPrize;
@@ -83,7 +76,8 @@ export const getServerSideProps = async ({query, params}) => {
     props: { 
       data,
       province,
-      date
+      date,
+      dataPost
     }
   }
 }

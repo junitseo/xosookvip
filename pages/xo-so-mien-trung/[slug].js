@@ -6,8 +6,10 @@ import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../../styles/ThreeRegionLottery.module.css'
 import Meta from "app/components/Meta"
 import { getKqxsMt } from 'app/api/kqxsApi'
-import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
+import { dataDayOfWeek } from 'app/data/dataDayOfWeek'
+import { getDateById } from 'app/utils/getDateById'
+import BlockResultSXLoading from 'components/BlockResultSXLoading'
 import { getPosts } from 'api/postApi';
 
 function CentralLottery({data, date, dataPost}) {
@@ -24,11 +26,16 @@ function CentralLottery({data, date, dataPost}) {
     <>
       <Meta title="Xổ số miền trung"/>
       <div className={stylesCss['wrapper']}>
-        <SideBarLeft dataPost={dataPost} />
+        <SideBarLeft dataPost = {dataPost} />
         <div style={{flex: 1}}>
           <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN TRUNG</h2>
-          <BlockResultSX data={data} title={`xsmt ${dayofWeek}, xsmt ngày ${dateFormat}`} />
-          <BlockResultLoto dataLoto={dataLoto} title={`Bảng Loto xổ số Miền Trung -  ${dateFormat}`}/>
+          {data && data.length > 0 ?
+            <>
+                <BlockResultSX data={data} title={`xsmt ${dayofWeek}, xsmt ngày ${dateFormat}`} />
+                <BlockResultLoto dataLoto={dataLoto} title={`Bảng Loto xổ số Miền Trung -  ${dateFormat}`}/>
+            </>
+            :<BlockResultSXLoading title={`xsmt ${dayofWeek}, xsmt ngày ${dateFormat}`} />
+          }
         </div>
         <SideBarRight />
       </div>
@@ -38,13 +45,15 @@ function CentralLottery({data, date, dataPost}) {
 }
 
 export default CentralLottery
-export const getServerSideProps = async () => {
-  const dateNow = moment();
+export const getServerSideProps = async ({params}) => {
   let date = ""
-  if(dateNow - moment().hours(17).minutes(45) > 0){
-    date = dateNow.format("DD-MM-YYYY");
+  const item = dataDayOfWeek.find(i => i.name == params.slug);
+  if(item){
+    date = getDateById(item.value)
   }else {
-    date = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
+    return {
+      notFound: true,
+    }
   }
   const [data, dataPost] = await Promise.all([
     getKqxsMt(date),
