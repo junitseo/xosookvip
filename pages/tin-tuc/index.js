@@ -9,7 +9,7 @@ import { getPosts } from "../../stores/post";
 const New = (props) => {
     const [news, setNew] = useState(props.data.datas);
     const [total, setTotal] = useState(props.data.total);
-    const [pageSize, setPageSize] = useState(props.data.pageSize);
+    const [pageSize, setPageSize] = useState(props.data?.pageSize ?? 0);
 
     const handlePagination = async (e) => {
         const skip = e === 1 ? 0 : e;
@@ -106,6 +106,7 @@ export const getServerSideProps = async () => {
         getPosts()
     ]);
 
+    console.log("datadata",data);
     return {
         props: {
             data: data || [],
