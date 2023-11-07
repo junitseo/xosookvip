@@ -84,7 +84,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai7']} grid-4`}>
                                 {dataKq[8].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -93,7 +93,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai6']} grid-3`}>
                                 {dataKq[7].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -102,7 +102,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai5']} grid-3`}>
                                 {dataKq[6].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -111,7 +111,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai4']} grid-2`}>
                                 {dataKq[5].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -120,7 +120,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai3']} grid-3`}>
                                 {dataKq[4].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -129,7 +129,7 @@ function BlockResultSX({title, data}) {
                               <td className={`${stylesCss['giai2']} grid-2`}>
                                 {dataKq[3].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -138,7 +138,7 @@ function BlockResultSX({title, data}) {
                               <td className={stylesCss['giai1']}>
                                 {dataKq[2].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
@@ -147,7 +147,7 @@ function BlockResultSX({title, data}) {
                               <td className={stylesCss['giaidb']}>
                                 {dataKq[1].map(i => (
                                    <div key={i.number}>{
-                                        i.isRunning == "true"?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number == "true"?<img src={"/loading.gif"} alt="" />: i.number
                                     }</div>
                                 ))}
                               </td>
