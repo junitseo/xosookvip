@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import stylesCss from '../../../styles/ComponentCSS/SideBarLeft.module.css'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { provincesMN, provincesMT } from 'data/provinces';
 
-function SideBarLeft() {
+
+function SideBarLeft({dataPost = []}) {
   const router = useRouter();
+
   return (
     <div className={stylesCss['wrapper']}>
       <div className={stylesCss['title']}>
@@ -13,10 +15,10 @@ function SideBarLeft() {
       </div>
       <div className={stylesCss['list']}>
         {dataPost.map(item => (
-          <Link href={`/post/${item.slug}`} key={item.title} >
+          <Link href={`/post/${item.post_slug}`} key={item.post_slug} >
             <div className={stylesCss['item']}>
-              <img src={item.thumb} alt="" />
-              <div>{item.title}</div>
+              <img src={item.post_image} alt="" />
+              <div>{item.post_title}</div>
             </div>
           </Link>
         ))}
@@ -90,13 +92,5 @@ function SideBarLeft() {
 }
 
 export default SideBarLeft;
-
-const dataPost = [
-  {
-    title: 'Cổ động viên đội tuyển Việt Nam - cánh tay đồng hành của Đội tuyển',
-    slug: 'co-dong-vien-doi-tuyen-viet-nam',
-    thumb: 'https://api.luongson.news/4bd7fcf7-f70e-4670-9540-39776a080d46/6.png',
-  },
-]
 
 

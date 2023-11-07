@@ -4,6 +4,7 @@ import DatePicker, { registerLocale  } from "react-datepicker";
 import vi from "date-fns/locale/vi";
 import { useRouter } from 'next/router';
 import moment from 'moment';
+import Link from 'next/link';
 registerLocale("vi", vi); // re
 function SideBarRight() {
   const [startDate, setStartDate] = useState(new Date());
@@ -40,303 +41,303 @@ function SideBarRight() {
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 2" href="">
+                <Link title="xổ số miền bắc thứ 2" href="/xo-so-mien-bac/thu-2">
                   XSMB thứ 2
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Cà Mau" href="">
+                <Link title="Xổ số Cà Mau" href="/kqxs/ca-mau">
                   Cà Mau
-                </a>
+                </Link>
                 <br />
-                <a
+                <Link
                   title="Xổ số Hồ Chí Minh"
-                  href=""
+                  href="/kqxs/hcm"
                 >
                   Hồ Chí Minh
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đồng Tháp" href="">
+                <Link title="Xổ số Đồng Tháp" href="/kqxs/dong-thap">
                   Đồng Tháp
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 2" href="">
+                <Link title="xổ số miền nam thứ 2" href="/xo-so-mien-nam/thu-2">
                   XSMN thứ 2
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Phú Yên" href="">
+                <Link title="Xổ số Phú Yên" href="/kqxs/phu-yen">
                   Phú Yên
-                </a>
+                </Link>
                 <br />
-                <a
+                <Link
                   title="Xổ số ThừaThiênHuế"
-                  href="h"
+                  href="/kqxs/hue"
                 >
                   ThừaThiênHuế
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 2" href="">
+                <Link title="xổ số miền trung thứ 2" href="/xo-so-mien-trung/thu-2">
                   XSMT thứ 2
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 3" href="">
+                <Link title="xổ số miền bắc thứ 3" href="/xo-so-mien-bac/thu-3">
                   XSMB thứ 3
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Bạc Liêu" href="">
+                <Link title="Xổ số Bạc Liêu" href="/kqxs/bac-lieu">
                   Bạc Liêu
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Bến Tre" href="">
+                <Link title="Xổ số Bến Tre" href="/kqxs/ben-tre">
                   Bến Tre
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Vũng Tàu" href="">
+                <Link title="Xổ số Vũng Tàu" href="/kqxs/vung-tau">
                   Vũng Tàu
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 3" href="">
+                <Link title="xổ số miền nam thứ 3" href="/xo-so-mien-nam/thu-3">
                   XSMN thứ 3
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số DakLak" href="">
+                <Link title="Xổ số DakLak" href="/kqxs/dak-lak">
                   DakLak
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Quảng Nam" href="">
+                <Link title="Xổ số Quảng Nam" href="/kqxs/quang-nam">
                   Quảng Nam
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 3" href="">
+                <Link title="xổ số miền trung thứ 3" href="/xo-so-mien-trung/thu-3">
                   XSMT thứ 3
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 4" href="">
+                <Link title="xổ số miền bắc thứ 4" href="/xo-so-mien-bac/thu-4">
                   XSMB thứ 4
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Cần Thơ" href="">
+                <Link title="Xổ số Cần Thơ" href="/kqxs/can-tho">
                   Cần Thơ
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Sóc Trăng" href="">
+                <Link title="Xổ số Sóc Trăng" href="/kqxs/soc-trang">
                   Sóc Trăng
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đồng Nai" href="">
+                <Link title="Xổ số Đồng Nai" href="/kqxs/dong-nai">
                   Đồng Nai
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 4" href="">
+                <Link title="xổ số miền nam thứ 4" href="/xo-so-mien-nam/thu-4">
                   XSMN thứ 4
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Khánh Hòa" href="">
+                <Link title="Xổ số Khánh Hòa" href="/kqxs/khanh-hoa">
                   Khánh Hòa
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đà Nẵng" href="h">
+                <Link title="Xổ số Đà Nẵng" href="/kqxs/da-nang">
                   Đà Nẵng
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 4" href="">
+                <Link title="xổ số miền trung thứ 4" href="/xo-so-mien-trung/thu-4">
                   XSMT thứ 4
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 5" href="">
+                <Link title="xổ số miền bắc thứ 5" href="/xo-so-mien-bac/thu-5">
                   XSMB thứ 5
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số An Giang" href="">
+                <Link title="Xổ số An Giang" href="/kqxs/an-giang">
                   An Giang
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Bình Thuận" href="h">
+                <Link title="Xổ số Bình Thuận" href="/kqxs/binh-thuan">
                   Bình Thuận
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Tây Ninh" href="">
+                <Link title="Xổ số Tây Ninh" href="/kqxs/tay-ninh">
                   Tây Ninh
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 5" href="">
+                <Link title="xổ số miền nam thứ 5" href="/xo-so-mien-nam/thu-5">
                   XSMN thứ 5
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Bình Định" href="h">
+                <Link title="Xổ số Bình Định" href="/kqxs/binh-dinh">
                   Bình Định
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Quảng Bình" href="">
+                <Link title="Xổ số Quảng Bình" href="/kqxs/quang-binh">
                   Quảng Bình
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Quảng Trị" href="">
+                <Link title="Xổ số Quảng Trị" href="/kqxs/quang-tri">
                   Quảng Trị
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 5" href="">
+                <Link title="xổ số miền trung thứ 5" href="/xo-so-mien-trung/thu-5">
                   XSMT thứ 5
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 6" href="">
+                <Link title="xổ số miền bắc thứ 6" href="/xo-so-mien-bac/thu-6">
                   XSMB thứ 6
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Bình Dương" href="">
+                <Link title="Xổ số Bình Dương" href="/kqxs/binh-duong">
                   Bình Dương
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Trà Vinh" href="">
+                <Link title="Xổ số Trà Vinh" href="/kqxs/tra-vinh">
                   Trà Vinh
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Vĩnh Long" href="">
+                <Link title="Xổ số Vĩnh Long" href="/kqxs/vinh-long">
                   Vĩnh Long
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 6" href="">
+                <Link title="xổ số miền nam thứ 6" href="/xo-so-mien-nam/thu-6">
                   XSMN thứ 6
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Gia Lai" href="">
+                <Link title="Xổ số Gia Lai" href="/kqxs/gia-lai">
                   Gia Lai
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Ninh Thuận" href="">
+                <Link title="Xổ số Ninh Thuận" href="/kqxs/ninh-thuan">
                   Ninh Thuận
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 6" href="">
+                <Link title="xổ số miền trung thứ 6" href="/xo-so-mien-trung/thu-6">
                   XSMT thứ 6
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
                 {" "}
-                <a title="xổ số miền bắc thứ 7" href="">
+                <Link title="xổ số miền bắc thứ 7" href="/xo-so-mien-bac/thu-7">
                   XSMB thứ 7
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Bình Phước" href="">
+                <Link title="Xổ số Bình Phước" href="/kqxs/binh-phuoc">
                   Bình Phước
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Hậu Giang" href="">
+                <Link title="Xổ số Hậu Giang" href="/kqxs/hau-giang">
                   Hậu Giang
-                </a>
+                </Link>
                 <br />
-                <a
+                <Link
                   title="Xổ số Hồ Chí Minh"
-                  href=""
+                  href="/kqxs/hcm"
                 >
                   Hồ Chí Minh
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Long An" href="">
+                <Link title="Xổ số Long An" href="/kqxs/long-an">
                   Long An
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền nam thứ 7" href="">
+                <Link title="xổ số miền nam thứ 7" href="/xo-so-mien-nam/thu-7">
                   XSMN thứ 7
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Quảng Ngãi" href="">
+                <Link title="Xổ số Quảng Ngãi" href="/kqxs/quang-ngai">
                   Quảng Ngãi
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đà Nẵng" href="">
+                <Link title="Xổ số Đà Nẵng" href="/kqxs/da-nang">
                   Đà Nẵng
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đắc Nông" href="">
+                <Link title="Xổ số Đắc Nông" href="/kqxs/dak-nong">
                   Đắc Nông
-                </a>
+                </Link>
                 <br />
-                <a title="xổ số miền trung thứ 7" href="">
+                <Link title="xổ số miền trung thứ 7" href="/xo-so-mien-trung/thu-7">
                   XSMT thứ 7
-                </a>
+                </Link>
               </td>
             </tr>
             <tr className="">
               <td className="">
-                <a
+                <Link
                   title="xổ số miền bắc chủ nhật"
-                  href=""
+                  href="/xo-so-mien-bac/chu-nhat"
                 >
                   XSMB CN
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Kiên Giang" href="">
+                <Link title="Xổ số Kiên Giang" href="/kqxs/kien-giang">
                   Kiên Giang
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Tiền Giang" href="">
+                <Link title="Xổ số Tiền Giang" href="/kqxs/tien-giang">
                   Tiền Giang
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Đà Lạt" href="">
+                <Link title="Xổ số Đà Lạt" href="/kqxs/da-lat">
                   Đà Lạt
-                </a>
+                </Link>
                 <br />
-                <a
+                <Link
                   title="xổ số miền nam chủ nhật"
-                  href=""
+                  href="/xo-so-mien-nam/chu-nhat"
                 >
                   XSMN CN
-                </a>
+                </Link>
               </td>
               <td className="LMT_2N">
-                <a title="Xổ số Khánh Hòa" href="">
+                <Link title="Xổ số Khánh Hòa" href="/kqxs/khanh-hoa">
                   Khánh Hòa
-                </a>
+                </Link>
                 <br />
-                <a title="Xổ số Kon Tum" href="">
+                <Link title="Xổ số Kon Tum" href="/kqxs/kon-tum">
                   Kon Tum
-                </a>
+                </Link>
                 <br />
-                <a
+                <Link
                   title="Xổ số ThừaThiênHuế"
-                  href="h"
+                  href="/kqxs/hue"
                 >
                   ThừaThiênHuế
-                </a>
+                </Link>
                 <br />
-                <a
-                  title="xổ số miền bắc chủ nhật"
-                  href=""
+                <Link
+                  title="xổ số miền trung chủ nhật"
+                  href="/xo-so-mien-trung/chu-nhat"
                 >
                   XSMT CN
-                </a>
+                </Link>
               </td>
             </tr>
           </tbody>

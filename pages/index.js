@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import BlockResultSX from 'components/BlockResultSX'
+import BlockResultSXLoading from 'components/BlockResultSXLoading'
 import BlockResultSX2 from 'components/BlockResultSX2'
 import BlockResultLoto from 'components/BlockResultLoto'
 import SideBarRight from 'components/SideBarRight'
@@ -10,7 +11,8 @@ import { getKqxsMb, getKqxsMn, getKqxsMt } from 'app/api/kqxsApi'
 import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
 import { useRouter } from 'next/router'
-function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate}) {
+import { getPosts } from 'api/postApi';
+function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate, dataPost}) {
   const router = useRouter();
   const dataLotoMn = useMemo(() => {
     if(!dataMn) return [];
@@ -56,7 +58,7 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate}) {
     <>
       <Meta title="Xổ số ba miền"/>
       <div className={stylesCss['wrapper']}>
-      <SideBarLeft />
+      <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
         <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ {isQueryDate?`NGÀY ${dateFormat}`: "HÔM NAY"}</h2>
            <ul className={stylesCss['tab_select']}>
@@ -97,11 +99,12 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate}) {
            </li>
           </ul>
          
-          {dataMn && dataMn.length > 0 && 
+          {dataMn && dataMn.length > 0 ?
             <>
                 <BlockResultSX data={dataMn} title={`xsmn ${dayofWeekMn}, xsmn ngày ${dateFormatMn}`} />
                 <BlockResultLoto dataLoto={dataLotoMn} title={`Bảng Loto xổ số Miền Nam -  ${dateFormatMn}`}/>
             </>
+            : <BlockResultSXLoading title={`xsmn ${dayofWeekMn}, xsmn ngày ${dateFormatMn}`} />
           }
         
           {dataMb && 
@@ -153,10 +156,11 @@ export const getServerSideProps = async ({query}) => {
     }
   }
  
-  const [dataMb, dataMn, dataMt] = await Promise.all([
+  const [dataMb, dataMn, dataMt, dataPost] = await Promise.all([
     getKqxsMb(dateMb),
     getKqxsMn(dateMn),
-    getKqxsMt(dateMt)
+    getKqxsMt(dateMt),
+    getPosts()
   ])
   return {
     props: {
@@ -166,7 +170,8 @@ export const getServerSideProps = async ({query}) => {
       dateMb,
       dateMn,
       dateMt,
-      isQueryDate
+      isQueryDate,
+      dataPost
     }
   }
 }
