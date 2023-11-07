@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { API_URL } from "../app/@function/wsCode";
 
 const AxiosInstance = axios.create({
-    baseURL: 'http://localhost:8022/api/v1',
+    baseURL: `${API_URL}/api/v1`,
 })
 
 export const getPosts = async (limit, skip) => {
