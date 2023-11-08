@@ -49,6 +49,7 @@ function StatisticsTomorrow({result}) {
     setData(d)
     setLoading(false)
   }
+  
   return (
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}

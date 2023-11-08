@@ -5,30 +5,30 @@ export const listWeekdays = [
     },
     {
         name: 'Thứ hai',
-        value: -1,
+        value: 1,
     },
     {
         name: 'Thứ ba',
-        value: -1,
+        value: 2,
     },
     {
         name: 'Thứ tư',
-        value: -1,
+        value: 3,
     },
     {
         name: 'Thứ năm',
-        value: -1,
+        value: 4,
     },
     {
         name: 'Thứ sáu',
-        value: -1,
-    },
-    {
-        name: 'Thứ bảy',
         value: 5,
     },
     {
-        name: 'Thứ chủ nhật',
+        name: 'Thứ bảy',
         value: 6,
+    },
+    {
+        name: 'Thứ chủ nhật',
+        value: 0,
     },
 ]
