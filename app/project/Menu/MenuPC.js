@@ -3,7 +3,6 @@ import React, {
   useState,
 } from "react";
 import stylesCss from "../../../styles/MenuCSS/Menu.module.css";
-import { API_URL } from "@function/wsCode";
 import { useRouter } from 'next/router';
 import MenuMobile from "project/MenuMobile";
 
@@ -13,7 +12,7 @@ const MenuPC = () => {
 
   useEffect(() => {
     setShowMenu(false);
-  },[router.pathname])
+  },[router.asPath])
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
