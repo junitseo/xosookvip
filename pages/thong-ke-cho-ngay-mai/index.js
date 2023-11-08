@@ -6,7 +6,6 @@ import Meta from "app/components/Meta"
 
 function StatisticsTomorrow() {
   const [startDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
-  console.log(startDate);
   return (
     <div className={stylesCss['wrapper']}>
       <Meta title="Thống kê dự báo kết quả sổ xố ngày mai"/>

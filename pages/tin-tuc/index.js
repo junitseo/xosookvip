@@ -14,7 +14,6 @@ const New = (props) => {
     const handlePagination = async (e) => {
         const skip = e === 1 ? 0 : e;
         const res = await getPosts(10, skip)
-        console.log(res);
         if(res.datas){
             setNew(res.datas);
         }
@@ -106,7 +105,6 @@ export const getServerSideProps = async () => {
         getPosts()
     ]);
 
-    console.log("datadata",data);
     return {
         props: {
             data: data || [],

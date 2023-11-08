@@ -27,7 +27,8 @@ const Meta = (props) => {
           ></meta>
           <meta name="RATING" content="GENERAL"></meta>
           <meta name="geo.placename" content="ho chi minh"></meta>
-          <meta name="robots" content="index,follow,noydir,noodp"></meta>
+          {/* <meta name="robots" content="index,follow,noydir,noodp"></meta> */}
+          <meta name="robots" content="noindex"></meta>
           <meta
             property="og:description"
             content={props.description || "xosookvip"}

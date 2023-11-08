@@ -1,7 +1,87 @@
+import { DatePicker } from "antd";
+import { getHeadAndEndLotteryStatistic } from "../../stores/statisticsOfNorthernLot";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import Meta from "app/components/Meta"
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-const LottoStatistics = () => {
+const LottoStatistics = (props) => {
+
+    const [dataTable, setDataTable] = useState(props.data);
+    const [dataHeaderTableFirst, setDataHeaderTableFirst] = useState([]);
+    const [dataTableFirst, setDataTableFirst] = useState([]);
+    const [dataTotalTableFirst, setDataTotalTableFirst] = useState([]);
+
+    const [dataHeaderTableLast, setDataHeaderTableLast] = useState([]);
+    const [dataTableLast, setDataTableLast] = useState([]);
+    const [dataTotalTableLast, setDataTotalTableLast] = useState([]);
+
+    const dateFormat = 'DD-MM-YYYY';
+    const [dateTime, setDateTime] = useState(new Date());
+    const [dateNow, setDateNow] = useState(moment(dateTime).format(dateFormat));
+
+    const handleDateTime = (date, dateString) => {
+        setDateNow(dateString);
+    };
+
+    const handleLoadData = async () => {
+        const data  = await getHeadAndEndLotteryStatistic(dateNow);
+        if(data){
+            setDataTable(data);
+            loadDataTableFirst(data);
+            loadDataTableLast(data);
+        }
+    }
+
+    const loadDataTableFirst = (dataTable) => {
+        let headerTableFirst = [];
+        let tableFirst = [];
+        let totalTableFirst = [];
+
+        if (dataTable) {
+            dataTable.table_data_first?.forEach((item, index) => {
+                if (index === 0) {
+                    headerTableFirst.push(item);
+                } else if (index === (dataTable.table_data_first.length - 1)) {
+                    totalTableFirst.push(item)
+                }
+                else {
+                    tableFirst.push(item);
+                }
+            });
+        }
+        setDataHeaderTableFirst(headerTableFirst);
+        setDataTableFirst(tableFirst);
+        setDataTotalTableFirst(totalTableFirst);
+    }
+
+    const loadDataTableLast = (dataTable) => {
+        let headerTableLast = [];
+        let tableLast = [];
+        let totalTableLast = [];
+
+        if (dataTable) {
+            dataTable.table_data_last?.forEach((item, index) => {
+                if (index === 0) {
+                    headerTableLast.push(item);
+                } else if (index === (dataTable.table_data_last.length - 1)) {
+                    totalTableLast.push(item)
+                }
+                else {
+                    tableLast.push(item);
+                }
+            });
+        }
+        setDataHeaderTableLast(headerTableLast);
+        setDataTableLast(tableLast);
+        setDataTotalTableLast(totalTableLast);
+    }
+
+    useEffect(()=>{
+        loadDataTableFirst(dataTable);
+        loadDataTableLast(dataTable);
+    },[]);
+
     return (
         <div className={stylesCss["page-wrapper"]}>
             <Meta title="Thống kê đầu đuôi lotto" />
@@ -17,8 +97,9 @@ const LottoStatistics = () => {
                                     <tbody><tr>
                                         <td>
                                             Biên độ ngày (Ngày/Tháng/Năm)&nbsp;
-                                            &nbsp;<input type="text" className={stylesCss["form-control"]} name="date_end" value="29/10/2023" />
-                                            &nbsp;<input type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                            &nbsp;
+                                            <DatePicker defaultValue={moment(dateTime, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString)=> handleDateTime(date, dateString)} />
+                                            &nbsp;<input onClick={()=> handleLoadData()} type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -44,730 +125,63 @@ const LottoStatistics = () => {
                                             <table className={stylesCss["table-bordered"]} width="100%">
                                                 <tbody>
                                                     <tr>
-                                                        <th align="center">Ngày\Đầu</th>
-                                                        <th align="center">0</th>
-                                                        <th align="center">1</th>
-                                                        <th align="center">2</th>
-                                                        <th align="center">3</th>
-                                                        <th align="center">4</th>
-                                                        <th align="center">5</th>
-                                                        <th align="center">6</th>
-                                                        <th align="center">7</th>
-                                                        <th align="center">8</th>
-                                                        <th align="center">9</th>
+                                                        {
+                                                            dataHeaderTableFirst && dataHeaderTableFirst[0]?.map((item, index) => {
+                                                                return (
+                                                                    <th key={index} align="center">{item.header}</th>
+                                                                )
+                                                            })
+                                                        }
                                                     </tr>
+                                                    {
+                                                        dataTableFirst && dataTableFirst?.map((item, index)=>{
+                                                            return(
+                                                                <tr key={index}>
+                                                                    {
+                                                                        item?.map((val, indexVal)=>{
+                                                                            return(
+                                                                                <>
+                                                                                    {
+                                                                                        indexVal === 0 ?
+                                                                                        <td align="center" key={indexVal} style={{color: '#333333'}}>
+                                                                                        {val.data_item}
+                                                                                        </td>
+                                                                                        :
+                                                                                        <>
+                                                                                            { val.data_item.indexOf('0') > 0 ? 
+                                                                                                <td align="center" key={indexVal} style={{color: '#999999'}}>
+                                                                                                    {val.data_item}
+                                                                                                </td>
+                                                                                            :
+                                                                                                <td align="center" key={indexVal} style={{color: 'blue', background: '#CCCCCC'}}>
+                                                                                                    {val.data_item}
+                                                                                                </td>
+                                                                                            }
+                                                                                        </>
+                                                                                    }
+                                                                                </>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </tr>
+                                                            )
+                                                        })
+                                                    }
                                                     <tr>
-                                                        <td>28-10-2023</td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>27-10-2023</td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>26-10-2023</td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>25-10-2023</td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            7 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>24-10-2023</td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>23-10-2023</td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>22-10-2023</td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>21-10-2023</td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>20-10-2023</td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>19-10-2023</td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>18-10-2023</td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>17-10-2023</td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>16-10-2023</td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>15-10-2023</td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14-10-2023</td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            8 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>13-10-2023</td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            4 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12-10-2023</td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>11-10-2023</td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10-10-2023</td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>09-10-2023</td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>08-10-2023</td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item-color"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Tổng</th>
-                                                        <th align="center">55 Lần</th>
-                                                        <th align="center">61 Lần</th>
-                                                        <th align="center">59 Lần</th>
-                                                        <th align="center">52 Lần</th>
-                                                        <th align="center">63 Lần</th>
-                                                        <th align="center">60 Lần</th>
-                                                        <th align="center">48 Lần</th>
-                                                        <th align="center">75 Lần</th>
-                                                        <th align="center">66 Lần</th>
-                                                        <th align="center">55 Lần</th>
+                                                        {
+                                                            dataTotalTableFirst && dataTotalTableFirst[0]?.map((item, index) => {
+                                                                return (
+                                                                    <th align="center" key={index}>{item.header}</th>
+                                                                )
+                                                            })
+                                                        }
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style={{height: '20px'}}></td>
+                                        <td style={{ height: '20px' }}></td>
                                     </tr>
                                     <tr>
                                         <td valign="top">
@@ -786,723 +200,57 @@ const LottoStatistics = () => {
                                             <table className={stylesCss["table-bordered"]} width="100%">
                                                 <tbody>
                                                     <tr>
-                                                        <th>Ngày\Đuôi</th>
-                                                        <th>0</th>
-                                                        <th>1</th>
-                                                        <th>2</th>
-                                                        <th>3</th>
-                                                        <th>4</th>
-                                                        <th>5</th>
-                                                        <th>6</th>
-                                                        <th>7</th>
-                                                        <th>8</th>
-                                                        <th>9</th>
+                                                        {
+                                                            dataHeaderTableLast && dataHeaderTableLast[0]?.map((item, index) => {
+                                                                return (
+                                                                    <th key={index} align="center">{item.header}</th>
+                                                                )
+                                                            })
+                                                        }
+                                                        
                                                     </tr>
+                                                    {
+                                                        dataTableLast && dataTableLast?.map((item, index)=>{
+                                                            return(
+                                                                <tr key={index}>
+                                                                    {
+                                                                        item?.map((val, indexVal)=>{
+                                                                            return(
+                                                                                <>
+                                                                                    {
+                                                                                        indexVal === 0 ?
+                                                                                        <td align="center" key={indexVal} style={{color: '#333333'}}>
+                                                                                        {val.data_item}
+                                                                                        </td>
+                                                                                        :
+                                                                                        <>
+                                                                                            { val.data_item.indexOf('0') > 0 ? 
+                                                                                                <td align="center" key={indexVal} style={{color: '#999999'}}>
+                                                                                                    {val.data_item}
+                                                                                                </td>
+                                                                                            :
+                                                                                                <td align="center" key={indexVal} style={{color: 'blue', background: '#CCCCCC'}}>
+                                                                                                    {val.data_item}
+                                                                                                </td>
+                                                                                            }
+                                                                                        </>
+                                                                                    }
+                                                                                </>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </tr>
+                                                            )
+                                                        })
+                                                    }
                                                     <tr>
-                                                        <td>28-10-2023</td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            7 Lần
-                                                        </td>
-                                                        <td align="center" title="28-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>27-10-2023</td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="27-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>26-10-2023</td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="26-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>25-10-2023</td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="25-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>24-10-2023</td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="24-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>23-10-2023</td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="23-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>22-10-2023</td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="22-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>21-10-2023</td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="21-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>20-10-2023</td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="20-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>19-10-2023</td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="19-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>18-10-2023</td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="18-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>17-10-2023</td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            8 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="17-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>16-10-2023</td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="16-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>15-10-2023</td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="15-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14-10-2023</td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="14-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>13-10-2023</td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="13-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            5 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12-10-2023</td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            5 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="12-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>11-10-2023</td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="11-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>10-10-2023</td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="10-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>09-10-2023</td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            6 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            1 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="09-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className={stylesCss["border-bottom-width"]}>08-10-2023</td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item-blue"]}>
-                                                            4 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            2 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-content"]}>
-                                                            0 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                        <td align="center" title="08-10-2023" valign="middle" className={stylesCss["table-bordered-item"]}>
-                                                            3 Lần
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Tổng</th>
-                                                        <th align="center">67 Lần</th>
-                                                        <th align="center">46 Lần</th>
-                                                        <th align="center">63 Lần</th>
-                                                        <th align="center">63 Lần</th>
-                                                        <th align="center">50 Lần</th>
-                                                        <th align="center">58 Lần</th>
-                                                        <th align="center">61 Lần</th>
-                                                        <th align="center">54 Lần</th>
-                                                        <th align="center">63 Lần</th>
-                                                        <th align="center">69 Lần</th>
+                                                        {
+                                                            dataTotalTableLast && dataTotalTableLast[0]?.map((item, index) => {
+                                                                return (
+                                                                    <th align="center" key={index}>{item.header}</th>
+                                                                )
+                                                            })
+                                                        }
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1516,6 +264,21 @@ const LottoStatistics = () => {
             </div>
         </div>
     );
+}
+
+export const getServerSideProps = async () => {
+    const date = moment(new Date()).format('DD-MM-YYYY');
+    const [
+        data
+    ] = await Promise.all([
+        getHeadAndEndLotteryStatistic(date)
+    ]);
+
+    return {
+        props: {
+            data: data || [],
+        },
+    }
 }
 
 export default LottoStatistics;
