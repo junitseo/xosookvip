@@ -32,3 +32,13 @@ export const getKqxsProvince = async (provinceId, day) => {
     return error; 
   }
 }
+
+
+export const getResultTomorrow = async (date) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getResultTomorrow?date=${date}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
