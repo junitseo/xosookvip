@@ -1,8 +1,8 @@
 import AxiosClient from "./baseApi";
 
-export const getPosts = async () => {
+export const getPosts = async (limit = 5) => {
   try {
-    const res = await AxiosClient.get(`/posts`);
+    const res = await AxiosClient.get(`/posts?limit=${limit}`);
     return res.data.datas
   } catch (error) {
     return error; 

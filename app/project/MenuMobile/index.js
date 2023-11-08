@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { listMenu } from 'data/menu';
+import { listMenu } from 'data/menuMobi';
 import Link from 'next/link';
 function getItem(label, key, icon, children) {
   return {

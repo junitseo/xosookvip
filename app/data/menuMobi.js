@@ -20,18 +20,154 @@ export const listMenu = [
         slug: "/xo-so-mien-trung",
         icon: <FaTachometerAlt />,
         iconChildren: false,
-        menuChildren: []
+        menuChildren: [
+            {
+                "name": "Kon Tum",
+                "slug": "/kqxs/kon-tum"
+              },{
+                "name": "Khánh Hòa",
+                "slug": "/kqxs/khanh-hoa"
+              },{
+                "name": "Huế",
+                "slug": "/kqxs/hue"
+              },{
+                "name": "Phú Yên",
+                "slug": "/kqxs/phu-yen"
+              },{
+                "name": "Dak Lak",
+                "slug": "/kqxs/dak-lak"
+              },{
+                "name": "Quảng Nam",
+                "slug": "/kqxs/quang-nam"
+              },{
+                "name": "Đà Nẵng",
+                "slug": "/kqxs/da-nang"
+              },{
+                "name": "Bình Định",
+                "slug": "/kqxs/binh-dinh"
+              },{
+                "name": "Quảng Bình",
+                "slug": "/kqxs/quang-binh"
+              },{
+
+                "name": "Quảng Trị",
+                
+                "slug": "/kqxs/quang-tri"
+              },{
+
+                "name": "Bình Thuận",
+                
+                "slug": "/kqxs/binh-thuan"
+              },{
+
+                "name": "Quảng Ngãi",
+                
+                "slug": "/kqxs/quang-ngai"
+              },{
+                "name": "Dak Nông",
+                
+                "slug": "/kqxs/dak-nong"
+              },{
+                "name": "Gia Lai",
+                
+                "slug": "/kqxs/gia-lai"
+              },{
+                "name": "Đà Lạt",
+                "slug": "/kqxs/da-lat"
+              }
+        ]
     },
     {
         name: "Xổ số miền nam",
         slug: "/xo-so-mien-nam",
         icon: <FaTachometerAlt />,
         iconChildren: false,
-        menuChildren: []
+        menuChildren: [
+            {
+                "name": "Tiền Giang",
+                "slug": "/kqxs/tien-giang"
+              },
+              {
+                "name": "Kiên Giang",
+                "slug": "/kqxs/kien-giang"
+              },
+              {
+                "name": "Đồng Tháp",
+                "slug": "/kqxs/dong-thap"
+              },
+              {
+                "name": "TPHCM",
+                "slug": "/kqxs/hcm"
+              },
+              {
+                "name": "Cà Mau",
+                "slug": "/kqxs/ca-mau"
+              },
+              {
+                "name": "Vũng Tàu",
+                "slug": "/kqxs/vung-tau"
+              },
+              {
+                "name": "Bến Tre",
+                "slug": "/kqxs/ben-tre"
+              },
+              {
+                "name": "Bạc Liêu",
+                "slug": "/kqxs/bac-lieu"
+              },
+              {
+                "name": "Cần Thơ",
+                "slug": "/kqxs/can-tho"
+              },
+              {
+                "name": "Sóc Trăng",
+                "slug": "/kqxs/soc-trang"
+              },
+              {
+                "name": "Đồng Nai",
+                "slug": "/kqxs/dong-nai"
+              },
+              {
+                "name": "An Giang",
+                "slug": "/kqxs/an-giang"
+              },
+              {
+                "name": "Tây Ninh",
+                "slug": "/kqxs/tay-ninh"
+              },
+              {
+                "name": "Ninh Thuận",
+                "slug": "/kqxs/ninh-thuan"
+              },
+              {
+                "name": "Vĩnh Long",
+                "slug": "/kqxs/vinh-long"
+              },
+              {
+                "name": "Bình Dương",
+                "slug": "/kqxs/binh-duong"
+              },
+              {
+                "name": "Trà Vinh",
+                "slug": "/kqxs/tra-vinh"
+              },
+              {
+                "name": "Long An",
+                "slug": "/kqxs/long-an"
+              },
+              {
+                "name": "Hậu Giang",
+                "slug": "/kqxs/hau-giang"
+              },
+              {
+                "name": "Bình Phước",
+                "slug": "/kqxs/binh-phuoc"
+              }
+        ]
     },
     // {
     //     name: "Sổ kết quả",
-    //     slug: "/so-ket-qua",
+    //     slug: "so-ket-qua",
     //     icon: <FaTable />,
     //     iconChildren: false,
     //     menuChildren: []
