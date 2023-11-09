@@ -42,3 +42,20 @@ export const getResultTomorrow = async (date) => {
     return error; 
   }
 }
+
+export const getSpecialPrizeStatistics = async (year) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getSpecialPrizeStatistics?year=${year}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
+export const getSpecialPrizeStatisticsDayOfWeek = async (year) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getSpecialPrizeStatisticsDayOfWeek?year=${year}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
