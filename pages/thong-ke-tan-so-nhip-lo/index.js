@@ -4,7 +4,7 @@ import { dataStatisticsOfLotteryRhythmFrequency } from "../../app/data/dataStati
 import { useState } from "react";
 import Meta from "app/components/Meta"
 
-const StatisticsOfLotteryRhythmFrequency = () => {
+const StatisticsOfBatchBeatFrequency = () => {
     const columns = [
         {
             title: 'Ngày',
@@ -105,4 +105,4 @@ const StatisticsOfLotteryRhythmFrequency = () => {
     );
 }
 
-export default StatisticsOfLotteryRhythmFrequency;
+export default StatisticsOfBatchBeatFrequency;
