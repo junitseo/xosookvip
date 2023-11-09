@@ -4,6 +4,7 @@
     border-left: 1px solid #e7e7e7;
     background-color: #fff;
 }
+
 .row {
     margin-right: -15px;
     margin-left: -15px;
@@ -17,12 +18,14 @@
     padding-right: 15px;
     padding-left: 15px;
 }
+
 .choose {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
-  }
+}
+
 .panel-default {
     border-color: #ddd;
     margin-bottom: 20px;
@@ -350,10 +353,12 @@
     width: 60px;
     min-width: 60px
 }
+
 .table-bordered tbody tr td:first-child {
     width: 80px;
     min-width: 80px
 }
+
 .form-label {
     position: relative;
     top: -2px;
@@ -407,11 +412,37 @@
     width: 100%;
 }
 
+.row-one {
+    font-weight: bold;
+    font-size: 16px;
+    color: #009933;
+}
+
+.row-tow {
+    font-weight: bold;
+    font-size: 16px;
+    color: #FF0000;
+}
+
+.row-three {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.row-four {
+    padding-right: 20px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+    color: #009933;
+}
+
 @media screen and (max-width: 380px) {
     .form-control {
         width: 138px !important;
     }
-    .item-select .form-control{
+
+    .item-select .form-control {
         width: auto !important;
     }
 }
@@ -421,11 +452,12 @@
         width: 170px;
     }
 
-    .item-select{
+    .item-select {
         width: 100%;
         display: block;
     }
-    .item-select .form-control{
+
+    .item-select .form-control {
         width: auto;
     }
 }

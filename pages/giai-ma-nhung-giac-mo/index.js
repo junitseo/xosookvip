@@ -31,7 +31,6 @@ const InterpretTheDreams = () => {
                     searchData.push(item);
                 }
             })
-            console.log(searchData);
             setData(searchData);
         } else {
             setData(interpretTheDreams);

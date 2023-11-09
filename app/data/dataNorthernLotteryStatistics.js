@@ -1,4 +1,4 @@
-export const dataNorthernLotteryStatistics = [
+export const propsdataNorthernLotteryStatistics = [
     {
         number: 41,
         totalNumber: 6,
