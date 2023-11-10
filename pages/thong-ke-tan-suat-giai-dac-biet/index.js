@@ -3,26 +3,40 @@ import stylesCss from '../../styles/StatisticFrequencyPrize.module.css'
 import { Button, Select } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
-
-function StatisticFrequencyPrize() {
-  const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
+import { getStatisticFrequency } from 'api/kqxsApi'
+import LoadingPage from "app/components/LoadingPage"
+function StatisticFrequencyPrize({result, startDate, endDate}) {
+  const [start, setStart] = useState(startDate);
+  const [end, setEnd] = useState(endDate);
+  const [data, setData] = useState(result);
+  const [loading, setLoading] = useState()
   const [type, setType] = useState("00")
+
+
+
+  const handleClick = async () => {
+    setLoading(true)
+    const data = await getStatisticFrequency(start, end);
+    setData(data)
+    setLoading(false)
+  }
   return (
     <div className={stylesCss['wrapper']}>
+    {loading && <LoadingPage />}
     <Meta title="Thống kê tần suất giải đặc biệt "/>
     <h2 className={stylesCss['title']}>Thống kê tần suất giải đặc biệt </h2>
-      <div className={stylesCss['choose']}>
+    <div className={stylesCss['choose']}>
         <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
         <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
-        <Select defaultValue={type} options={data} onChange={v => setType(v)}>
-        </Select>
-        <Button>Xem kết quả</Button>
+        {/* <Select defaultValue={type} options={dataGiai} onChange={v => setType(v)}>
+        </Select> */}
+        <Button onClick={handleClick}>Xem kết quả</Button>
       </div>
       <div className="wrapper-table">
         <table
@@ -53,9 +67,9 @@ function StatisticFrequencyPrize() {
                         </a>
                       </td>
                     </tr>
-                    {Array.from({length: 31}).map(i => (
-                      <tr>
-                        <td className={stylesCss['day']}>29-10-2023</td>
+                    {data.arrayDate.map(i => (
+                      <tr key={i}>
+                        <td className={stylesCss['day']}>{i}</td>
                       </tr>
                     ))}
                     </tbody>
@@ -65,7 +79,7 @@ function StatisticFrequencyPrize() {
                 <table width="100%" cellSpacing={0} cellPadding={0} border={0}>
                   <tbody>
                     <tr>
-                    {dataGenerateNumbers.map(item => (
+                    {data.statistic.map((item, idx) => (
                       <td width="33.333333333333336%" valign="top">
                         <table
                           width="100%"
@@ -75,22 +89,27 @@ function StatisticFrequencyPrize() {
                         >
                           <tbody>
                             <tr>
-                              <td className={stylesCss['number']}>{item}</td>
+                              <td className={stylesCss['number']}>{idx < 10?"0" + idx: idx}</td>
                             </tr>
-                            {Array.from({length: 31}, (_, i) => i + Math.floor(Math.random() * 10)).map(i => (
-                              i % 2 == 0 ?
-                              <tr>
-                                <td className={stylesCss['item']}>
-                                  <div>-</div>
-                                </td>
-                              </tr>
-                              :  
-                              <tr>
-                              <td className={stylesCss['item1']}>
-                                <div>1</div>
-                              </td>
-                            </tr>
-                            ))}
+                            {data.arrayDate.map(i => {
+                              const l = item.filter(d => d.dayPrize == i).length;
+                              if(l){
+                                return (
+                                  <tr>
+                                    <td className={stylesCss['item1']}>
+                                      <div>{l}</div>
+                                    </td>
+                                  </tr>
+                                )
+                              }
+                              return (
+                                <tr>
+                                  <td className={stylesCss['item']}>
+                                    <div>-</div>
+                                  </td>
+                                </tr>
+                              )
+                            })}
 
                           </tbody>
                           </table>
@@ -109,17 +128,7 @@ function StatisticFrequencyPrize() {
 }
 
 export default StatisticFrequencyPrize;
-function generateNumbers() {
-  let numbers = [];
-  for (let i = 0; i <= 99; i++) {
-      let formattedNumber = i.toString().padStart(2, '0');
-      numbers.push(formattedNumber);
-  }
-  return numbers;
-}
-
-let dataGenerateNumbers = generateNumbers();
-const data = [
+const dataGiai = [
   {
     value: "00",
     label: "Giải đặc biệt"
@@ -229,3 +238,17 @@ const data = [
     label: "Giải bảy thứ 4"
   },
 ]
+
+export const getServerSideProps = async () => {
+  const startDate = moment().subtract(30, 'days').format("DD-MM-YYYY");
+  const endDate = moment().format("DD-MM-YYYY");
+  const result = await getStatisticFrequency(startDate, endDate)
+
+  return {
+    props: { 
+      result,
+      startDate,
+      endDate
+    }
+  }
+}

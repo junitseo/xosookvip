@@ -59,3 +59,29 @@ export const getSpecialPrizeStatisticsDayOfWeek = async (year) => {
     return error; 
   }
 }
+
+export const getSpecialStatisticsGan = async (date, type) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getSpecialStatisticsGan?date=${date}&type=${type}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
+
+export const getSpecialPrizeStatisticsDayOfWeek2 = async (startDate, endDate) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getSpecialPrizeStatisticsDayOfWeek2?startDate=${startDate}&endDate=${endDate}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
+export const getStatisticFrequency = async (startDate, endDate) => {
+  try {
+    const res = await AxiosClient.get(`/kqxs/getStatisticFrequency?startDate=${startDate}&endDate=${endDate}`);
+    return res.data;
+  } catch (error) {
+    return error; 
+  }
+}
