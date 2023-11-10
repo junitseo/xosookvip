@@ -3,8 +3,11 @@ import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { dataStatisticsOfLotteryRhythmFrequency } from "../../app/data/dataStatisticsOfLotteryRhythmFrequency"
 import { useState } from "react";
 import Meta from "app/components/Meta"
+import { listWeekdays } from "../../app/data/listWeekdays";
 
 const StatisticsOfBatchBeatFrequency = () => {
+    const [weekDay, setWeekDay] = useState(1);
+
     const columns = [
         {
             title: 'Ngày',
@@ -41,20 +44,36 @@ const StatisticsOfBatchBeatFrequency = () => {
                                     <table cellPadding="5" cellSpacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td>Từ ngày: Ngày/Tháng/Năm
-                                                    <br></br>
+                                                <td align="right">
+                                                    Từ ngày: Ngày/Tháng/Năm&nbsp;
                                                     <input className={stylesCss["form-control"]} type="text" name="date_start" value="01/01/2020" />
                                                 </td>
-                                                <td>&nbsp;Đến ngày: Ngày/Tháng/Năm
-                                                    <br></br>
+                                                <td align="left">
+                                                    Đến ngày: Ngày/Tháng/Năm&nbsp;
                                                     <input type="text" className={stylesCss["form-control"]} name="date_end" value="28/10/2023" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" align="center">
-                                                &nbsp;nhập số ngày&nbsp;
-                                                    <input type="text" name="biendo" value="10" className={stylesCss["form-control"]} />&nbsp;
-                                                    <input type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                                <td align="right">
+                                                    nhập số ngày
+                                                    <input type="text" name="biendo" value="10" className={stylesCss["form-control"]} />
+                                                </td>
+                                                <td align="left">
+                                                    Theo thứ&nbsp;
+                                                    <select value={weekDay} name="week_day" className={stylesCss["form-control"]}>
+                                                        {
+                                                            listWeekdays?.map((item, index) => {
+                                                                return (
+                                                                    <option key={index} value={item.value}>{item.name}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan="2" align="center">
+                                                    <input className={stylesCss["btn-btn-default"]} type="submit" name="sbtsubmit" value="Xem kết quả" />
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -104,5 +123,7 @@ const StatisticsOfBatchBeatFrequency = () => {
         </div>
     );
 }
+
+
 
 export default StatisticsOfBatchBeatFrequency;

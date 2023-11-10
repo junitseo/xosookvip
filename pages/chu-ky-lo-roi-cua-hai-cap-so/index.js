@@ -1,11 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import { listNumber } from "../../app/data/listNumber"
 import Meta from "app/components/Meta"
+import { getFrequencyOfOccurrenceOfTwoNumbers } from "../../stores/statisticsOfNorthernLot";
+import { DatePicker } from "antd";
+import moment from "moment";
+import Link from "next/link";
 
-const FrequencyOfOccurrenceOfTwoNumbers = () => {
+const FrequencyOfOccurrenceOfTwoNumbers = (props) => {
+    const [data, setData] = useState(props.data);
+    const [table, setTable] = useState({});
+
+    const [numberOne, setNumberOne] = useState("00");
+    const [numberTow, setNumberTow] = useState("01");
     const [dataNumber, setDataNumber] = useState(listNumber);
     const [isShow, setIsShow] = useState(false);
+
+    const dateFormat = 'DD-MM-YYYY';
+    const dateTimeStart = new Date().setDate(new Date().getDate() - 5);
+    const [dateFrom, setDateFrom] = useState(new Date(dateTimeStart));
+    const [dateTo, setDateTo] = useState(new Date());
+    const [isDateFrom, setIsDateFrom] = useState(false);
+    const [isDateTo, setIsDateTo] = useState(false);
+
+    const handleDateFrom = (date, dateString) => {
+        setDateFrom(dateString);
+        setIsDateFrom(true);
+    };
+
+    const handleDateTo = (date, dateString) => {
+        setDateTo(dateString);
+        setIsDateTo(true);
+    };
+
+    const handleFrequencyOfOccurrenceOfTwoNumbers = async () => {
+        const params = {
+            number_one: numberOne,
+            number_tow: numberTow,
+            day_from: isDateFrom ? dateFrom : moment(dateFrom).format(dateFormat),
+            day_to: isDateTo ? dateTo : moment(dateTo).format(dateFormat),
+        }
+        const data = await getFrequencyOfOccurrenceOfTwoNumbers(params);
+        if (data) {
+            loadDataTable(data);
+        }
+    }
+
+    const loadDataTable = (data) => {
+        if (data) {
+            if (data) {
+                setTable(data);
+            }
+        }
+    }
+
+    useEffect(() => {
+        loadDataTable(data);
+    }, []);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
@@ -24,37 +75,38 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                             <td align="center" className="display-center-col">
                                                 <span className={stylesCss["item-select"]}>
                                                     <div className={stylesCss["choose"]}>
-                                                    2 cặp số khảo sát:
-                                                    <select name="cap_so_1" className={stylesCss["form-control"]}>
-                                                        {
-                                                            dataNumber?.map((item, index) => {
-                                                                return (
-                                                                    <option key={index} value={item}>{item}</option>
-                                                                );
-                                                            })
-                                                        }
-                                                    </select>
-                                                    <select name="cap_so_2" className={stylesCss["form-control"]}>
-                                                        {
-                                                            dataNumber?.map((item, index) => {
-                                                                return (
-                                                                    <option key={index} value={item}>{item}</option>
-                                                                );
-                                                            })
-                                                        }
-                                                    </select>
+                                                        2 cặp số khảo sát:
+                                                        <select value={numberOne} name="cap_so_1" className={stylesCss["form-control"]} onChange={(e) => setNumberOne(e.target.value)}>
+                                                            {
+                                                                dataNumber?.map((item, index) => {
+                                                                    return (
+                                                                        <option key={index} value={item}>{item}</option>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </select>
+                                                        <select value={numberTow} name="cap_so_2" className={stylesCss["form-control"]} onChange={(e) => setNumberTow(e.target.value)}>
+                                                            {
+                                                                dataNumber?.map((item, index) => {
+                                                                    return (
+                                                                        <option key={index} value={item}>{item}</option>
+                                                                    );
+
+                                                                })
+                                                            }
+                                                        </select>
                                                     </div>
                                                 </span>
                                                 <div className={stylesCss["choose"]}>
                                                     <span className={stylesCss["item-select"]}>
                                                         &nbsp;Từ ngày(Ngày/Tháng/Năm)&nbsp;
-                                                        <input type="text" className={stylesCss["form-control"]} name="day_from" value="28/10/2022" maxLength="10" />
+                                                        <DatePicker defaultValue={moment(dateFrom, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateFrom(date, dateString)} />
                                                     </span>
                                                 </div>
                                                 <div className={stylesCss["choose"]}>
                                                     <span className={stylesCss["item-select"]}>
                                                         &nbsp;Đến ngày(Ngày/Tháng/Năm)&nbsp;
-                                                        <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                        <DatePicker defaultValue={moment(dateTo, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTo(date, dateString)} />
                                                     </span>
                                                 </div>
                                             </td>
@@ -62,7 +114,7 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                                         <tr>
                                             <td align="center">
                                                 <br />
-                                                <input type="submit" name="sbtsubmit" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                                <input type="submit" name="sbtsubmit" value="Xem kết quả" className={stylesCss["btn-btn-default"]} onClick={() => handleFrequencyOfOccurrenceOfTwoNumbers()} />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -73,35 +125,31 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
                             <div>
                                 <div className={stylesCss["title-bar-box-show"]} onClick={() => setIsShow(!isShow)}>Bấm vào đây xem chi tiết các ngày mà 2 cặp số
                                     <font color="red">
-                                        <b>00,01</b>
+                                        <b>{table?.pair_of_number}</b>
                                     </font> cùng về <font color="red">
-                                        <b>10 lần</b>
+                                        <b>{table?.times}</b>
                                     </font>
                                 </div>
                                 <div style={isShow ? { display: 'block' } : { display: 'none' }} className={stylesCss["content-date"]}>
-                                    <a href="so-ket-qua.html?date_start=31-10-2022&amp;date_end=31-10-2022&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">31-10-2022</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-01-2023&amp;date_end=15-01-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-01-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=19-04-2023&amp;date_end=19-04-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">19-04-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=01-05-2023&amp;date_end=01-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">01-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=12-05-2023&amp;date_end=12-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">12-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-05-2023&amp;date_end=15-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=26-07-2023&amp;date_end=26-07-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">26-07-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=10-08-2023&amp;date_end=10-08-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">10-08-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-08-2023&amp;date_end=15-08-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-08-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=26-09-2023&amp;date_end=26-09-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">26-09-2023</a> ,
+                                    {
+                                        table?.data_date ? 
+                                            <Link className={stylesCss["data-item-href"]} href="#" target="_blank" rel="nofollow">{table?.data_date}</Link> 
+                                        : 
+                                            <></>
+                                    }
                                 </div>
                             </div>
                             <div className={stylesCss["qc-mgid"]}>
                                 <div style={{ lineHeight: '30px' }}>
-                                    <div>- 2 cặp số <font color="red"><b>00,01</b></font> về cùng nhau từ ngày <font color="red"><b>28/10/2022</b></font> đến ngày <font color="red"><b>28/10/2023</b></font> là: <font color="red"><b>10 lần</b></font></div>
+                                    <div>- 2 cặp số <font color="red"><b>{table?.content_one_item_one}</b></font> về cùng nhau từ ngày <font color="red"><b>{table?.content_one_item_tow}</b></font> đến ngày <font color="red"><b>{table?.content_one_item_three}</b></font> là: <font color="red"><b>{table?.content_one_item_four}</b></font></div>
                                     <div>
-                                        - <font color="red">Max cực đại lô rơi(về)</font> lại một trong 2 cặp số này là : <font color="red"><b>11</b> ngày (<b>30/12/2022</b> đến <b>10/01/2023</b>) tính cả ngày về</font>
+                                        - <font color="red">{table?.content_tow_item_one}</font> lại một trong 2 cặp số này là : <font color="red"><b>{table?.content_tow_item_tow}</b></font>
                                     </div>
                                     <div>
-                                        - Ngày cuối cùng 2 cặp số <font color="red"><b>00,01</b></font> về cùng nhau là ngày <font color="red"><b>26/09/2023</b></font>
+                                        - Ngày cuối cùng 2 cặp số <font color="red"><b>{table?.content_three_item_one}</b></font> về cùng nhau là ngày <font color="red"><b>{table?.content_three_item_tow}</b></font>
                                     </div>
                                     <div>
-                                        - Chu kỳ cuối lô đã rơi(về) cặp <font color="red"><b>00</b></font> vào ngày: <font color="red"><b>26/10/2023</b></font> không còn cơ hội đầu tư cặp <font color="red"><b>00,01</b></font> này.
+                                        - Chu kỳ cuối lô đã rơi(về) cặp <font color="red"><b>{table?.content_four_item_one}</b></font> vào ngày: <font color="red"><b>{table?.content_four_item_tow}</b></font> không còn cơ hội đầu tư cặp <font color="red"><b>{table?.content_four_item_three}</b></font> này.
                                     </div>
                                 </div>
                                 <div style={{ lineHeight: '30px', padding: '15px' }}>
@@ -126,6 +174,32 @@ const FrequencyOfOccurrenceOfTwoNumbers = () => {
             </div>
         </div>
     );
+}
+
+export const getServerSideProps = async () => {
+    const dateFormat = "DD/MM/YYYY";
+    const number_one = "01";
+    const number_tow = "02";
+    const day_from = moment(new Date()).format(dateFormat);
+    const day_to = moment(new Date().setDate(new Date().getDate() - 5)).format(dateFormat);
+
+    const params = {
+        number_one: number_one,
+        number_tow: number_tow,
+        day_from: day_from,
+        day_to: day_to,
+    }
+    const [
+        data
+    ] = await Promise.all([
+        getFrequencyOfOccurrenceOfTwoNumbers(params)
+    ]);
+
+    return {
+        props: {
+            data: data || [],
+        },
+    }
 }
 
 export default FrequencyOfOccurrenceOfTwoNumbers;
