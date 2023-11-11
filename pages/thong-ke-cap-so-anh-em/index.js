@@ -129,7 +129,7 @@ const StatisticsOnSiblingPairs = (props) => {
 export const getServerSideProps = async () => {
     const dateFormat = "DD/MM/YYYY";
     const date = moment(new Date()).format(dateFormat);
-    const string_number = "49,13,48,58";
+    const string_number = "57,58,73,72";
 
     const params = {
         date: date,

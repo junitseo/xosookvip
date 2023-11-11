@@ -71,11 +71,13 @@ const LotteryStatistics = (props) => {
                                     <table cellPadding="5" cellSpacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td>Từ ngày: Ngày/Tháng/Năm
+                                                <td align="right">
+                                                    Từ ngày: Ngày/Tháng/Năm&nbsp;
                                                     <br></br>
                                                     <DatePicker defaultValue={moment(dateFrom, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateFrom(date, dateString)} />
                                                 </td>
-                                                <td>Đến ngày: Ngày/Tháng/Năm
+                                                <td align="left">
+                                                    Đến ngày: Ngày/Tháng/Năm&nbsp;
                                                     <br></br>
                                                     <DatePicker defaultValue={moment(dateTo, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTo(date, dateString)} />
                                                 </td>
@@ -90,8 +92,6 @@ const LotteryStatistics = (props) => {
                                         </tbody>
                                     </table>
                                 </div>
-
-
                             </div>
                         </div>
                         <div className={stylesCss["container-bottom"]}>
