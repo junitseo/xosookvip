@@ -83,3 +83,15 @@ export async function getLotteryStatistic(params) {
     } catch (error) {
     }
 }
+
+export async function getStatisticsOfBatchBeatFrequency(params) {
+    try {
+        const res = await fetch(`${API_URL}/statisticsOfNorthernLot/getStatisticsOfBatchBeatFrequency?number_server=${params.number_server}&day_of_week=${params.day_of_week}&date_start=${params.date_start}&date_end=${params.date_end}`);
+        if (res) {
+            const data = await res.json();
+            return data;
+        }
+        return null;
+    } catch (error) {
+    }
+}
