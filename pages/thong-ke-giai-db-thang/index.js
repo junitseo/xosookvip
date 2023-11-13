@@ -49,7 +49,6 @@ function StatisticsSpecialPrize({result, y}) {
           cellPadding={0}
           border={0}
           className=""
-          style={{width: 100, margin: "0 auto"}}
         >
           <tbody>
             <tr>
@@ -84,7 +83,7 @@ function StatisticsSpecialPrize({result, y}) {
                   <tbody>
                     <tr>
                     {dataMap.map((item, index) => (
-                      <td width="33.333333333333336%" valign="top">
+                      <td valign="top">
                         <table
                           width="100%"
                           cellSpacing={0}

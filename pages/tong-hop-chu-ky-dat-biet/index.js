@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import stylesCss from '../../styles/SpecialCycleStatistics.module.css'
-import { Button } from 'antd';
+import { Button, DatePicker } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
 import { getSpecialStatisticsGan } from 'api/kqxsApi'
@@ -97,8 +97,8 @@ function SpecialCycleStatistics({data, d}) {
         <Meta title="Tổng hợp chu kỳ của giải đặc biệt"/>
         <div className={stylesCss['title']}>Tổng hợp chu kỳ của giải đặc biệt</div>
         <div className={stylesCss['choose']}>
-          <span>Biên ngày : (Ngày/Tháng/Năm) </span> 
-          <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+          <span>Biên ngày :</span> 
+          <DatePicker defaultValue={moment(date, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setDate(dateString)}  />
           <Button onClick={handleClick}>Xem kết quả</Button>
         </div>
         <table className="">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import stylesCss from '../../styles/StatisticFrequencyPrize.module.css'
-import { Button, Select } from 'antd';
+import { Button, DatePicker, Select } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
 import { getStatisticFrequency } from 'api/kqxsApi'
@@ -25,13 +25,13 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
     <Meta title="Thống kê tần suất theo từng giải"/>
     <h2 className={stylesCss['title']}>Thống kê tần suất theo từng giải</h2>
     <div className={stylesCss['choose']}>
-        <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
+        <span>Từ ngày </span>
+        <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
-        <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
-      </div>
+        <span>Đến ngày </span> 
+        <DatePicker defaultValue={moment(end, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setEnd(dateString)}  />
+    </div>
       <div className={stylesCss['choose']}>
         <Select defaultValue={prizeId} options={dataGiai} onChange={v => setPrizeId(v)}>
         </Select>

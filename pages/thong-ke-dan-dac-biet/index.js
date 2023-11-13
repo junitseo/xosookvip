@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import stylesCss from '../../styles/SpecialStagingStatistics.module.css'
-import { Button, Select } from 'antd';
+import { Button, DatePicker, Select } from 'antd';
 import Meta from "app/components/Meta"
 
 import moment from 'moment';
@@ -55,12 +55,12 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
       <input style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
-        <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
+        <span>Từ ngày </span>
+        <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
-        <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
+        <span>Đến ngày </span> 
+        <DatePicker defaultValue={moment(end, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setEnd(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
         <Button onClick={handleClick}>Xem kết quả</Button>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import stylesCss from '../../styles/StatisticsSpecialWeek.module.css'
 import moment from 'moment';
-import { Button, Radio } from 'antd';
+import { Button, DatePicker, Radio } from 'antd';
 import Meta from "app/components/Meta"
 import { getSpecialPrizeStatisticsDayOfWeek2 } from 'api/kqxsApi'
 import LoadingPage from "app/components/LoadingPage"
@@ -46,12 +46,12 @@ function Page({result, startDate, endDate}) {
     <Meta title="Thống kê kết quả đặc biệt theo tổng"/>
       <h2 className={stylesCss['title']}>Thống kê kết quả đặc biệt theo tổng</h2>
       <div className={stylesCss['choose']}>
-        <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
+        <span>Từ ngày </span>
+        <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
-        <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
+        <span>Đến ngày </span> 
+        <DatePicker defaultValue={moment(end, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setEnd(dateString)}  />
       </div>
       <Button onClick={handleClick} style={{marginBottom: 10}}>Xem kết quả</Button>
       {data.length > 0 ?
