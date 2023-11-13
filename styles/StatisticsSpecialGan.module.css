@@ -35,7 +35,7 @@
 .head th {
   font-weight: bold;
   line-height: 15px;
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
   text-align: center;
   cursor: pointer;
   padding: 10px;
@@ -43,12 +43,15 @@
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
+  background-color: #c2c2c2;
+  border: 1px solid #aeabab;
 }
 .wrapper td {
   text-align: center;
   padding: 3px 10px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
+  border: 1px solid #aeabab;
 }
 .text1 {
   font-weight: bold;

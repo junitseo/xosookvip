@@ -117,12 +117,12 @@ const LotteryStatistics = (props) => {
                                 <tbody>
                                 {
                                         tableTow?.map((item, index) => {
-                                            if(index % 2 != 0){
+                                            if(index % 3 != 0){
                                                 return(
                                                     <tr key={index} className={stylesCss["table-content-item"]}>
                                                        {
                                                             item?.map((val, indexVal)=> {
-                                                                if(indexVal == 0){
+                                                                if(indexVal == 0 && val?.data_item.trim().length > 0){
                                                                     return(
                                                                         <td key={indexVal} align="center" className={stylesCss["max-date"]}>{val?.data_item}</td>
                                                                     )

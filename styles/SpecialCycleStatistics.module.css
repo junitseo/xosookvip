@@ -1,5 +1,6 @@
 .wrapper {
   padding: 0 10px;
+  padding-bottom: 10px;
 }
 .wrapper table {
   overflow: scroll;
@@ -35,14 +36,17 @@
 }
 .wrapper th {
   text-align: left;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   padding: 5px;
+  background-color: #c2c2c2;
+  border: 1px solid #aeabab;
 }
 .wrapper td {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
+  border: 1px solid #aeabab;
   padding: 5px;
 }
 .wrapper tr:nth-child(odd) {

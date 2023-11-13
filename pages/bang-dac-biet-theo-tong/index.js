@@ -37,7 +37,7 @@ function Page({result, startDate, endDate}) {
   
   const renderNumber = (data) => {
     if(!data) return "";
-    console.log(data)
+    // console.log(data)
     return (Number(data.firstNumber) + Number(data.lastNumber)) % 10 || 0
   }
   return (

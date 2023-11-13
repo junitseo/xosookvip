@@ -1,10 +1,13 @@
 .wrapper {
   padding: 0 10px;
+  padding-bottom: 10px;
 }
+
 .wrapper table {
   overflow: scroll;
   width: 100%;
 }
+
 .title {
   text-transform: uppercase;
   size: 18px;
@@ -13,6 +16,7 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
 .choose {
   display: flex;
   align-items: center;
@@ -20,6 +24,7 @@
   margin-bottom: 8px;
   flex-wrap: wrap;
 }
+
 .choose input {
   height: 34px;
   padding: 6px 12px;
@@ -30,33 +35,42 @@
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   outline: none;
 }
+
 .head {
   padding: 5px;
   text-align: center;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   font-weight: bold;
   text-align: left;
+  background-color: #c2c2c2;
+  border: 1px solid #aeabab;
 }
+
 .wrapper td {
   padding: 5px;
+  border: 1px solid #aeabab;
 }
+
 .wrapper tr:nth-child(odd) {
   background-color: #F5F5F5;
 }
+
 .text1 {
   font-weight: bold;
   line-height: 15px;
   font-size: 14px;
 }
+
 .text2 {
   font-size: 14px;
   font-weight: bold;
   line-height: 15px;
   color: red;
 }
+
 @media (max-width: 800px) {
   .wrap-table {
     flex-wrap: wrap;

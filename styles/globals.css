@@ -2091,7 +2091,7 @@ img {
 
 .container-root {
   display: flex;
-  padding-top: 5px;
+  /* padding-top: 5px; */
 }
 
 .menu-root {
@@ -2099,6 +2099,11 @@ img {
 }
 
 .content-root {
+  background-image: url(https://i0.wp.com/www.knoxalliance.store/wp-content/uploads/2017/05/light-color-background-images-for-website-top-hd-images-for-free-background-for-website-in-light-color-1-1024x640.jpg?ssl=1);
+  background-size: cover;
+  background-position: center;
+  background-clip: content-box;
+  background-origin: content-box;
   width: 80%;
   border-left: 1px solid #e7e7e7;
   min-height: 942px;
@@ -2123,7 +2128,7 @@ img {
 
 .react-datepicker__month-container {
   width: 100%;
-  border-left: 1px solid #e7e7e7;
+  /* border-left: 1px solid #e7e7e7; */
 }
 
 .display-center-col {
@@ -2202,4 +2207,13 @@ img {
 
 .react-datepicker__day--selected {
   background-color: #BB2649 !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #c2c2c2 !important;
+  border: 1px solid #aeabab !important;
+}
+
+.ant-table-tbody > tr > td {
+  border: 1px solid #aeabab !important;
 }

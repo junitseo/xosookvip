@@ -1,5 +1,6 @@
 .wrapper {
   width: auto;
+  padding-top: 10px;
 }
 
 @media (max-width: 1100px) {
@@ -19,7 +20,7 @@
 }
 
 .wrapper td {
-  border: 1px solid #ddd;
+  border: 1px solid #c6c4c4;
   color: #373531;
   font-size: 13px;
   padding: 5px;

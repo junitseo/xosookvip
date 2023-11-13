@@ -62,7 +62,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
   const handleClick = async () => {
     setLoading(true)
     const d = await getStatisticTwoNumber(start, end, number);
-    console.log(d)
+    // console.log(d)
     if(type == 0 || !type){
       setDataOther(d)
     }else {

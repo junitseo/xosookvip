@@ -17,14 +17,14 @@
 }
 
 .rightcl td {
-  border: 1px #ddd solid;
+  border: 1px #c6c4c4 solid;
   border-top: 0px;
   border-left: 0px;
   text-align: center;
   padding: 0px;
 }
 .rightcl tr td:first-child {
-  border: 1px #ddd solid;
+  border: 1px #c6c4c4 solid;
   text-align: center;
   padding: 0px;
   font-weight: 400;
@@ -61,9 +61,10 @@
   font-weight: bold;
   height: 36px !important;
   line-height: 100%;
+  background-color: #f3f3f3;
 }
 .giai7 {
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   font-weight: bold;
   height: 32px;
 }
@@ -73,7 +74,7 @@
   line-height: 120%;
 }
 .giai5 {
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   font-weight: bold;
   height: 32px;
 }
@@ -83,7 +84,7 @@
   line-height: 120%;
 }
 .giai3 {
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   font-weight: bold;
   height: 57px;
   line-height: 120%;
@@ -93,7 +94,7 @@
   height: 32px;
 }
 .giai1 {
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   font-weight: bold;
   height: 32px;
 }
@@ -102,6 +103,7 @@
   color: #AD0000;
   font-weight: bold;
   height: 32px;
+  background-color: #f3f3f3;
 }
 @media (max-width: 600px) {
   .wrapper {

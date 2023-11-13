@@ -118,10 +118,10 @@ const StatisticsOfBatchBeatFrequency = (props) => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th style={{ width: "25%",borderTop: "1px solid #ddd" }} align="center">Ngày</th>
-                                        <th style={{ width: "25%",borderTop: "1px solid #ddd" }} align="center">Thứ</th>
-                                        <th style={{ width: "25%",borderTop: "1px solid #ddd" }} align="center">Về ở giải</th>
-                                        <th style={{ width: "25%",borderTop: "1px solid #ddd" }} align="center">Số nhịp xuất hiện</th>
+                                        <th className={stylesCss["title-header"]} align="center">Ngày</th>
+                                        <th className={stylesCss["title-header"]} align="center">Thứ</th>
+                                        <th className={stylesCss["title-header"]} align="center">Về ở giải</th>
+                                        <th className={stylesCss["title-header"]} align="center">Số nhịp xuất hiện</th>
                                     </tr>
                                     {
                                         table?.map((item, index) => {
@@ -130,7 +130,7 @@ const StatisticsOfBatchBeatFrequency = (props) => {
                                                     {
                                                         item?.map((val, indexVal) => {
                                                             return (
-                                                                <td style={{ borderTop: "1px solid #ddd" }} key={indexVal} align="center">{val?.data_item}</td>
+                                                                <td className={stylesCss["data-item-td"]} key={indexVal} align="center">{val?.data_item}</td>
                                                             );
                                                         })
                                                     }
