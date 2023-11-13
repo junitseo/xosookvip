@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import stylesCss from '../../styles/StatisticFrequencyPairs.module.css'
-import { Button, Select } from 'antd';
+import { Button, DatePicker, Select } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
 import { getStatisticTwoNumber } from 'api/kqxsApi'
@@ -32,7 +32,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
   const [data, setData] = useState(() => result.filter((i) => i.prizeId == 1))
   const [dataOther, setDataOther] = useState(result)
   const [loading, setLoading] = useState(false)
-
+  const [textSelect, setTextSelect] = useState("Tất cả các giải")
   const data10day = useMemo(() => {
     return handleFilter(data, 10)
   },[data])
@@ -69,7 +69,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
       const d2 = d.filter((i) => i.prizeId == type)
       setDataOther(d2)
     }
-   
+    setTextSelect(dataGiai.find(i => i.value == type).label)
     setData(d.filter((i) => i.prizeId == 1))
     setLoading(false)
   }
@@ -85,12 +85,12 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
         <input type="string" value={number} onChange={e => setNumber(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
-        <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
+        <span>Từ ngày </span>
+        <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
-        <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
+        <span>Đến ngày </span> 
+        <DatePicker defaultValue={moment(end, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setEnd(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
         <Select defaultValue={type} options={dataGiai} onChange={v => setType(v)}>
@@ -134,7 +134,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Đối với <strong>{dataGiai.find(i => i.value == type).label}</strong> trong Bảng kết quả</td>
+              <td className={stylesCss['head']} colspan="2">Đối với <strong>{textSelect}</strong> trong Bảng kết quả</td>
             </tr>
             <tr>
                 <td>Ngày về gần nhất</td>
@@ -195,7 +195,7 @@ const dataGiai = [
     label: "Giải bốn"
   },
   {
-    value: 5,
+    value: 6,
     label: "Giải năm"
   },
   {

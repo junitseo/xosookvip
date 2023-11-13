@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import stylesCss from '../../styles/StatisticsSpecialGan.module.css'
-import { Button, Radio } from 'antd';
+import { Button, DatePicker, Radio } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
 import { getSpecialStatisticsGan } from 'api/kqxsApi'
@@ -76,8 +76,9 @@ function Page({data, d}) {
     const [date, setDate] = useState(dateFormat(d));
     const [dataMap, setDataMap] = useState(() => handleDataTwoNum(data));
     const [checked, setChecked] = useState(1);
-
+    const [loading, setLoading] = useState(false);
     const handleClick = async () =>  {
+      setLoading(true);
       const day = moment(date, "DD/MM/YYYY").format("DD-MM-YYYY")
       const result = await getSpecialStatisticsGan(day, checked);
       if(checked == 2){
@@ -87,14 +88,16 @@ function Page({data, d}) {
       }else {
         setDataMap(handleDataTwoNum(result))
       }
+      setLoading(false);
     }
   return (
     <div className={stylesCss['wrapper']}>
+      {loading && <LoadingPage />}
       <Meta title="Thống kê giải đặc biệt Gan"/>
       <h2 className={stylesCss['title']}>Thống kê đặc biệt Gan</h2>
       <div className={stylesCss['choose']}>
-        <span>Biên ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <span>Biên ngày </span> 
+        <DatePicker defaultValue={moment(date, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setDate(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
         <span>Thống kê theo</span>

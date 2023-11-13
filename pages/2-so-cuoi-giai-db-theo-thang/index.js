@@ -38,83 +38,85 @@ function StatisticsSpecialPrize({result, y}) {
         </Select>
         <Button onClick={handleClick}>Xem kết quả</Button>
       </div>
+      <div className="wrapper-table">
       {dataMap.length > 0 
       ?
       <div className="wrapper-table">
         <table
-          width="100%"
-          cellSpacing={0}
-          cellPadding={0}
-          border={0}
-          className="bkqmiennam"
-          style={{width: 100, margin: "0 auto"}}
-        >
-          <tbody>
-            <tr>
-              <td width={100} valign="top">
-                <table
-                  width="100%"
-                  cellSpacing={0}
-                  cellPadding={0}
-                  border={0}
-                  className={stylesCss['leftcl']}
-                >
-                    <tbody>
-                    <tr>
-                      <td className={stylesCss['day']}>
-                        <a
-                          className="date"
-                        >
-                          Ngày\Tháng
-                        </a>
-                      </td>
-                    </tr>
-                    {Array.from({length: 31}, (_, i) => i + 1).map(i => (
+            width="100%"
+            cellSpacing={0}
+            cellPadding={0}
+            border={0}
+            className="bkqmiennam"
+          >
+            <tbody>
+              <tr>
+                <td width={100} valign="top">
+                  <table
+                    width="100%"
+                    cellSpacing={0}
+                    cellPadding={0}
+                    border={0}
+                    className={stylesCss['leftcl']}
+                  >
+                      <tbody>
                       <tr>
-                        <td className={stylesCss['day']}>{i}</td>
-                      </tr>
-                    ))}
-                    </tbody>
-                </table>
-              </td>
-              <td valign="top">
-                <table width="100%" cellSpacing={0} cellPadding={0} border={0}>
-                  <tbody>
-                    <tr>
-                    {dataMap.map((item, index) => (
-                      <td width="33.333333333333336%" valign="top">
-                        <table
-                          width="100%"
-                          cellSpacing={0}
-                          cellPadding={0}
-                          className={stylesCss['rightcl']}
-                        >
-                          <tbody>
-                            <tr>
-                              <td className={stylesCss['month']}>{index}</td>
-                            </tr>
-                            {item.map((i) => (
-                              <tr>
-                                <td className={stylesCss['num']}>
-                                  <div>{i?.number.trim().slice(0,2)}</div>
-                                </td>
-                              </tr>
-                            ))}
-
-                          </tbody>
-                          </table>
+                        <td className={stylesCss['day']}>
+                          <a
+                            className="date"
+                          >
+                            Ngày\Tháng
+                          </a>
                         </td>
-                        ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                      </tr>
+                      {Array.from({length: 31}, (_, i) => i + 1).map(i => (
+                        <tr>
+                          <td className={stylesCss['day']}>{i}</td>
+                        </tr>
+                      ))}
+                      </tbody>
+                  </table>
+                </td>
+                <td valign="top">
+                  <table width="100%" cellSpacing={0} cellPadding={0} border={0}>
+                    <tbody>
+                      <tr>
+                      {dataMap.map((item, index) => (
+                        <td valign="top">
+                          <table
+                            width="100%"
+                            cellSpacing={0}
+                            cellPadding={0}
+                            className={stylesCss['rightcl']}
+                          >
+                            <tbody>
+                              <tr>
+                                <td className={stylesCss['month']}>{index + 1}</td>
+                              </tr>
+                              {item.map((i) => (
+                                <tr>
+                                  <td className={stylesCss['num']}>
+                                    <div>{i?.number.trim().slice(0,2)}</div>
+                                  </td>
+                                </tr>
+                              ))}
+
+                            </tbody>
+                            </table>
+                          </td>
+                          ))}
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        :<div>Chưa có dữ liệu</div>
+        }
       </div>
-      :<div>Chưa có dữ liệu</div>
-      }
+     
     </div>
   )
 }

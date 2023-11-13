@@ -7,6 +7,7 @@ import { getResultTomorrow } from 'api/kqxsApi'
 import { dateFormat } from 'utils/format'
 import { getDayOfWeek } from 'utils/getDayOfWeek'
 import LoadingPage from "app/components/LoadingPage"
+import { DatePicker } from "antd";
 
 function StatisticsTomorrow({result}) {
   const [data, setData] = useState(result)
@@ -45,7 +46,7 @@ function StatisticsTomorrow({result}) {
   },[data.data])
   const handleClick = async () => {
     setLoading(true)
-    const d = await getResultTomorrow(moment(date, "DD/MM/YYYY").format("DD-MM-YYYY"));
+    const d = await getResultTomorrow(date);
     setData(d)
     setLoading(false)
   }
@@ -56,8 +57,8 @@ function StatisticsTomorrow({result}) {
       <Meta title="Thống kê dự báo kết quả sổ xố ngày mai"/>
       <h2 className={stylesCss['title']}>Thống kê dự báo kết quả xổ số ngày mai</h2>
       <div className={stylesCss['choose-day']}>
-        <span>Biên ngày (dd/mm/YYYY):</span>
-        <input type="string" value={date} onChange={(e) => setDate(e.target.value)} />
+        <span>Biên ngày:</span>
+        <DatePicker defaultValue={moment(date, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setDate(dateString)}  />
         <Button onClick={handleClick}>Xem kết quả</Button>
       </div>
       <div className={stylesCss['title-1']}>

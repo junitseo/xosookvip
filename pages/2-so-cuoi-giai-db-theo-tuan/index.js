@@ -45,6 +45,7 @@ function StatisticsSpecialPrize({result, y}) {
         </Select>
         <Button onClick={handleClick}>Xem kết quả</Button>
       </div>
+      <div className="wrapper-table">
       {dataMap.length > 0 ?
         <table
           width="100%"
@@ -52,7 +53,6 @@ function StatisticsSpecialPrize({result, y}) {
           cellPadding={0}
           border={0}
           className="bkqmiennam"
-          style={{width: 100, margin: "0 auto"}}
         >
           <tbody>
             <tr>
@@ -87,7 +87,7 @@ function StatisticsSpecialPrize({result, y}) {
                   <tbody>
                     <tr>
                     {dataDayOfWeek.map((i, idx) => (
-                      <td width="33.333333333333336%" valign="top">
+                      <td valign="top">
                         <table
                           width="100%"
                           cellSpacing={0}
@@ -118,8 +118,9 @@ function StatisticsSpecialPrize({result, y}) {
           </tbody>
         </table>
       :<div>Chưa có dữ liệu</div>
-      
       }
+      </div>
+
     </div>
   )
 }
