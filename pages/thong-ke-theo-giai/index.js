@@ -3,26 +3,39 @@ import stylesCss from '../../styles/StatisticFrequencyPrize.module.css'
 import { Button, Select } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
+import { getStatisticFrequency } from 'api/kqxsApi'
+import LoadingPage from "app/components/LoadingPage"
+function StatisticFrequencyPrize({result, startDate, endDate}) {
+  const [start, setStart] = useState(startDate);
+  const [end, setEnd] = useState(endDate);
+  const [data, setData] = useState(result);
+  const [loading, setLoading] = useState()
+  const [prizeId, setPrizeId] = useState(1);
 
-function StatisticFrequencyPrize() {
-  const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
-  const [type, setType] = useState("00")
+
+  const handleClick = async () => {
+    setLoading(true)
+    const data = await getStatisticFrequency(start, end, prizeId);
+    setData(data)
+    setLoading(false)
+  }
   return (
     <div className={stylesCss['wrapper']}>
-    <Meta title="Thống kê tần suất các cặp số loto rơi theo từng giải"/>
-    <h2 className={stylesCss['title']}>Thống kê tần suất các cặp số loto rơi theo từng giải </h2>
-      <div className={stylesCss['choose']}>
+    {loading && <LoadingPage />}
+    <Meta title="Thống kê tần suất theo từng giải"/>
+    <h2 className={stylesCss['title']}>Thống kê tần suất theo từng giải</h2>
+    <div className={stylesCss['choose']}>
         <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
         <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
-        <Select defaultValue={type} options={data} onChange={v => setType(v)}>
+        <Select defaultValue={prizeId} options={dataGiai} onChange={v => setPrizeId(v)}>
         </Select>
-        <Button>Xem kết quả</Button>
+        <Button onClick={handleClick}>Xem kết quả</Button>
       </div>
       <div className="wrapper-table">
         <table
@@ -53,9 +66,9 @@ function StatisticFrequencyPrize() {
                         </a>
                       </td>
                     </tr>
-                    {Array.from({length: 31}).map(i => (
-                      <tr>
-                        <td className={stylesCss['day']}>29-10-2023</td>
+                    {data.arrayDate.map(i => (
+                      <tr key={i}>
+                        <td className={stylesCss['day']}>{i}</td>
                       </tr>
                     ))}
                     </tbody>
@@ -65,7 +78,7 @@ function StatisticFrequencyPrize() {
                 <table width="100%" cellSpacing={0} cellPadding={0} border={0}>
                   <tbody>
                     <tr>
-                    {dataGenerateNumbers.map(item => (
+                    {data.statistic.map((item, idx) => (
                       <td width="33.333333333333336%" valign="top">
                         <table
                           width="100%"
@@ -75,22 +88,27 @@ function StatisticFrequencyPrize() {
                         >
                           <tbody>
                             <tr>
-                              <td className={stylesCss['number']}>{item}</td>
+                              <td className={stylesCss['number']}>{idx < 10?"0" + idx: idx}</td>
                             </tr>
-                            {Array.from({length: 31}, (_, i) => i + Math.floor(Math.random() * 10)).map(i => (
-                              i % 2 == 0 ?
-                              <tr>
-                                <td className={stylesCss['item']}>
-                                  <div>-</div>
-                                </td>
-                              </tr>
-                              :  
-                              <tr>
-                              <td className={stylesCss['item1']}>
-                                <div>1</div>
-                              </td>
-                            </tr>
-                            ))}
+                            {data.arrayDate.map(i => {
+                              const l = item.filter(d => d.dayPrize == i).length;
+                              if(l){
+                                return (
+                                  <tr>
+                                    <td className={stylesCss['item1']}>
+                                      <div>{l}</div>
+                                    </td>
+                                  </tr>
+                                )
+                              }
+                              return (
+                                <tr>
+                                  <td className={stylesCss['item']}>
+                                    <div>-</div>
+                                  </td>
+                                </tr>
+                              )
+                            })}
 
                           </tbody>
                           </table>
@@ -109,123 +127,51 @@ function StatisticFrequencyPrize() {
 }
 
 export default StatisticFrequencyPrize;
-function generateNumbers() {
-  let numbers = [];
-  for (let i = 0; i <= 99; i++) {
-      let formattedNumber = i.toString().padStart(2, '0');
-      numbers.push(formattedNumber);
-  }
-  return numbers;
-}
-
-let dataGenerateNumbers = generateNumbers();
-const data = [
+const dataGiai = [
   {
-    value: "00",
-    label: "Giải đặc biệt"
+    value: 1,
+    label: "Giải đặc biệt",
   },
   {
-    value: "11",
-    label: "Giải nhất"
+    value: 2,
+    label: "Giải nhất",
   },
   {
-    value: "21",
-    label: "Giải nhì thứ 1"
+    value: 3,
+    label: "Giải nhì"
   },
   {
-    value: "22",
-    label: "Giải nhì thứ 2"
+    value: 4,
+    label: "Giải ba"
   },
   {
-    value: "31",
-    label: "Giải ba thứ 1"
+    value: 5,
+    label: "Giải bốn"
   },
   {
-    value: "32",
-    label: "Giải ba thứ 2"
+    value: 5,
+    label: "Giải năm"
   },
   {
-    value: "33",
-    label: "Giải ba thứ 3"
+    value: 7,
+    label: "Giải sáu"
   },
   {
-    value: "34",
-    label: "Giải ba thứ 4"
-  },
-  {
-    value: "35",
-    label: "Giải ba thứ 5"
-  },
-  {
-    value: "36",
-    label: "Giải ba thứ 6"
-  },
-  {
-    value: "41",
-    label: "Giải bốn thứ 1"
-  },
-  {
-    value: "42",
-    label: "Giải bốn thứ 2"
-  },
-  {
-    value: "43",
-    label: "Giải bốn thứ 3"
-  },
-  {
-    value: "44",
-    label: "Giải bốn thứ 4"
-  },
-  {
-    value: "51",
-    label: "Giải năm thứ 1"
-  },
-  {
-    value: "52",
-    label: "Giải năm thứ 2"
-  },
-  {
-    value: "53",
-    label: "Giải năm thứ 3"
-  },
-  {
-    value: "54",
-    label: "Giải năm thứ 4"
-  },
-  {
-    value: "55",
-    label: "Giải năm thứ 5"
-  },
-  {
-    value: "56",
-    label: "Giải năm thứ 6"
-  },
-  {
-    value: "61",
-    label: "Giải sáu thứ 1"
-  },
-  {
-    value: "62",
-    label: "Giải sáu thứ 2"
-  },
-  {
-    value: "63",
-    label: "Giải sáu thứ 3"
-  },
-  {
-    value: "71",
-    label: "Giải bảy thứ 1"
-  },
-  {
-    value: "72",
-    label: "Giải bảy thứ 2"
-  },
-  {
-    value: "73",
-    label: "Giải bảy thứ 3"
-  },
-  {
-    value: "74",
-    label: "Giải bảy thứ 4"
+    value: 8,
+    label: "Giải bảy"
   },
 ]
+
+export const getServerSideProps = async () => {
+  const startDate = moment().subtract(30, 'days').format("DD-MM-YYYY");
+  const endDate = moment().format("DD-MM-YYYY");
+  const result = await getStatisticFrequency(startDate, endDate)
+
+  return {
+    props: { 
+      result,
+      startDate,
+      endDate
+    }
+  }
+}

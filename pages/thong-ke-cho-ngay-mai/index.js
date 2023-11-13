@@ -15,11 +15,11 @@ function StatisticsTomorrow({result}) {
   const [dayOfWeekCurrent] = useState(() => {
     return getDayOfWeek(result.current.dayPrize);
   })
-
   const countData = useMemo(() => {
     const d = [];
     if(data.data) {
       data.data.forEach(item => {
+        if(!item.tomorrow) return;
         const n = item.tomorrow.loto;
         if(d[n]){
           d[n] += 1
@@ -79,8 +79,8 @@ function StatisticsTomorrow({result}) {
           Ngày 
           <span className={stylesCss['strong2']}> {dateFormat(i.current.dayPrize)}</span> về 
           <span className={stylesCss['strong1']}> {i.current.number}</span> sau đó ngày 
-          <span className={stylesCss['strong2']}> {dateFormat(i.tomorrow.dayPrize)}</span> về 
-          <span className={stylesCss['strong1']}> {i.tomorrow.number}</span>
+          <span className={stylesCss['strong2']}> {dateFormat(i.tomorrow?.dayPrize)}</span> về 
+          <span className={stylesCss['strong1']}> {i.tomorrow?.number}</span>
           </div>
         ))}
       </div>
