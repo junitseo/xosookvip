@@ -51,3 +51,16 @@
   border: 1px solid #ddd;
   text-align: center;
 }
+
+.num2 {
+  min-width: 100px;
+  height: 38px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .num2 {
+    min-width: 70px;
+  }
+}

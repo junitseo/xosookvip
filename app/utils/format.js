@@ -1,3 +1,3 @@
 export const dateFormat = (date) => {
-  return date.replace(/-/g, '/');
+  return date?.replace(/-/g, '/');
 }

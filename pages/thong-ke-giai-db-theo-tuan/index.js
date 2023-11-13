@@ -37,7 +37,7 @@ function StatisticsSpecialPrize({result, y}) {
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
       <Meta title="Thống kê giải đặc biệt theo tuần"/>
-      <div className={stylesCss['title']}>Thống kê Giải ĐB theo tuần năm 2022</div>
+      <div className={stylesCss['title']}>Thống kê Giải ĐB theo tuần</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>
         <Select defaultValue={year} options={dataYear} onChange={v => setYear(v)}>
@@ -100,7 +100,7 @@ function StatisticsSpecialPrize({result, y}) {
                               </tr>
                               {dataMap.map(item => (
                                 <tr>
-                                  <td className={stylesCss['num']} style={{background: i == "CN"? "#cfee65": ""}}>
+                                  <td className={stylesCss['num2']} style={{background: i == "CN"? "#cfee65": ""}}>
                                     <div>{item[idx]?.number}</div>
                                   </td>
                                 </tr>

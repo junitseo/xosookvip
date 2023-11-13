@@ -3,22 +3,73 @@ import stylesCss from '../../styles/StatisticsSpecialByDayOfWeek.module.css'
 import { Button, Select } from 'antd';
 import moment from 'moment';
 import Meta from "app/components/Meta"
+import { getStatisticTwoNumberByDayOfWeek } from 'api/kqxsApi'
+import LoadingPage from "app/components/LoadingPage"
 
-function StatisticsSpecialByDayOfWeek() {
-  const [select, setSelect] = useState(1)
+function countDays(startDate, endDate, dayOfWeek) {
+  var count = 0;
+  var currentDate = startDate;
+  while (currentDate <= endDate) {
+    if (currentDate.getDay() === dayOfWeek) {
+      count++;
+    }
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return count;
+}
+
+const handleDataTwoNum = (data, num = 1, prize) => {
+  const result = []
+  const numbers = Array.from({ length: 100 }, (_, index) => {
+    return index.toString().padStart(2, '0');
+  });
+  numbers.forEach(number => {
+      const filteredData = data.filter(item => item.loto == number);
+
+      if(filteredData.length >= num){
+        const lastday = filteredData[filteredData.length - 1].dayPrize
+        let countDayOfWeek = 0;
+        if(!prize || prize == "1,2,3,4,5,6,7"){
+          countDayOfWeek = moment().diff(moment(lastday, "DD-MM-YYYY"), "days");
+        }else {
+         countDayOfWeek = countDays(new Date(moment(lastday, "DD-MM-YYYY").format("YYYY-MM-DD")),new Date(),  parseInt(prize))
+        }
+        result.push({ id: number, data: filteredData, countDayOfWeek, lastday })
+      }
+  });
+  return result;
+}
+
+function StatisticsSpecialByDayOfWeek({result, startDate, endDate}) {
+  const [select, setSelect] = useState("1,2,3,4,5,6,7")
   const [number, setNumber] = useState(1)
-  const [date, setDate] = useState(moment(new Date()).format("DD/MM/YYYY"));
+  const [start, setStart] = useState(startDate)
+  const [end, setEnd] = useState(endDate)
+  const [data, setData] = useState(() => handleDataTwoNum(result))
+  const [labelSelect, setLabelSelect] = useState("Tất cả các thứ")
+  const [loading, setLoading] = useState()
+
+  const handleClick = async () =>  {
+    setLoading(true);
+    const result = await getStatisticTwoNumberByDayOfWeek(start, end, select);
+    setLabelSelect(dataSelect.find(i => i.value == select).label)
+    setData(handleDataTwoNum(result, number, select));
+    setLoading(false);
+  }
+  
   return (
     <div className={stylesCss['wrapper']}>
+    {loading && <LoadingPage />}
     <Meta title="Thống kê các cặp số đặc biệt theo từng thứ trong tuần"/>
     <h2 className={stylesCss['title']}>Thống kê các cặp số đặc biệt theo từng thứ trong tuần</h2> 
     <div className={stylesCss['choose']}>
         <span>Từ ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
-    </div>
-    <div className={stylesCss['choose']}>
+        <input type="string" value={start} onChange={e => setStart(e.target.value)}/>
+      </div>
+      <div className={stylesCss['choose']}>
         <span>Đến ngày : (Ngày/Tháng/Năm) </span> 
-        <input type="string" value={date} onChange={e => setDate(e.target.value)}/>
+        <input type="string" value={end} onChange={e => setEnd(e.target.value)}/>
     </div>
     <div className={stylesCss['choose']}>
         <span>{`Tổng số lượt về >=`}</span> 
@@ -29,7 +80,7 @@ function StatisticsSpecialByDayOfWeek() {
       <Select defaultValue={select} options={dataSelect} onChange={v => setSelect(v)}>
       </Select>
     </div>
-    <Button style={{marginBottom: 15}}>Xem kết quả</Button>
+    <Button onClick={handleClick} style={{marginBottom: 15}}>Xem kết quả</Button>
     <div className={stylesCss['text1']}>
 Bảng thống kê tần suất xuất hiện các cặp số lotto theo  <span className={stylesCss['text2']}>Chủ nhật</span> </div>
       <div style={{display: "flex", gap: 15, marginTop: 10}}>
@@ -39,14 +90,14 @@ Bảng thống kê tần suất xuất hiện các cặp số lotto theo  <span 
                 <th>Cặp số</th>
                 <th>Tổng lần về</th>
                 <th>Ngày về cuối</th>
-                <th>Số ngày chưa về đúng ngày Chủ nhật</th>
+                <th>Số ngày chưa về đúng <strong>{labelSelect}</strong></th>
               </tr>
-              {Array.from({length: 6}).map(i => (
+              {data.map(i => (
               <tr>
-                <td className={stylesCss['text3']}>89</td>
-                <td className={stylesCss['text2']}>1</td>
-                <td className={stylesCss['text4']}>01-10-2023</td>
-                <td className={stylesCss['text3']}>4</td>
+                <td className={stylesCss['text3']}>{i.id}</td>
+                <td className={stylesCss['text2']}>{i.data.length}</td>
+                <td className={stylesCss['text4']}>{i.lastday}</td>
+                <td className={stylesCss['text3']}>{i.countDayOfWeek}</td>
               </tr>
                ))}
             </tbody>
@@ -62,36 +113,49 @@ export default StatisticsSpecialByDayOfWeek;
 
 const dataSelect = [
   {
-    value: 0,
+    value: "1,2,3,4,5,6,7",
     label: "Tất cả các thứ"
   },
   {
-    value: 1,
+    value: "1",
     label: "Chủ nhật"
   },
   {
-    value: 2,
+    value: "2",
     label: "Thứ hai"
   },
   {
-    value: 3,
+    value: "3",
     label: "Thứ ba"
   },
   {
-    value: 4,
+    value: "4",
     label: "Thứ bốn"
   },
   {
-    value: 5,
+    value: "5",
     label: "Thứ năm"
   },
   {
-    value: 6,
+    value: "6",
     label: "Thứ sáu"
   },
   {
-    value: 7,
+    value: "7",
     label: "Thứ bảy"
   },
 ]
 
+export const getServerSideProps = async () => {
+  const startDate = moment().subtract(90, 'days').format("DD-MM-YYYY");
+  const endDate = moment().format("DD-MM-YYYY");
+  const data = await getStatisticTwoNumberByDayOfWeek(startDate, endDate);
+
+  return {
+    props: { 
+      result: data,
+      startDate,
+      endDate
+    }
+  }
+}
