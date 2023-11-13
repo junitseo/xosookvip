@@ -69,7 +69,7 @@
 .content-day span:after {
     content: "";
     position: absolute;
-    border: solid #db562b;
+    border: solid #BB2649;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 15px;
@@ -85,7 +85,7 @@
 
 .content-day-now {
     display: inline-block;
-    color: #db562b;
+    color: #BB2649;
     font-size: 96px;
     width: 50%;
     height: 150px;
@@ -100,7 +100,7 @@
 .content-day-next span:after {
     content: "";
     position: absolute;
-    border: solid #db562b;
+    border: solid #BB2649;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 15px;
@@ -205,7 +205,7 @@
 }
 
 .calendar-day-row-title-red h2 {
-    color: red;
+    color: #BB2649;
     text-transform: uppercase;
     font-size: 20px;
     margin-top: 10px;
@@ -242,7 +242,7 @@
     width: calc(50% - 3px);
     display: inline-block;
     font-size: 18px;
-    color: #337ab7;
+    color: #0055A3;
     text-decoration: none;
 }
 
@@ -257,7 +257,7 @@
 .calendar-day-bottom div:after {
     content: "";
     position: absolute;
-    border: solid #db562b;
+    border: solid #BB2649;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 5px;

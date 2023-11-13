@@ -3,7 +3,8 @@
   font-size: 17px;
 }
 .head {
-  background: #d00e0e;
+  /* background: #d00e0e; */
+  background-color: #BB2649;
   height: 36px;
   line-height: 34px;
   color: #fff;
@@ -55,7 +56,8 @@
   height: 32px;
 }
 .giai8 {
-  color: #ff0000;
+  /* color: #ff0000; */
+  color: #AD0000;
   font-weight: bold;
   height: 36px !important;
   line-height: 100%;
@@ -96,7 +98,8 @@
   height: 32px;
 }
 .giaidb {
-  color: #ff0000;
+  /* color: #ff0000; */
+  color: #AD0000;
   font-weight: bold;
   height: 32px;
 }

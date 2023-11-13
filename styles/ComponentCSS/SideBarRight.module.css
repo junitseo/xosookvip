@@ -1,19 +1,23 @@
 .wrapper {
   width: auto;
 }
+
 @media (max-width: 1100px) {
   .wrapper {
     display: none;
   }
 }
+
 .title {
   color: #fff;
   font-size: 12px;
   text-align: left;
   font-weight: 700;
   padding: 6px 10px;
-  background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%);
+  background-color: #BB2649;
+  /* background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%); */
 }
+
 .wrapper td {
   border: 1px solid #ddd;
   color: #373531;
@@ -22,6 +26,11 @@
   text-align: center;
   font-size: 13px;
 }
+
 .title-2 {
   background-color: #ffefe0;
+}
+
+.wrapper a {
+  color: #0055A3 !important;
 }

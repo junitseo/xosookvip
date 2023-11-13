@@ -2091,6 +2091,7 @@ img {
 
 .container-root {
   display: flex;
+  padding-top: 5px;
 }
 
 .menu-root {
@@ -2104,7 +2105,8 @@ img {
 }
 
 .react-datepicker__header {
-  background: linear-gradient(180deg, rgba(156, 143, 142, 1) 30%, rgba(93, 90, 86, 0.9865196078431373) 100%);
+  background: #BB2649 !important;
+  /* background: linear-gradient(180deg, rgba(156, 143, 142, 1) 30%, rgba(93, 90, 86, 0.9865196078431373) 100%); */
 }
 
 .react-datepicker__current-month {
@@ -2123,36 +2125,44 @@ img {
   width: 100%;
   border-left: 1px solid #e7e7e7;
 }
+
 .display-center-col {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .flex {
   display: flex;
 }
+
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
 }
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
 }
+
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
 }
+
 .menu-mobi {
   display: none;
 }
+
 .wrapper-table {
   width: 100%;
   overflow: scroll;
 }
+
 @media screen and (max-width: 800px) {
   .menu-root {
     display: none !important;
@@ -2171,10 +2181,12 @@ img {
   .content-root {
     width: 70%;
   }
+
   .menu-mobi {
     display: block;
   }
 }
+
 .LoadingPage {
   position: fixed;
   top: 0;
@@ -2186,4 +2198,8 @@ img {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 100000;
+}
+
+.react-datepicker__day--selected {
+  background-color: #BB2649 !important;
 }

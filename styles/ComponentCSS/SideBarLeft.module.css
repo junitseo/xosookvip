@@ -13,7 +13,8 @@
   text-align: left;
   font-weight: 700;
   padding: 6px 10px;
-  background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%);
+  background-color: #BB2649;
+  /* background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%); */
 }
 .title-1 {
   font-weight: 700;
