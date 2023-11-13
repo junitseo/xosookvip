@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import stylesCss from '../../../styles/ComponentCSS/BlockResultSX.module.css'
+import Image from 'next/image';
 
 function BlockResultSX({title, data}) {
 
@@ -100,7 +101,15 @@ function BlockResultSX({title, data}) {
                                    <td key={item.provinceName + "8"} className={stylesCss['giai8']}>
                                    {item[9]?.map(i => (
                                      <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                    ))}
                                  </td>
@@ -113,7 +122,15 @@ function BlockResultSX({title, data}) {
                                    <td key={item.provinceName + "7"} className={stylesCss['giai7']}>
                                    {item[8]?.map(i => (
                                      <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                        src={"/loading.gif"}
+                                        alt=""
+                                        width={14}
+                                        height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                    ))}
                                  </td>
@@ -125,7 +142,15 @@ function BlockResultSX({title, data}) {
                                     <td key={item.provinceName + "6"} className={stylesCss['giai6']}>
                                     {item[7]?.map(i => (
                                       <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                        src={"/loading.gif"}
+                                        alt=""
+                                        width={14}
+                                        height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                     ))}
                                  </td>
@@ -137,7 +162,15 @@ function BlockResultSX({title, data}) {
                                     <td key={item.provinceName + "5"} className={stylesCss['giai5']}>
                                     {item[6]?.map(i => (
                                       <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                     ))}
                                  </td>
@@ -149,7 +182,15 @@ function BlockResultSX({title, data}) {
                                     <td key={item.provinceName + "4"} className={stylesCss['giai4']}>
                                     {item[5]?.map(i => (
                                       <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                     ))}
                                   </td>
@@ -161,7 +202,15 @@ function BlockResultSX({title, data}) {
                                    <td key={item.provinceName + "3"} className={stylesCss['giai3']}>
                                    {item[4]?.map(i => (
                                      <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                    ))}
                                  </td>
@@ -173,7 +222,15 @@ function BlockResultSX({title, data}) {
                                       <td key={item.provinceName + "2"} className={stylesCss['giai2']}>
                                       {item[3]?.map(i => (
                                         <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                     ))}
                                  </td>
@@ -185,7 +242,15 @@ function BlockResultSX({title, data}) {
                                       <td key={item.provinceName + "1"} className={stylesCss['giai1']}>
                                       {item[2]?.map(i => (
                                         <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                     ))}
                                  </td>
@@ -197,7 +262,15 @@ function BlockResultSX({title, data}) {
                                    <td key={item.provinceName + "db"} className={stylesCss['giaidb']}>
                                    {item[1]?.map(i => (
                                      <div key={i.number}>{
-                                        !i.number?<img src={"/loading.gif"} alt="" />: i.number
+                                        !i.number?
+                                        <Image 
+                                          src={"/loading.gif"}
+                                          alt=""
+                                          width={14}
+                                          height={14}
+                                        />
+                                        // <img src={"/loading.gif"} alt="" />
+                                        : i.number
                                       }</div>
                                    ))}
                                  </td>

@@ -1,4 +1,3 @@
-import { Table } from "antd";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import Meta from "app/components/Meta"
 import { getStatisticsOfLotteryRhythmFrequency } from "../../stores/statisticsOfNorthernLot";
@@ -11,24 +10,24 @@ const StatisticsOfLotteryRhythmFrequency = (props) => {
     const [table, setTable] = useState([]);
 
     const loadDataTable = (dataTable) => {
-        if (dataTable){
-            if(dataTable.header){
-                dataTable.header.map((item)=>{
-                    return(
+        if (dataTable) {
+            if (dataTable.header) {
+                dataTable.header.map((item) => {
+                    return (
                         item.header = item.header.replaceAll("-", `<span> - </span>`)
                     )
                 })
                 setDataHeaderTable(dataTable.header);
             }
-            if(dataTable.table_data){
+            if (dataTable.table_data) {
                 setTable(dataTable.table_data)
             }
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         loadDataTable(dataTable);
-    },[]);
+    }, []);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
@@ -44,8 +43,8 @@ const StatisticsOfLotteryRhythmFrequency = (props) => {
                                 <tbody>
                                     <tr>
                                         {
-                                            dataHeaderTable?.map((item, index) =>{
-                                                return(
+                                            dataHeaderTable?.map((item, index) => {
+                                                return (
                                                     <th key={index} className={stylesCss["table-th"]} dangerouslySetInnerHTML={{ __html: item?.header }}>
                                                     </th>
                                                 )
@@ -54,24 +53,24 @@ const StatisticsOfLotteryRhythmFrequency = (props) => {
                                     </tr>
                                     {
                                         table?.map((item, index) => {
-                                            return(
+                                            return (
                                                 <tr key={index}>
                                                     {
-                                                        item?.map((val, indexVal)=>{
-                                                            return(
+                                                        item?.map((val, indexVal) => {
+                                                            return (
                                                                 indexVal == 0 ?
                                                                     <td className={stylesCss["content-number-item"]}>{val.data_item}</td>
-                                                                :
+                                                                    :
                                                                     <td align="center" valign="middle" className={stylesCss["width-column"]}>
-                                                                        <div className={ val.data_item.trim().length > 0 ? stylesCss["column-item"] : stylesCss["div-item"]}>{val.data_item}</div>
+                                                                        <div className={val.data_item.trim().length > 0 ? stylesCss["column-item"] : stylesCss["div-item"]}>{val.data_item}</div>
                                                                     </td>
                                                             )
                                                         })
                                                     }
-                                                </tr> 
+                                                </tr>
                                             )
                                         })
-                                    }                                    
+                                    }
                                 </tbody>
                             </table>
                         </div>

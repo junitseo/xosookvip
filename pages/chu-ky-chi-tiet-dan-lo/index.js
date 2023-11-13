@@ -1,13 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
-import { listNumber } from "../../app/data/listNumber"
-import { list } from "postcss";
 import Meta from "app/components/Meta"
+import { getLotDetailCycles } from "../../stores/statisticsOfNorthernLot";
+import moment from "moment";
+import { DatePicker } from "antd";
+import Link from "next/link";
 
-const LotDetailCycle = () => {
-    const [dataNumber, setDataNumber] = useState(listNumber);
+const LotDetailCycle = (props) => {
+    const [data, setData] = useState(props.data);
+    const [table, setTable] = useState({});
+    const [detailLotDetailCycle, setDetailLotDetailCycle] = useState([]);
+    const [totalLotDetailCycle, setTotalLotDetailCycle] = useState([]);
+
+    const [listNumber, setListNumber] = useState("02,47");
     const [isShow, setIsShow] = useState(false);
 
+    const dateFormat = 'DD-MM-YYYY';
+    const dateTimeStart = new Date().setDate(new Date().getDate() - 5);
+    const [dateFrom, setDateFrom] = useState(new Date(dateTimeStart));
+    const [dateTo, setDateTo] = useState(new Date());
+    const [isDateFrom, setIsDateFrom] = useState(false);
+    const [isDateTo, setIsDateTo] = useState(false);
+
+    const handleDateFrom = (date, dateString) => {
+        setDateFrom(dateString);
+        setIsDateFrom(true);
+    };
+
+    const handleDateTo = (date, dateString) => {
+        setDateTo(dateString);
+        setIsDateTo(true);
+    };
+
+    const handleLotDetailCycle = async () => {
+        const params = {
+            list_number: listNumber,
+            day_from: isDateFrom ? dateFrom : moment(dateFrom).format(dateFormat),
+            day_to: isDateTo ? dateTo : moment(dateTo).format(dateFormat),
+        }
+        const data = await getLotDetailCycles(params);
+        if (data) {
+            loadDataTable(data);
+        }
+    }
+
+    const loadDataTable = (data) => {
+        if (data) {
+            if (data) {
+                setTable(data);
+            }
+            if(data.detail_lotDetailCycle){
+                setDetailLotDetailCycle(data.detail_lotDetailCycle);
+            }
+            if(data.total_lotDetailCycle){
+                setTotalLotDetailCycle(data.total_lotDetailCycle);
+            }
+        }
+    }
+
+    useEffect(() => {
+        loadDataTable(data);
+    }, []);
     return (
         <div className={stylesCss["page-wrapper"]}>
             <Meta title="Chu kỳ chi tiết dàn lô" />
@@ -25,22 +78,22 @@ const LotDetailCycle = () => {
                                             <td align="left">
                                                 Dãy số lotto cần thống kê: (các cặp số cách nhau bởi dấu phẩy. VD: 16,17)
                                                 <br></br>
-                                                <input type="text" name="day_so" value="02,47,60" className={stylesCss["form-control"]} />
+                                                <input type="text" name="day_so" value={listNumber} className={stylesCss["form-control"]} onChange={(e) => setListNumber(e.target.value)} />
                                                 <div className={stylesCss["form-group-form-inline"]}>
                                                     <span className={stylesCss["item-select"]}>
                                                         Từ ngày (Ngày/Tháng/Năm)&nbsp;
-                                                        <input type="text" className={stylesCss["form-control"]} name="day_from" value="01/01/2005" maxLength="10" />
+                                                        <DatePicker defaultValue={moment(dateFrom, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateFrom(date, dateString)} />
                                                     </span>
                                                     <span className={stylesCss["item-select"]}>
                                                         &nbsp;Đến ngày (Ngày/Tháng/Năm)&nbsp;
-                                                        <input type="text" className={stylesCss["form-control"]} name="day_to" value="28/10/2023" maxLength="10" />
+                                                        <DatePicker defaultValue={moment(dateTo, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTo(date, dateString)} />
                                                     </span>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td align="center">
-                                                <input type="submit" name="sbtsubmit" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                                <input type="submit" name="sbtsubmit" value="Xem kết quả" className={stylesCss["btn-btn-default"]} onClick={() => handleLotDetailCycle()}/>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -51,34 +104,33 @@ const LotDetailCycle = () => {
                             <div>
                                 <div className={stylesCss["title-bar-box-show"]} onClick={() => setIsShow(!isShow)}>Bấm vào đây xem chi tiết các ngày mà 2 cặp số
                                     <font color="red">
-                                        <b>00,01</b>
+                                        <b>{table?.list_number}</b>
                                     </font> cùng về <font color="red">
-                                        <b>10 lần</b>
+                                        <b>{table?.times}</b>
                                     </font>
                                 </div>
                                 <div style={isShow ? { display: 'block' } : { display: 'none' }} className={stylesCss["content-date"]}>
-                                    <a href="so-ket-qua.html?date_start=31-10-2022&amp;date_end=31-10-2022&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">31-10-2022</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-01-2023&amp;date_end=15-01-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-01-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=19-04-2023&amp;date_end=19-04-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">19-04-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=01-05-2023&amp;date_end=01-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">01-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=12-05-2023&amp;date_end=12-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">12-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-05-2023&amp;date_end=15-05-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-05-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=26-07-2023&amp;date_end=26-07-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">26-07-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=10-08-2023&amp;date_end=10-08-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">10-08-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=15-08-2023&amp;date_end=15-08-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">15-08-2023</a> ,
-                                    <a href="so-ket-qua.html?date_start=26-09-2023&amp;date_end=26-09-2023&amp;sbtFind=1&amp;week_0=1&amp;week_1=1&amp;week_2=1&amp;week_3=1&amp;week_4=1&amp;week_5=1&amp;week_6=1" target="_blank">26-09-2023</a> ,
+                                    {
+                                        table?.data_date ? 
+                                            <Link className={stylesCss["data-item-href"]} href="#" target="_blank" rel="nofollow">{table?.data_date}</Link> 
+                                        : 
+                                            <></>
+                                    }
                                 </div>
                             </div>
                             <div className={stylesCss["qc-mgid"]}>
                                 <div style={{ lineHeight: '30px' }}>
                                     <div>
-                                        - Chu kỳ dài nhất xuất hiện dàn số là : <font color="red"><b>25</b> ngày (<b>30/03/2020</b> đến <b>24/04/2020</b>) tính cả ngày về</font>
+                                        - Dàn số: <font color="red"><b>{table?.content_one}</b></font>
                                     </div>
                                     <div>
-                                        - Ngày mới nhất mà dãy số xuất hiện là: <font color="red"><b>27/10/2023</b></font>
+                                        - Chu kỳ dài nhất xuất hiện dàn số là : <font color="red"><b>{table?.content_tow}</b></font>
                                     </div>
                                     <div>
-                                        - Điểm gan đến nay là: <font color="red"><b>1</b></font> ngày
+                                        - Ngày mới nhất mà dãy số xuất hiện là: <font color="red"><b>{table?.content_three}</b></font>
+                                    </div>
+                                    <div>
+                                        - Điểm gan đến nay là: <font color="red"><b>{table?.content_four}</b></font> ngày
                                     </div>
                                 </div>
                                 <div style={{ lineHeight: '30px', padding: '15px' }}>
@@ -89,51 +141,40 @@ const LotDetailCycle = () => {
                                     Dàn số được tính là về khi trong dàn khảo sát có xuất hiện một cặp số khi mở thưởng, vậy để hiệu quả bạn chỉ nên khảo sát dàn có <font color="red">3</font> cặp số trở xuống (dàn nhiều cặp số hơn chỉ khảo sát với mục đích tham khảo thêm) . Để xem chi tiết khoảng cách chu kỳ bạn di chuột lên các con số trong bảng chi tiết.
                                 </div>
                                 <div className={stylesCss["detail"]}>
-                                    <div className={stylesCss["detail-title"]} >Chi tiết chu kỳ của dàn số: <font color="red"><b>02,47,60</b></font>
+                                    <div className={stylesCss["detail-title"]} >Chi tiết chu kỳ của dàn số: <font color="red"><b>{table?.list_number}</b></font>
                                     </div>
                                     <div style={{ padding: '15px' }}>
                                         &lt;- -
                                         {
-                                            dataNumber?.map((item, index) => {
+                                            detailLotDetailCycle?.map((item, index) => {
                                                 return (
-                                                    <>
-                                                        <span title="Nhịp về từ ngày 25/10/2023 đến 27/10/2023 là 2">2</span>
+                                                    <span key={index}>
+                                                        <span title="">{item?.number}</span>
                                                         <span> - </span>
-                                                        <span title="Nhịp về từ ngày 21/10/2023 đến 23/10/2023 là 2">2</span>
-                                                        <span> - </span>
-                                                        <span title="Nhịp về từ ngày 20/10/2023 đến 21/10/2023 là 1">1</span>
-                                                        <span> - </span>
-                                                        <span title="Nhịp về từ ngày 16/10/2023 đến 17/10/2023 là 1">1</span>
-                                                        <span> - </span>
-                                                        <span title="Nhịp về từ ngày 16/10/2023 đến 17/10/2023 là 1">4</span>
-                                                        <span> - </span>
-                                                        <span title="Nhịp về từ ngày 16/10/2023 đến 17/10/2023 là 1">3</span>
-                                                        <span> - </span>
-                                                    </>
+                                                    </span>
                                                 );
                                             })
                                         }
                                         &lt;- -|
                                     </div>
                                     <div className={stylesCss["detail-total-title"]}>
-                                        Tổng hợp lại chu kỳ của dàn số: <font color="red"><b>02,47,60</b></font>
+                                        Tổng hợp lại chu kỳ của dàn số: <font color="red"><b>{table?.list_number}</b></font>
                                     </div>
                                     <div style={{ padding: '15px' }}>
-                                        Chu kỳ
-                                        <font color="red"><b>1</b></font>
-                                        ngày đã về lặp lại <font color="red"><b>2073</b></font>
-                                        lần <br></br>Chu kỳ <font color="red"><b>2</b></font>
-                                        ngày đã về lặp lại <font color="red"><b>971</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>3</b></font> ngày đã về lặp lại <font color="red"><b>401</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>4</b></font> ngày đã về lặp lại <font color="red"><b>185</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>5</b></font> ngày đã về lặp lại <font color="red"><b>70</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>6</b></font> ngày đã về lặp lại <font color="red"><b>40</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>7</b></font> ngày đã về lặp lại <font color="red"><b>25</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>8</b></font> ngày đã về lặp lại <font color="red"><b>9</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>9</b></font> ngày đã về lặp lại <font color="red"><b>2</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>10</b></font> ngày đã về lặp lại <font color="red"><b>2</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>13</b></font> ngày đã về lặp lại <font color="red"><b>1</b></font> lần
-                                        <br></br> Chu kỳ <font color="red"><b>25</b></font> ngày đã về lặp lại <font color="red"><b>1</b></font> lần
+                                        {
+                                            totalLotDetailCycle?.map((item, index) => {
+                                                return(
+                                                    <div key={index}>
+                                                        Chu kỳ
+                                                        <font color="red"><b>{item?.number_one}</b></font>
+                                                            ngày đã về lặp lại <font color="red"><b>{item?.number_tow}</b>
+                                                        </font>
+                                                        lần 
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -143,6 +184,30 @@ const LotDetailCycle = () => {
             </div>
         </div>
     );
+}
+
+export const getServerSideProps = async () => {
+    const dateFormat = "DD/MM/YYYY";
+    const list_number = "02,47";
+    const day_from = moment(new Date()).format(dateFormat);
+    const day_to = moment(new Date().setDate(new Date().getDate() - 5)).format(dateFormat);
+
+    const params = {
+        list_number: list_number,
+        day_from: day_from,
+        day_to: day_to,
+    }
+    const [
+        data
+    ] = await Promise.all([
+        getLotDetailCycles(params)
+    ]);
+
+    return {
+        props: {
+            data: data || [],
+        },
+    }
 }
 
 export default LotDetailCycle;

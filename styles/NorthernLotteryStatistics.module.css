@@ -1,5 +1,5 @@
 .page-wrapper {
-    padding: 5px;
+    /* padding: 5px; */
     position: inherit;
     border-left: 1px solid #e7e7e7;
     background-color: #fff;
@@ -27,12 +27,12 @@
 }
 
 .panel-default {
-    border-color: #ddd;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid #e7e7e7;
-    border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    /* border-color: #ddd; */
+    /* margin-bottom: 20px; */
+    /* background-color: #fff; */
+    /* border: 1px solid #e7e7e7; */
+    /* border-radius: 4px; */
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
 }
 
 .panel-heading {
@@ -183,6 +183,8 @@
 
 .table-item {
     text-align: center;
+    background-color: #c2c2c2;
+    border: 1px solid #aeabab;
 }
 
 .max-date {
@@ -201,6 +203,7 @@
     font-size: 12px;
     line-height: 20px;
     color: #000000;
+    background-color: #e9edf2;
 }
 
 .content-number-item {
@@ -216,6 +219,7 @@
 .table-th {
     width: 40px;
     text-align: left;
+    border: 1px solid #aeabab;
 }
 
 .column-item {
@@ -250,7 +254,7 @@
     font-weight: bold;
     padding-left: 10px;
     padding-right: 10px;
-    color: #337ab7;
+    color: #337ab7 !important;
     text-decoration: none;
 }
 
@@ -280,6 +284,7 @@
 .content-number-item {
     padding: 4px;
     font-weight: bold;
+    border: 1px solid #aeabab;
 }
 
 .content-number-item-red {
@@ -342,16 +347,19 @@
 }
 
 .table-bordered tr th {
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background-color: #c2c2c2;
+    border: 1px solid #aeabab;
 }
 
 .table-bordered tbody tr td {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
     width: 60px;
-    min-width: 60px
+    min-width: 60px;
+    border: 1px solid #aeabab;
 }
 
 .table-bordered tbody tr td:first-child {
@@ -372,6 +380,8 @@
 .triangular-title {
     height: 25px;
     font-weight: bold;
+    background-color: #c2c2c2;
+    border: 1px solid #aeabab;
 }
 
 .title-bar-box-content {
@@ -435,6 +445,16 @@
     font-weight: bold;
     font-size: 16px;
     color: #009933;
+}
+
+.title-header{
+    width: 25%;
+    background-color: #c2c2c2;
+    border: 1px solid #aeabab;
+}
+
+.data-item-td{
+    border: 1px solid #aeabab;
 }
 
 @media screen and (max-width: 380px) {

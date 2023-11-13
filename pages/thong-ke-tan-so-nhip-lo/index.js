@@ -1,30 +1,59 @@
-import { Table } from "antd";
 import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
-import { dataStatisticsOfLotteryRhythmFrequency } from "../../app/data/dataStatisticsOfLotteryRhythmFrequency"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Meta from "app/components/Meta"
+import { listWeekdays } from "../../app/data/listWeekdays";
+import { getStatisticsOfBatchBeatFrequency } from "../../stores/statisticsOfNorthernLot";
+import moment from "moment";
+import { DatePicker } from "antd";
 
-const StatisticsOfLotteryRhythmFrequency = () => {
-    const columns = [
-        {
-            title: 'Ngày',
-            dataIndex: 'date',
-        },
-        {
-            title: 'Thứ',
-            dataIndex: 'weekdays',
-        },
-        {
-            title: 'Về ở giải',
-            dataIndex: 'price',
-        },
-        {
-            title: 'Số nhịp xuất hiện',
-            dataIndex: 'numberDate',
-        },
-    ];
+const StatisticsOfBatchBeatFrequency = (props) => {
+    const [dataTable, setDataTable] = useState(props.data);
+    const [table, setTable] = useState([]);
 
-    const [data, setData] = useState(dataStatisticsOfLotteryRhythmFrequency);
+    const dateFormat = 'DD-MM-YYYY';
+    const dateTimeStart = new Date().setDate(new Date().getDate() - 5);
+    const [dateFrom, setDateFrom] = useState(new Date(dateTimeStart));
+    const [dateTo, setDateTo] = useState(new Date());
+    const [isDateFrom, setIsDateFrom] = useState(false);
+    const [isDateTo, setIsDateTo] = useState(false);
+
+    const [numberService, setNumberService] = useState("01")
+    const [weekDay, setWeekDay] = useState(1);
+
+    const handleDateFrom = (date, dateString) => {
+        setDateFrom(dateString);
+        setIsDateFrom(true);
+    };
+
+    const handleDateTo = (date, dateString) => {
+        setDateTo(dateString);
+        setIsDateTo(true);
+    };
+
+    const handleStatisticsOfBatchBeatFrequency = async () => {
+        const params = {
+            date_start: isDateFrom ? dateFrom : moment(dateFrom).format(dateFormat),
+            date_end: isDateTo ? dateTo : moment(dateTo).format(dateFormat),
+            number_server: numberService,
+            day_of_week: weekDay,
+        }
+        const data = await getStatisticsOfBatchBeatFrequency(params);
+        if (data) {
+            loadDataTable(data);
+        }
+    }
+
+    const loadDataTable = (dataTable) => {
+        if (dataTable) {
+            if (dataTable.data_content) {
+                setTable(dataTable.data_content)
+            }
+        }
+    }
+
+    useEffect(() => {
+        loadDataTable(dataTable);
+    }, []);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
@@ -41,20 +70,36 @@ const StatisticsOfLotteryRhythmFrequency = () => {
                                     <table cellPadding="5" cellSpacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td>Từ ngày: Ngày/Tháng/Năm
-                                                    <br></br>
-                                                    <input className={stylesCss["form-control"]} type="text" name="date_start" value="01/01/2020" />
+                                                <td align="right">
+                                                    Từ ngày: Ngày/Tháng/Năm&nbsp;
+                                                    <DatePicker defaultValue={moment(dateFrom, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateFrom(date, dateString)} />
                                                 </td>
-                                                <td>&nbsp;Đến ngày: Ngày/Tháng/Năm
-                                                    <br></br>
-                                                    <input type="text" className={stylesCss["form-control"]} name="date_end" value="28/10/2023" />
+                                                <td align="left">
+                                                    Đến ngày: Ngày/Tháng/Năm&nbsp;
+                                                    <DatePicker defaultValue={moment(dateTo, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTo(date, dateString)} />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" align="center">
-                                                &nbsp;nhập số ngày&nbsp;
-                                                    <input type="text" name="biendo" value="10" className={stylesCss["form-control"]} />&nbsp;
-                                                    <input type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                                <td align="right">
+                                                    Cặp số khảo sát:	
+                                                    <input type="text" name="biendo" value={numberService} className={stylesCss["form-control"]} onChange={(e) => setNumberService(e.target.value)}/>
+                                                </td>
+                                                <td align="left">
+                                                    Theo thứ&nbsp;
+                                                    <select value={weekDay} name="week_day" className={stylesCss["form-control"]} onChange={(e) => setWeekDay(e.target.value)}>
+                                                        {
+                                                            listWeekdays?.map((item, index) => {
+                                                                return (
+                                                                    <option key={index} value={item.value}>{item.name}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colSpan="2" align="center">
+                                                    <input className={stylesCss["btn-btn-default"]} type="submit" name="sbtsubmit" value="Xem kết quả" onClick={()=> handleStatisticsOfBatchBeatFrequency()}/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -63,20 +108,36 @@ const StatisticsOfLotteryRhythmFrequency = () => {
                             </div>
                         </div>
                         <div className={stylesCss["container-bottom"]}>
-                            <table cellpadding="5" cellSpacing="0" style={{width: '100%'}}>
+                            <table cellpadding="5" cellSpacing="0" style={{ width: '100%' }}>
                                 <tbody>
                                     <tr>
-                                        <td>Thống kê tần số nhịp xuất hiện cho cặp số: <font color="red">00</font>
-                                            <br></br> Tổng số lần xuất hiện của cặp số này vào Tất cả các thứ là: <font color="red">108</font> lần
+                                        <td>Thống kê tần số nhịp xuất hiện cho cặp số: <font color="red">{dataTable?.number_server}</font>
+                                            <br></br> Tổng số lần xuất hiện của cặp số này vào Tất cả các thứ là: <font color="red">{dataTable?.times_data}</font> lần
                                             <br></br>
                                             <font color="blue">Đọc hướng dẫn ở cuối trang</font>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <Table columns={columns} dataSource={data} pagination={{ pageSize: 13 }} />
-                                        </td>
+                                        <th className={stylesCss["title-header"]} align="center">Ngày</th>
+                                        <th className={stylesCss["title-header"]} align="center">Thứ</th>
+                                        <th className={stylesCss["title-header"]} align="center">Về ở giải</th>
+                                        <th className={stylesCss["title-header"]} align="center">Số nhịp xuất hiện</th>
                                     </tr>
+                                    {
+                                        table?.map((item, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    {
+                                                        item?.map((val, indexVal) => {
+                                                            return (
+                                                                <td className={stylesCss["data-item-td"]} key={indexVal} align="center">{val?.data_item}</td>
+                                                            );
+                                                        })
+                                                    }
+                                                </tr>
+                                            );
+                                        })
+                                    }
                                     <tr>
                                         <td>
                                             <p><strong><font color="#FF0000">Chú giải:</font></strong>
@@ -105,4 +166,31 @@ const StatisticsOfLotteryRhythmFrequency = () => {
     );
 }
 
-export default StatisticsOfLotteryRhythmFrequency;
+export const getServerSideProps = async () => {
+    const dateTo = moment(new Date()).format('DD-MM-YYYY');
+    const dateFrom = moment(new Date().setDate(new Date().getDate() - 5)).format('DD-MM-YYYY');
+    const number_server = "01";
+    const day_of_week = "1";
+
+    const params = {
+        date_start: dateFrom,
+        date_end: dateTo,
+        number_server: number_server,
+        day_of_week: day_of_week,
+    }
+
+    const [
+        data
+    ] = await Promise.all([
+        getStatisticsOfBatchBeatFrequency(params)
+    ]);
+
+    return {
+        props: {
+            data: data || [],
+        },
+    }
+}
+
+
+export default StatisticsOfBatchBeatFrequency;

@@ -3,6 +3,7 @@ import stylesCss from '../../../styles/ComponentCSS/SideBarLeft.module.css'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { provincesMN, provincesMT } from 'data/provinces';
+import Image from 'next/image';
 
 
 function SideBarLeft({dataPost = []}) {
@@ -16,9 +17,20 @@ function SideBarLeft({dataPost = []}) {
       <div className={stylesCss['list']}>
         {dataPost.map(item => (
           <Link href={`/post/${item.post_slug}`} key={item.post_slug} >
-            <div className={stylesCss['item']}>
+            {/* <div className={stylesCss['item']}>
               <img src={item.post_image} alt="" />
               <div>{item.post_title}</div>
+            </div> */}
+            <div style={{display: "flex"}}>
+              <div style={{width: "30%"}}>
+                <Image 
+                  src={item.post_image ?? "/no-image.jpg"} 
+                  alt=""
+                  width={52}
+                  height={52}
+                />
+              </div>
+              <div style={{width: "70%", fontSize: "10px", fontWeight: "500"}}>{item.post_title}</div>
             </div>
           </Link>
         ))}

@@ -178,14 +178,14 @@ export const listMenu = [
                 name: "Thống kê tần suất lotto theo cặp",
                 slug: "/thong-ke-tan-suat-lotto-theo-cap",
             },
-            {
-                name: "Thống kê tần suất lotto kiểu ô",
-                slug: "/thong-ke-tan-suat-lotto-kieu-o",
-            },
-            {
-                name: "Thống kê tần suất lotto kiểu lưới",
-                slug: "/thong-ke-tan-suat-lotto-kieu-luoi",
-            },
+            // {
+            //     name: "Thống kê tần suất lotto kiểu ô",
+            //     slug: "/thong-ke-tan-suat-lotto-kieu-o",
+            // },
+            // {
+            //     name: "Thống kê tần suất lotto kiểu lưới",
+            //     slug: "/thong-ke-tan-suat-lotto-kieu-luoi",
+            // },
             {
                 name: "Thống kê đầu đuôi lotto",
                 slug: "/thong-ke-dau-duoi-lotto",

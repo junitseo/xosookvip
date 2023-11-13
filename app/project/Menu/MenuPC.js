@@ -5,6 +5,8 @@ import React, {
 import stylesCss from "../../../styles/MenuCSS/Menu.module.css";
 import { useRouter } from 'next/router';
 import MenuMobile from "project/MenuMobile";
+import Link from "next/link";
+import Image from 'next/image'
 
 const MenuPC = () => {
   const router = useRouter();
@@ -21,9 +23,15 @@ const MenuPC = () => {
     <>
       <nav className={stylesCss["menu-container"]}>
         <div className={stylesCss["navMenu-container"]}>
-          <a onClick={() => router.push("/")}>
-            <img className={stylesCss.logo} src="/logo.png" alt="logo"/>
-          </a>
+          <Link href={"/"} style={{display: "block"}} onClick={() => router.push("/")}>
+            <Image 
+              className={stylesCss.logo}
+              src="/logo.png"
+              alt="logo"
+              width={168}
+              height={64}
+            />
+          </Link>
 
           <div className={stylesCss["menu-toggle"]}>
             <svg
