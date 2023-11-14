@@ -73,7 +73,7 @@ function StatisticsSpecialByDayOfWeek({result, startDate, endDate}) {
     </div>
     <div className={stylesCss['choose']}>
         <span>{`Tổng số lượt về >=`}</span> 
-        <input type="string" value={number} onChange={e => setNumber(e.target.value)}/>
+        <input className="wrap-input" type="string" value={number} onChange={e => setNumber(e.target.value)}/>
     </div>
     <div className={stylesCss['choose']}>
       <span>Theo thứ</span> 
@@ -93,7 +93,7 @@ Bảng thống kê tần suất xuất hiện các cặp số lotto theo  <span 
                 <th>Số ngày chưa về đúng <strong>{labelSelect}</strong></th>
               </tr>
               {data.map(i => (
-              <tr>
+              <tr key={i.id}>
                 <td className={stylesCss['text3']}>{i.id}</td>
                 <td className={stylesCss['text2']}>{i.data.length}</td>
                 <td className={stylesCss['text4']}>{i.lastday}</td>

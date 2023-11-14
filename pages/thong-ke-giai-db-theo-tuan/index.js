@@ -10,6 +10,7 @@ function StatisticsSpecialPrize({result, y}) {
   const [year, setYear] = useState(y);
   const [loading, setLoading] = useState()
   const [data, setData] = useState(result);
+  const [textYear, setTextYear] = useState(y)
 
   const dataMap = useMemo(() => {
     if(!data) return [];
@@ -31,13 +32,14 @@ function StatisticsSpecialPrize({result, y}) {
     setLoading(true);
     const data = await getSpecialPrizeStatisticsDayOfWeek(year);
     setData(data)
+    setTextYear(year)
     setLoading(false);
   }
   return (
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
       <Meta title="Thống kê giải đặc biệt theo tuần"/>
-      <div className={stylesCss['title']}>Thống kê Giải ĐB theo tuần</div>
+      <div className={stylesCss['title']}>Thống kê Giải ĐB năm {textYear} theo tuần</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>
         <Select defaultValue={year} options={dataYear} onChange={v => setYear(v)}>
@@ -75,7 +77,7 @@ function StatisticsSpecialPrize({result, y}) {
                         </td>
                       </tr>
                       {Array.from({length: 53}, (_, i) => i + 1).map(i => (
-                        <tr>
+                        <tr key={i}>
                           <td className={stylesCss['day']}>{i}</td>
                         </tr>
                       ))}
@@ -87,7 +89,7 @@ function StatisticsSpecialPrize({result, y}) {
                     <tbody>
                       <tr>
                       {dataDayOfWeek.map((i, idx) => (
-                        <td valign="top">
+                        <td key={idx} valign="top">
                           <table
                             width="100%"
                             cellSpacing={0}
@@ -98,9 +100,9 @@ function StatisticsSpecialPrize({result, y}) {
                               <tr>
                                 <td className={stylesCss['month']}>{i}</td>
                               </tr>
-                              {dataMap.map(item => (
-                                <tr>
-                                  <td className={stylesCss['num2']} style={{background: i == "CN"? "#cfee65": ""}}>
+                              {dataMap.map((item, index) => (
+                                <tr key={item?.number +index.toString()}>
+                                  <td className={stylesCss['num2']} style={{background: i == "CN"? "#cfee65": "transparent"}}>
                                     <div>{item[idx]?.number}</div>
                                   </td>
                                 </tr>

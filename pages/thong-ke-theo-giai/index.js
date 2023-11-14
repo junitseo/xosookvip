@@ -79,7 +79,7 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
                   <tbody>
                     <tr>
                     {data.statistic.map((item, idx) => (
-                      <td width="33.333333333333336%" valign="top">
+                      <td key={idx} width="33.333333333333336%" valign="top">
                         <table
                           width="100%"
                           cellSpacing={0}
@@ -90,11 +90,11 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
                             <tr>
                               <td className={stylesCss['number']}>{idx < 10?"0" + idx: idx}</td>
                             </tr>
-                            {data.arrayDate.map(i => {
+                            {data.arrayDate.map((i, index) => {
                               const l = item.filter(d => d.dayPrize == i).length;
                               if(l){
                                 return (
-                                  <tr>
+                                  <tr key={index}>
                                     <td className={stylesCss['item1']}>
                                       <div>{l}</div>
                                     </td>
@@ -102,7 +102,7 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
                                 )
                               }
                               return (
-                                <tr>
+                                <tr key={index}>
                                   <td className={stylesCss['item']}>
                                     <div>-</div>
                                   </td>

@@ -66,17 +66,16 @@ function StatisticsTomorrow({result}) {
           data.current.dayPrize
         }</span>
       </div>
-      {Object.keys(countData).map(i => (
-        <>
-          <span className={stylesCss['strong1']}>{i}</span>: {countData[i]} lần{' '}
-        </>
-      
+      {Object.keys(countData).map((i, idx) => (
+        <span key={(i + idx.toString())}>
+          <span  className={stylesCss['strong1']}>{i}</span>: {countData[i]} lần{' '}
+        </span>
       ))}
 
       <div className={stylesCss['title-1']}>Chi tiết các ngày:</div>
       <div className={stylesCss['list']}>
         {data.data.map(i => (
-          <div className={stylesCss['block1']}>
+          <div key={i.current.dayPrize} className={stylesCss['block1']}>
           Ngày 
           <span className={stylesCss['strong2']}> {dateFormat(i.current.dayPrize)}</span> về 
           <span className={stylesCss['strong1']}> {i.current.number}</span> sau đó ngày 
@@ -93,7 +92,7 @@ function StatisticsTomorrow({result}) {
         <span className={stylesCss['strong2']}> {dayOfWeekCurrent}</span> là:
       </div>
       {datafilterDayofWeek.map(i => (
-        <div>
+        <div key={i.tomorrow.number}>
           Ngày <span className={stylesCss['strong2']}>{dateFormat(i.tomorrow.dayPrize)}</span> giải đặc biệt về 
           <span className={stylesCss['strong1']}> {i.tomorrow.number}</span> - 2 số cuối là 
           <span className={stylesCss['strong1']}> {i.tomorrow.loto}</span>  - đầu 
@@ -107,7 +106,7 @@ function StatisticsTomorrow({result}) {
         3. Xem các kết quả đặc biệt đã về đúng ngày <span className={stylesCss['strong2']}>{moment(data.current.dayPrize, "DD-MM-YYYY").add(1, 'days').format("DD-MM")}</span> trong các năm trước:
       </div>
       {data.dataYear.map(item => (
-        <div>
+        <div key={item.number}>
           Ngày <span className={stylesCss['strong2']}>{dateFormat(item.dayPrize)}</span> giải đặc biệt về 
           <span className={stylesCss['strong1']}> {item.number}</span> - 2 số cuối là 
           <span className={stylesCss['strong1']}> {item.loto}</span>  - đầu 

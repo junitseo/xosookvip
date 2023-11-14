@@ -11,7 +11,7 @@ function StatisticsSpecialPrize({result, y}) {
   const [year, setYear] = useState(y)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState(result);
-  
+  const [textYear, setTextYear] = useState(y)
   const dataMap = useMemo(() => {
     if(!data) return [];
     const d = []
@@ -26,6 +26,7 @@ function StatisticsSpecialPrize({result, y}) {
     setLoading(true);
     const data = await getSpecialPrizeStatistics(year);
     setData(data)
+    setTextYear(year)
     setLoading(false);
   }
   return (
@@ -33,7 +34,7 @@ function StatisticsSpecialPrize({result, y}) {
       <div className={stylesCss['wrapper']}>
       <Meta title="Thống kê giải đặc biệt theo tháng"/>
       {loading && <LoadingPage />}
-      <div className={stylesCss['title']}>Thống kê Giải ĐB năm 2022 theo tháng</div>
+      <div className={stylesCss['title']}>Thống kê Giải ĐB năm {textYear} theo tháng</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>
         <Select defaultValue={year} options={dataYear} onChange={v => setYear(v)}>
@@ -71,7 +72,7 @@ function StatisticsSpecialPrize({result, y}) {
                       </td>
                     </tr>
                     {Array.from({length: 31}, (_, i) => i + 1).map(i => (
-                      <tr>
+                      <tr key={i}>
                         <td className={stylesCss['day']}>{i}</td>
                       </tr>
                     ))}
@@ -83,7 +84,7 @@ function StatisticsSpecialPrize({result, y}) {
                   <tbody>
                     <tr>
                     {dataMap.map((item, index) => (
-                      <td valign="top">
+                      <td key={index} valign="top">
                         <table
                           width="100%"
                           cellSpacing={0}
@@ -94,8 +95,8 @@ function StatisticsSpecialPrize({result, y}) {
                             <tr>
                               <td className={stylesCss['month']}>{index + 1}</td>
                             </tr>
-                            {item.map((i) => (
-                              <tr>
+                            {item.map((i, idx) => (
+                              <tr key={i?.number +idx.toString()}>
                                 <td className={stylesCss['num']}>
                                   <div>{i?.number}</div>
                                 </td>

@@ -30,7 +30,7 @@ function ItemLoto({data}) {
           <td>Đơn Vị</td>
         </tr>
         {mergedData.map((item, index) => (
-          <tr>
+          <tr key={item.loto}>
             <td>
             {item.resultEnd.map(i=> (
               <span>{i.loto.slice(0,1)} </span>

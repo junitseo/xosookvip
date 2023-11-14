@@ -52,7 +52,7 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
     <h2 className={stylesCss['title']}>Thống kê dàn đặc biệt </h2> 
       <div>Dãy số đặc biệt cần thống kê: (các cặp số cách nhau bởi dấu phẩy. VD: 00,11,22,33,44,55,66,77,88,01)</div> 
       <div className={stylesCss['choose']}>
-      <input style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>
+      <input className="wrap-input" style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
         <span>Từ ngày </span>
@@ -63,7 +63,7 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
         <DatePicker defaultValue={moment(end, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setEnd(dateString)}  />
       </div>
       <div className={stylesCss['choose']}>
-        <Button onClick={handleClick}>Xem kết quả</Button>
+        <Button className="wrap-input" onClick={handleClick}>Xem kết quả</Button>
       </div>
       <div>
         <span className={stylesCss['text1']}>Dãy số: </span>
@@ -87,10 +87,10 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Dãy số xếp theo Tổng</td>
+              <td className={stylesCss['head']} colSpan="2">Dãy số xếp theo Tổng</td>
             </tr>
             {data1.map(i => (
-              <tr>
+              <tr key={i.toString()}>
                 <td>{i}</td>
               </tr>
             ))}
@@ -101,10 +101,10 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Dãy số xếp theo đầu</td>
+              <td className={stylesCss['head']} colSpan="2">Dãy số xếp theo đầu</td>
             </tr>
             {data2.map(i => (
-              <tr>
+              <tr key={i.toString()}>
                 <td>{i}</td>
               </tr>
             ))}
@@ -117,10 +117,10 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Dãy số xếp theo đuôi</td>
+              <td className={stylesCss['head']} colSpan="2">Dãy số xếp theo đuôi</td>
             </tr>
             {data3.map(i => (
-              <tr>
+              <tr key={i.toString()}>
                 <td>{i}</td>
               </tr>
             ))}
@@ -131,10 +131,10 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Dãy số xếp theo đầu</td>
+              <td className={stylesCss['head']} colSpan="2">Dãy số xếp theo đầu</td>
             </tr>
             {data4.map(i => (
-              <tr>
+              <tr key={i.toString()}>
                 <td>{i}</td>
               </tr>
             ))}

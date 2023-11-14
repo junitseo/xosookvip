@@ -1,5 +1,13 @@
 .wrapper {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .wrapper {
+    font-size: 16px;
+  }
 }
 .head {
   /* background: #d00e0e; */
@@ -54,50 +62,42 @@
 }
 .giai7 {
   background-color: #f3f3f3;
-  font-size: 18px;
   font-weight: bold;
   height: 32px;
 }
 .giai6 {
-  font-size: 18px;
   font-weight: bold;
   height: 32px;
 }
 .giai5 {
   background-color: #f3f3f3;
-  font-size: 18px;
   font-weight: bold;
   line-height: 120%;
   height: 57px;
 }
 .giai4 {
-  font-size: 18px;
   font-weight: bold;
   height: 57px;
   line-height: 120%;
 }
 .giai3 {
   background-color: #f3f3f3;
-  font-size: 18px;
   font-weight: bold;
   height: 57px;
   line-height: 120%;
 }
 .giai2 {
-  font-size: 18px;
   font-weight: bold;
   height: 32px;
 }
 .giai1 {
   background-color: #f3f3f3;
-  font-size: 18px;
   font-weight: bold;
   height: 32px;
 }
 .giaidb {
   color: #AD0000;
   /* color: #ff0000; */
-  font-size: 18px;
   font-weight: bold;
   height: 32px;
 }

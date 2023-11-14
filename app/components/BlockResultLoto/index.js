@@ -10,8 +10,8 @@ function Loto({dataLoto=[], title}) {
       {
         show &&
         <div className={dataLoto.length >= 4?'grid-2': 'flex'} style={{gap: 5}}>
-          {dataLoto.map(i => (
-            <ItemLoto data={i} />
+          {dataLoto.map((i, index) => (
+            <ItemLoto key={index} data={i} />
           )) }
         </div>
       }
