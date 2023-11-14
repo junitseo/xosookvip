@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "../../../styles/Footer.module.css";
 import { FaHome, FaMailBulk, FaPhone } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -34,7 +35,12 @@ const Footer = () => {
         </div>
         <div className={Styles["footer-container-item"]}>
           <div className={Styles["footer-container-text"]}>
-            <img src="/logo.png" alt="logo"/>
+            <Image 
+              src="/logo.png"
+              alt="logo"
+              width={168}
+              height={64}
+            />
           </div>
         </div>
       </div>

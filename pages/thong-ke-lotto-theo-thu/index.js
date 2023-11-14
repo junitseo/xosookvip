@@ -177,12 +177,14 @@ const NorthernLotteryStatistics = (props) => {
 export const getServerSideProps = async () => {
     const dateTo = moment(new Date()).format('DD-MM-YYYY');
     const dateFrom = moment(new Date().setDate(new Date().getDate() - 5)).format('DD-MM-YYYY');
+    const number = "2";
+    const week_day = "2";
 
     const params = {
         day_from: dateFrom,
         day_to: dateTo,
-        number: "2",
-        week_day: "2",
+        number: number,
+        week_day: week_day,
     }
     const [
         data

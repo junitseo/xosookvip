@@ -28,8 +28,10 @@
   border: 1px solid #ddd;
 }
 .wrapper td {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 8px;
+  /* background-color: #c2c2c2; */
+  border: 1px solid #aeabab;
 }
 .wrapper tr:nth-child(odd) {
   background-color: #F5F5F5;

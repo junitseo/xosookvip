@@ -162,7 +162,7 @@ export const getServerSideProps = async ({query}) => {
     getKqxsMt(dateMt),
     getPosts()
   ])
-  console.log(dataMb)
+  // console.log(dataMb)
   return {
     props: {
       dataMt,
