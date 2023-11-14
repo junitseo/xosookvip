@@ -2095,7 +2095,8 @@ img {
 }
 
 .menu-root {
-  width: 15%;
+  width: 18%;
+  min-width: 250px;
   font-size: 16px;
 }
 
@@ -2159,7 +2160,19 @@ img {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
 }
-
+.wrap-input {
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  outline: none;
+}
 .menu-mobi {
   display: none;
 }
@@ -2180,19 +2193,10 @@ img {
 }
 
 @media screen and (max-width: 1090px) {
-  .menu-root {
-    width: 30%;
-  }
-
-  .content-root {
-    width: 70%;
-  }
-
   .menu-mobi {
     display: block;
   }
 }
-
 .LoadingPage {
   position: fixed;
   top: 0;

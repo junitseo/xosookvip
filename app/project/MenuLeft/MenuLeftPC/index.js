@@ -24,11 +24,10 @@ const MenuLeftPC = () => {
                     {
                         listMenu?.map((item, index) => {
                             return (
-                                <>
                                     <li key={item.name} index={index} className={stylesCss["menu-item"]} style={menuName === item?.slug ? { backgroundColor: '#eeeeee' } : { backgroundColor: '#ffffff' }}>
                                         <div className={stylesCss["menu-item-content"]}>
                                             {item?.icon}
-                                            <Link href={`/${item?.slug}`} className={stylesCss["menu-item-text"]}>
+                                            <Link href={`${item?.slug}`} className={stylesCss["menu-item-text"]}>
                                                 {item?.name}
                                             </Link>
                                             {
@@ -65,7 +64,6 @@ const MenuLeftPC = () => {
                                             <></>
                                         }
                                     </li>
-                                </>
                             )
                         })
                     }

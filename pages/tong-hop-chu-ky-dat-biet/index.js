@@ -114,7 +114,7 @@ function SpecialCycleStatistics({data, d}) {
                 const length = i.data.length
                 const now = moment()
               return (
-                <tr>
+                <tr key={i.id}>
                   <td>Đầu <span className={stylesCss['text-1']}>{i.id}</span> Ra ngày <span className={stylesCss['text-2']}>{dateFormat(length?i.data[length - 1].dayPrize: "")}</span> Đến nay vẫn chưa ra là  <span className={stylesCss['text-1']}>{length?now.diff(moment(i.data[length - 1].dayPrize, "DD-MM-YYYY"), 'days'): 0}</span> ngày	</td>
                   <td><span className={stylesCss['text-1']}>{i.maxDistance}</span> ngày</td>
                 </tr>
@@ -136,7 +136,7 @@ function SpecialCycleStatistics({data, d}) {
                 const length = i.data.length
                 const now = moment()
               return (
-                <tr>
+                <tr key={i.id}>
                   <td>Đầu <span className={stylesCss['text-1']}>{i.id}</span> Ra ngày <span className={stylesCss['text-2']}>{dateFormat(length?i.data[length - 1].dayPrize: "")}</span> Đến nay vẫn chưa ra là  <span className={stylesCss['text-1']}>{length?now.diff(moment(i.data[length - 1].dayPrize, "DD-MM-YYYY"), 'days'): 0}</span> ngày	</td>
                   <td><span className={stylesCss['text-1']}>{i.maxDistance}</span> ngày</td>
                 </tr>
@@ -158,7 +158,7 @@ function SpecialCycleStatistics({data, d}) {
                 const length = i.data.length
                 const now = moment()
               return (
-                <tr>
+                <tr key={i.id}>
                   <td>Tổng <span className={stylesCss['text-1']}>{i.id}</span> Ra ngày <span className={stylesCss['text-2']}>{dateFormat(length?i.data[length - 1].dayPrize: "")}</span> Đến nay vẫn chưa ra là  <span className={stylesCss['text-1']}>{length?now.diff(moment(i.data[length - 1].dayPrize, "DD-MM-YYYY"), 'days'): 0}</span> ngày	</td>
                   <td><span className={stylesCss['text-1']}>{i.maxDistance}</span> ngày</td>
                 </tr>

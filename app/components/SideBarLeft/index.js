@@ -30,7 +30,7 @@ function SideBarLeft({dataPost = []}) {
                   height={52}
                 />
               </div>
-              <div style={{width: "70%", fontSize: "10px", fontWeight: "500"}}>{item.post_title}</div>
+              <div className={stylesCss["post-title"]} style={{width: "70%", fontSize: "12px", fontWeight: "500"}}>{item.post_title}</div>
             </div>
           </Link>
         ))}

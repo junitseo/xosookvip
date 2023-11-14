@@ -54,22 +54,20 @@ function SpecialStagingStatistics() {
 
     <div className={stylesCss['choose']} style={{marginTop: 10}}>
       <div>Nhập dàn số:</div>
-      <input style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>
+      <input className="wrap-input" style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>
       <Select defaultValue={type} options={dataSelect} onChange={v => setType(v)}>
       </Select>
       <Button onClick={handleClick}>Ghép</Button>
     </div>
     <div className={stylesCss['text1']}>Tổng cặp lô xiên <span className={stylesCss['text2']}>{data[0].length}</span> được tạo thành là: <span className={stylesCss['text2']}>{data.length}</span> cặp</div>
       <div style={{display: "flex", gap: 15, marginTop: 10}}>
-      <table
-        >
-          <tbody className={`grid-${data[0].length}`}>
-            {data.map(i => (
-              <td>{i.map(number => number.toString().padStart(2, "0")).join(",")}</td>
-            ))}
-          </tbody>
-
-        </table>
+          <div style={{width: "100%"}} className={`grid-${data[0].length}`}>
+          {data.map((i, index) => (
+            <div key={index}>
+              {i.map(number => number.toString().padStart(2, "0")).join(",")}
+            </div>
+          ))}
+          </div>
       </div>
     
    

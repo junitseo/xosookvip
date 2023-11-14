@@ -92,8 +92,8 @@ function Page({result, startDate, endDate}) {
             </tr>
             {dataMap.map((item, idex) => (
               <tr key={idex}>
-                {item.map(i => (
-                  <td>
+                {item.map((i, index) => (
+                  <td key={i?.dayPrize + index.toString()}>
                   {renderNumber(i)}
                   <span className={stylesCss['day']}>
                     {i?.dayPrize}

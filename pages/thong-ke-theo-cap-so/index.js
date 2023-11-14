@@ -102,7 +102,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Đối với GIẢI ĐẶC BIỆT</td>
+              <td className={stylesCss['head']} colSpan="2">Đối với GIẢI ĐẶC BIỆT</td>
             </tr>
               <tr>
                 <td>Ngày về gần nhất</td>
@@ -134,7 +134,7 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
         >
           <tbody>
             <tr>
-              <td className={stylesCss['head']} colspan="2">Đối với <strong>{textSelect}</strong> trong Bảng kết quả</td>
+              <td className={stylesCss['head']} colSpan="2">Đối với <strong>{textSelect}</strong> trong Bảng kết quả</td>
             </tr>
             <tr>
                 <td>Ngày về gần nhất</td>

@@ -24,13 +24,15 @@ const MenuPC = () => {
       <nav className={stylesCss["menu-container"]}>
         <div className={stylesCss["navMenu-container"]}>
           <Link href={"/"} style={{display: "block"}} onClick={() => router.push("/")}>
-            <Image 
-              className={stylesCss.logo}
-              src="/logo.png"
-              alt="logo"
-              width={168}
-              height={64}
-            />
+            <a>
+              <Image 
+                className={stylesCss.logo}
+                src="/logo.png"
+                alt="logo"
+                width={168}
+                height={64}
+              />
+            </a>
           </Link>
 
           <div className={stylesCss["menu-toggle"]}>

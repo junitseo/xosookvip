@@ -113,7 +113,8 @@ function Page({data, d}) {
       <Button onClick={handleClick} style={{marginBottom: 10}}>Xem kết quả</Button>
       <div style={{marginBottom: 10, fontSize: 11}} >(Dữ liệu được xử lý và thống kê trên giải đặc biệt của kết quả xổ số miền Bắc từ năm 2000 đến nay)</div>
       <table >
-        <tr className={stylesCss['head']}>
+      <tbody>
+      <tr className={stylesCss['head']}>
           <th>Cặp số</th>
           <th>Tổng lần về</th>
           <th>Ngày về cuối</th>
@@ -124,7 +125,7 @@ function Page({data, d}) {
           const length = i.data.length
           const now = moment()
           return (
-            <tr>
+            <tr key={i.id}>
             <td className={stylesCss['text1']}>{i.id}</td>
             <td className={stylesCss['text2']}>{length}</td>
             <td className={stylesCss['text3']}>{length?i.data[length - 1].dayPrize: ""}</td>
@@ -137,7 +138,7 @@ function Page({data, d}) {
           </tr>
           )
         })}
-
+      </tbody>
       </table>
     </div>
   )

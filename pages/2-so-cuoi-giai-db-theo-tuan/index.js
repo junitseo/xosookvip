@@ -75,7 +75,7 @@ function StatisticsSpecialPrize({result, y}) {
                       </td>
                     </tr>
                     {Array.from({length: 53}, (_, i) => i + 1).map(i => (
-                      <tr>
+                      <tr key={i}>
                         <td className={stylesCss['day']}>{i}</td>
                       </tr>
                     ))}
@@ -87,7 +87,7 @@ function StatisticsSpecialPrize({result, y}) {
                   <tbody>
                     <tr>
                     {dataDayOfWeek.map((i, idx) => (
-                      <td valign="top">
+                      <td key={idx} valign="top">
                         <table
                           width="100%"
                           cellSpacing={0}
@@ -98,9 +98,9 @@ function StatisticsSpecialPrize({result, y}) {
                             <tr>
                               <td className={stylesCss['month']}>{i}</td>
                             </tr>
-                            {dataMap.map(item => (
-                                <tr>
-                                  <td className={stylesCss['num']} style={{background: i == "CN"? "#cfee65": ""}}>
+                            {dataMap.map((item, index) => (
+                                <tr key={item?.number + index.toString()}>
+                                  <td className={stylesCss['num']} style={{background: i == "CN"? "#cfee65": "transparent"}}>
                                     <div>{item[idx]?.number.trim().slice(0,2)}</div>
                                   </td>
                                 </tr>
