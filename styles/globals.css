@@ -2095,8 +2095,9 @@ img {
 }
 
 .menu-root {
-  width: 15%;
-  min-width: 230px;
+  width: 18%;
+  min-width: 240px;
+  font-size: 16px;
 }
 
 .content-root {
