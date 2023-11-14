@@ -19,7 +19,7 @@ const Meta = (props) => {
           />
           <meta
             name="keywords"
-            content="xosookvip"
+            content={props.keywords}
           />
           <meta
             name="COPYRIGHT"

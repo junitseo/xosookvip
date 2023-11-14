@@ -48,7 +48,9 @@ const CheckBridgeHistory = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Kiểm tra lịch sử cầu lô" />
+            <Meta title="Kiểm tra lịch sử cầu lô" 
+            description="Kiểm tra lịch sử cầu lô" 
+            keywords="Kiểm tra lịch sử cầu lô,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

@@ -71,7 +71,9 @@ const PredictSpecialPrizes = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô trượt" />
+            <Meta title="kết quả xổ số soi cầu lô trượt" 
+            description="kết quả xổ số soi cầu lô trượt" 
+            keywords="kết quả xổ số soi cầu lô trượt,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

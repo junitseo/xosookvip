@@ -57,7 +57,9 @@ const StatisticsOnSiblingPairs = (props) => {
     }, []);
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Thống kê cặp số anh em" />
+            <Meta title="Thống kê cặp số anh em" 
+            description="Thống kê cặp số anh em" 
+            keywords="Thống kê cặp số anh em,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

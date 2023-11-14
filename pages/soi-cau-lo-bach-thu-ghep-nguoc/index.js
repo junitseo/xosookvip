@@ -58,7 +58,9 @@ const PredictReverseLotteryNumbers = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô bạch thủ ghép ngược" />
+            <Meta title="soi cầu lô bạch thủ ghép ngược kết quả xổ số miền bắc" 
+            description="soi cầu lô bạch thủ kết quả xổ số miền bắc hôm nay miễn phí" 
+            keywords="soi cau lo bach thu, soi cau lo de bach thu, soi cau bach thu hom nay, bach thu lo mien bac hom nay, soi cau lo bach thu mien bac hom nay, soi cau lo de bach thu mien bac hom nay,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

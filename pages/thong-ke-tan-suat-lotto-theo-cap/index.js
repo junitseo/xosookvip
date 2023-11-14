@@ -31,7 +31,9 @@ const StatisticsOfLotteryRhythmFrequency = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Thống kê tần suất lotto theo cặp" />
+            <Meta title="thống kê kết quả xổ số Tần suất" 
+            description="thống kê kết quả xổ số Tần suât" 
+            keywords="thống kê kết quả xổ số Tần suất,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

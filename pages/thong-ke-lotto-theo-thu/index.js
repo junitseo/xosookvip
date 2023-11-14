@@ -64,7 +64,9 @@ const NorthernLotteryStatistics = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Thống kê lotto theo thứ" />
+            <Meta title="Thống kê lô tô theo thứ" 
+            description="Kiểm tra lịch sử cầu lô" 
+            keywords="Thống kê lô tô theo thứ,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

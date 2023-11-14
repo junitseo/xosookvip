@@ -85,6 +85,9 @@ const LottoStatistics = (props) => {
     return (
         <div className={stylesCss["page-wrapper"]}>
             <Meta title="Thống kê đầu đuôi lotto" />
+            <Meta title="thống kê kết quả xổ số đầu đuôi" 
+            description="thống kê kết quả xổ số đầu đuôi" 
+            keywords="thống kê kết quả xổ số đầu đuôi,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

@@ -58,7 +58,9 @@ const CheckTheLotteryTwice = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô hai nháy" />
+            <Meta title="kết quả xổ số soi cầu lô hai nháy" 
+            description="kết quả xổ số soi cầu lô hai nháy" 
+            keywords="kết quả xổ số soi cầu lô hai nháy,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
