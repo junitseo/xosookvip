@@ -19,6 +19,9 @@
   gap: 10px;
   margin-bottom: 8px;
 }
+.choose span {
+ white-space: nowrap;
+}
 .head {
   padding: 8px;
   text-align: center;
