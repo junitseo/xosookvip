@@ -66,7 +66,9 @@ const TriangularLotteryPrediction = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô tam giác" />
+            <Meta title="Soi cầu lô tam giác,soi cau,bạch thủ,xo so mien bac,xo so,kqxs" 
+            description="Soi cầu lô tam giác và số ngày cầu chạy kiểu cầu cả cặp hoặc bạch thủ xuôi/ngược" 
+            keywords="Soi cau lotto tam gia,soi cầu lô tam giác,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,bạch thủ ghép xuôi,bạch thủ ghép ngược"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

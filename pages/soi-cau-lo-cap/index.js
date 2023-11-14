@@ -59,12 +59,14 @@ const PairLotteryPrediction = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô cặp" />
+            <Meta title="Soi cầu lô cặp kết quả xổ số miền bắc hôm nay hoàn toàn miễn phí" 
+            description="Soi cầu lô cặp kết quả xổ số miền bắc hôm nay miễn phí" 
+            keywords="soi cau,soi cau mb,soi cau mien bac,soi cau lo,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
                         <div className={stylesCss["panel-heading"]}>
-                            <h1>Soi cầu lô tô Tam giác - xổ số miền bắc - kqxs</h1>
+                            <h1>Soi cầu lô cặp kết quả xổ số miền bắc hôm nay Hoàn Toàn Miễn Phí - KQXS</h1>
                         </div>
                         <div className={stylesCss["panel-body"]}>
                             <div className={stylesCss["dataTable-wrapper"]}>

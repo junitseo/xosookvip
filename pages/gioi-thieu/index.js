@@ -6,7 +6,7 @@ const Introduce = () => {
 
     return (
         <div className={stylesCss["container"]}>
-            <Meta title="Giới thiệu"/>
+            <Meta title="Giới thiệu" description="Kết Quả Xổ Số Miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP" keywords="xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,giới thiệu, introduction" />
             <div className={stylesCss["title"]}>
                 <h1 className={stylesCss["title"]}>Giới thiệu về chúng tôi</h1>
             </div>

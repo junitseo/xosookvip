@@ -21,7 +21,7 @@ const New = (props) => {
     
     return (
         <div className={stylesCss["container"]}>
-            <Meta title="Tin tức" />
+            <Meta title="Tin tức" description="Kết Quả Xổ Số Miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP" keywords="xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,tin tuc,tin tức,tin mới,news" />
             <div>
                 <h1 className={stylesCss["title"]}>TIN TỨC HÀNG NGÀY</h1>
             </div>
@@ -40,7 +40,7 @@ const New = (props) => {
                                         <table cellPadding="0" cellSpacing="0" width="100%">
                                             <tbody>
                                                 <tr>
-                                                    <td valign="top" width="150">
+                                                    <td valign="top" width="200">
                                                         <Link href={`tin-tuc/${item?.post_slug}`}>
                                                             <Image
                                                                 src={item?.post_image}

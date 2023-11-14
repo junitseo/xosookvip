@@ -70,7 +70,9 @@ const LotterySlipPrediction = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu giải đặc biệt" />
+            <Meta title="kết quả xổ số soi cầu giải đặc biệt" 
+            description="kết quả xổ số soi cầu giải đặc biệt" 
+            keywords="kết quả xổ số soi cầu giải đặc biệt,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

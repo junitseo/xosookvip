@@ -3,11 +3,13 @@ import { getPerpetualCalendar } from "../../stores/perpetualCalendar";
 import stylesCss from "../../styles/PerpetualCalendar.module.css";
 import Meta from "app/components/Meta"
 import { FormatDateCalendar } from "../../app/@function/formatDate";
+import moment from "moment";
 
 const PerpetualCalendar = (props) => {
     const [data, setData] = useState(props.data)
 
     const dateNow = new Date();
+    const dateNowMeta = dateNow.setDate(dateNow.getDate());
     const dateFrom = dateNow.setDate(dateNow.getDate() - 1);
     const dateTo = dateNow.setDate(dateNow.getDate() + 2);
 
@@ -47,7 +49,9 @@ const PerpetualCalendar = (props) => {
 
     return (
         <div>
-            <Meta title="Lịch vạn niên" />
+            <Meta title={`Lịch âm  hôm nay ${moment(dateNowMeta).format("DD/MM")}, Xem âm lịch ngày ${moment(dateNowMeta).format("DD/MM/YYYY")} chính xác nhất. Lịch vạn niên`} 
+            description={`Xem âm lịch hôm nay ngày ${moment(dateNowMeta).format("DD/MM/YYYY")} chính xác nhất. Lịch vạn niên  hôm nay ngày ${moment(dateNowMeta).format("DD")} tháng ${moment(dateNowMeta).format("MM")} năm ${moment(dateNowMeta).format("YYYY")}.`} 
+            keywords={`âm lịch hôm nay,lịch âm hôm nay,lịch âm hôm nay ${moment(dateNowMeta).format("DD/MM")},lịch âm ${moment(dateNowMeta).format("YYYY")},lịch âm dương ${moment(dateNowMeta).format("YYYY")},lịch âm ngày mai,giờ hoàng đạo,giờ hắc đạo,ngày xuất hành,hướng xuất hành,lịch vạn niên ${moment(dateNowMeta).format("YYYY")},lịch âm ${moment(dateNowMeta).format("DD/MM")},âm hôm nay,âm lịch ngày mai,xem ngày tốt xấu,ngày âm hôm nay`} />
             <form className={stylesCss["calendar-form"]}>
                 <div className={stylesCss["perpetual-calendar"]}>
                     <div className={stylesCss["calendar-title"]}>
