@@ -53,13 +53,13 @@
 
 .panel-body {
     padding: 5px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .form-group-form-inline {
     margin-top: 15px;
     margin-bottom: 15px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .form-group-form-inline-check {
@@ -121,11 +121,11 @@
 .container-bottom {
     padding: 5px;
     overflow: scroll;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .container-item-box {
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
     padding-left: 20px;
     line-height: 24px;
@@ -149,7 +149,7 @@
 }
 
 .title-bar-box-show {
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
     padding-left: 20px;
     line-height: 24px;
@@ -404,11 +404,11 @@
 }
 
 .botop {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .botop-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
 
 }
@@ -439,7 +439,7 @@
 
 .row-three {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .row-four {
