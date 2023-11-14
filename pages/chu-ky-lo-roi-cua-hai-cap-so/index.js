@@ -60,7 +60,9 @@ const FrequencyOfOccurrenceOfTwoNumbers = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Chu kỳ lô rơi của hai cặp số" />
+            <Meta title="Chu kỳ lô rơi của 2 cặp số" 
+            description="Chu kỳ lô rơi của 2 cặp số" 
+            keywords="Chu kỳ lô rơi của 2 cặp số,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

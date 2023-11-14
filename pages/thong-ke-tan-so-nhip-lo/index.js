@@ -57,7 +57,12 @@ const StatisticsOfBatchBeatFrequency = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Thống kê tần số nhịp lô" />
+            <Meta title="Thống kê tần số nhịp lô kết quả xổ số miền bắc - xo so mien bac - xsmb" 
+            description="Thống kê Tần số nhịp kết quả xổ số kiến thiết miền bắc MIỄN PHÍ..." 
+            keywords="thong ke tan so nhip lo,tần số nhịp lô,soi cau,soi cau mb,soi cau mien bac,soi cau lo,
+            soi cau xsmb,soi cau lo de,soi cau xo so mien bac,soi cau xo so,soi cau xsmb,soi cau lo de mien bac,
+            soi cau okvip,soi cau lo mien bac,soi cau lo hom nay,soi cau lo mien bac
+            ,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

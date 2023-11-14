@@ -29,12 +29,12 @@
 .content-privacy-policy {
     margin: 0px 0px 2px;
     font-stretch: normal;
-    font-size: 16px;
+    font-size: 17px;
     font-family: 'Helvetica Neue'
 }
 
 .content-item-content {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .content-item-content-add {
@@ -63,4 +63,8 @@
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
+}
+
+.content-item-end-font{
+    font-size: 15px;
 }

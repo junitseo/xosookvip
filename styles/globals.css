@@ -2095,7 +2095,8 @@ img {
 }
 
 .menu-root {
-  width: 20%;
+  width: 15%;
+  font-size: 16px;
 }
 
 .content-root {
@@ -2104,7 +2105,7 @@ img {
   background-position: center;
   background-clip: content-box;
   background-origin: content-box;
-  width: 80%;
+  width: 85%;
   border-left: 1px solid #e7e7e7;
   min-height: 942px;
 }
@@ -2216,4 +2217,8 @@ img {
 
 .ant-table-tbody > tr > td {
   border: 1px solid #aeabab !important;
+}
+
+.ant-table {
+  font-size: 16px;
 }

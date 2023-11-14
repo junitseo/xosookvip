@@ -5,7 +5,7 @@ import Meta from "app/components/Meta"
 const Contact = () => {
     return (
         <div className={stylesCss["contact-form"]}>
-            <Meta title="Liên hệ" />
+            <Meta title="Liên hệ" description="Kết Quả Xổ Số Miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP" keywords="xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,liên hệ,contact" />
             <div className={stylesCss["container-form"]}>
                 <form>
                     <div>

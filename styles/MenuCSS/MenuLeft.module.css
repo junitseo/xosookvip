@@ -5,6 +5,10 @@
     list-style: none;
 }
 
+.menu-item:hover{
+    background: #c2c2c2 !important;
+}
+
 .menu-item{
     border-bottom: 1px solid #e7e7e7;
 }
@@ -18,7 +22,11 @@
 }
 
 .menu-item-content{
-    padding: 10px 15px;
+    padding: 10px 5px;
+}
+
+.menu-item-content:hover{
+    background: #c2c2c2 !important;
 }
 
 .menu-item a {
@@ -28,6 +36,7 @@
 
 .icon-right-up{
     float: right;
+    margin-top: 5px;
 }
 
 .nav-second-level{
@@ -43,5 +52,5 @@
 .menu-item-item a{
     position: relative;
     display: block;
-    padding-left: 37px;
+    padding-left: 20px;
 }

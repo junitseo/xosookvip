@@ -53,11 +53,13 @@
 
 .panel-body {
     padding: 5px;
+    font-size: 15px;
 }
 
 .form-group-form-inline {
     margin-top: 15px;
     margin-bottom: 15px;
+    font-size: 15px;
 }
 
 .form-group-form-inline-check {
@@ -119,6 +121,7 @@
 .container-bottom {
     padding: 5px;
     overflow: scroll;
+    font-size: 15px;
 }
 
 .container-item-box {
@@ -401,11 +404,11 @@
 }
 
 .botop {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .botop-title {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
 
 }
@@ -436,7 +439,7 @@
 
 .row-three {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .row-four {

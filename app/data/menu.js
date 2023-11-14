@@ -38,7 +38,7 @@ export const listMenu = [
     // },
     {
         name: "Thống kê giải đặc biệt",
-        slug: "/thong-ke-giai-dac-biet",
+        slug: "/thong-ke-cho-ngay-mai",
         icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [
@@ -106,7 +106,7 @@ export const listMenu = [
     },
     {
         name: "Soi cầu xổ số miền bắc",
-        slug: "/soi-cau-xo-so-mien-bac",
+        slug: "/soi-cau-lo-tam-giac",
         icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [
@@ -146,7 +146,7 @@ export const listMenu = [
     },
     {
         name: "Thống kê lô miền Bắc",
-        slug: "/thong-ke-lo-mien-bac",
+        slug: "/thong-ke-lotto-theo-thu",
         icon: <FaRegChartBar />,
         iconChildren: true,
         menuChildren: [

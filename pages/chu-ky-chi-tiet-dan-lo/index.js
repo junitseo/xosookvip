@@ -63,7 +63,9 @@ const LotDetailCycle = (props) => {
     }, []);
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Chu kỳ chi tiết dàn lô" />
+            <Meta title="Thống kê chu kỳ chi tiết dàn lô" 
+            description="Thống kê chu kỳ chi tiết dàn lô" 
+            keywords="Thống kê chu kỳ chi tiết dàn lô,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>

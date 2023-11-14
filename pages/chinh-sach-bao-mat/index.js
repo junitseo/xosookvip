@@ -5,7 +5,7 @@ import Meta from "app/components/Meta"
 const PrivacyPolicy = () => {
     return (
         <div className={stylesCss["container"]}>
-            <Meta title="Chính sách bảo mật" />
+            <Meta title="Chính sách bảo mật" description="Kết Quả Xổ Số Miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP" keywords="xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,chính sách bảo mật,security" />
             <div>
                 <h1 className={stylesCss["title"]}>Chính sách bảo mật</h1>
                 <div>
@@ -112,7 +112,7 @@ const PrivacyPolicy = () => {
                                 <strong>THÔNG TIN LIÊN HỆ</strong>
                             </p>
                             <p className={stylesCss["content-item-end"]}>
-                                <font face="Helvetica Neue" size="2">- Chúng tôi luôn hoan nghênh các ý kiến đóng góp, liên hệ và phản hồi thông tin từ bạn về “Chính sách bảo mật” này. Nếu bạn có những thắc mắc liên quan xin vui lòng liên hệ theo địa chỉ Email:&nbsp;</font>
+                                <font className={stylesCss["content-item-end-font"]} face="Helvetica Neue" size="2">- Chúng tôi luôn hoan nghênh các ý kiến đóng góp, liên hệ và phản hồi thông tin từ bạn về “Chính sách bảo mật” này. Nếu bạn có những thắc mắc liên quan xin vui lòng liên hệ theo địa chỉ Email:&nbsp;</font>
                                 <Link href="mailto:xosookvip@okvip.com" target="_blank">
                                     <span className={stylesCss["link"]}>xosookvip@okvip.com</span>
                                 </Link>

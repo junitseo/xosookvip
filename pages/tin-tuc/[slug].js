@@ -7,10 +7,10 @@ import { FormatDate } from "../../app/@function/formatDate";
 
 const NewDetail = (props) => {
     const { data, dataPost } = props;
-
+    console.log(props);
     return (
         <div className={stylesCss["container-detail"]}>
-            <Meta title="Chi tiết Tin tức" />
+            <Meta title={`${data?.post_title}`} description={data?.post_description} keywords={`${data?.post_title} xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc`} />
             <div className={stylesCss["panel-default"]}>
                 <div className={stylesCss["panel-heading"]}>
                     <h1>{data?.post_title}</h1>
@@ -20,7 +20,6 @@ const NewDetail = (props) => {
                         {
                             data?.createdAt ?
                                 <div>
-
                                     Đăng: {FormatDate(data?.createdAt)}
                                     <div className={stylesCss["fb-root"]}></div>
                                     <div className={stylesCss["fb-like"]}></div>

@@ -68,6 +68,7 @@
     width: 100%;
     margin-bottom: 1em;
     font: inherit;
+    font-size: 15px;
 }
 
 .form-control::placeholder {
