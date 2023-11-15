@@ -54,7 +54,7 @@ function StatisticsTomorrow({result}) {
   return (
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
-      <Meta title="Thống kê dự báo kết quả sổ xố ngày mai"/>
+      <Meta title="Thống kê dự báo kết quả sổ xố ngày mai - Xổ số OKVIP"/>
       <h2 className={stylesCss['title']}>Thống kê dự báo kết quả xổ số ngày mai</h2>
       <div className={stylesCss['choose-day']}>
         <span>Biên ngày:</span>
@@ -124,6 +124,11 @@ export default StatisticsTomorrow;
 
 export const getServerSideProps = async () => {
   const data = await getResultTomorrow();
+  if(!data || !data.current){
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: { 
       result:data

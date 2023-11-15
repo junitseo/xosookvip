@@ -22,7 +22,7 @@ function CentralLottery({data, date, dataPost}) {
   const dateFormat = useMemo(() => date.replace(/-/g, '/'))
   return (
     <>
-      <Meta title="Xổ số miền trung"/>
+      <Meta title="Xố Số miền Trung - KQXS - XS - XSMT - XSKT - Xổ số OKVIP"/>
       <div className={stylesCss['wrapper']}>
         <SideBarLeft dataPost={dataPost} />
         <div style={{flex: 1}}>

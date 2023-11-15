@@ -32,7 +32,7 @@ function StatisticsSpecialPrize({result, y}) {
   return (
     <>
       <div className={stylesCss['wrapper']}>
-      <Meta title="Thống kê giải đặc biệt theo tháng"/>
+      <Meta title="Thống kê giải đặc biệt theo tháng - Xổ số OKVIP"/>
       {loading && <LoadingPage />}
       <div className={stylesCss['title']}>Thống kê Giải ĐB năm {textYear} theo tháng</div>
       <div className={stylesCss['choose-day']}>

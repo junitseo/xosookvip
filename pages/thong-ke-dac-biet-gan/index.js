@@ -93,7 +93,7 @@ function Page({data, d}) {
   return (
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
-      <Meta title="Thống kê giải đặc biệt Gan"/>
+      <Meta title="Thống kê giải đặc biệt Gan - Xổ số OKVIP"/>
       <h2 className={stylesCss['title']}>Thống kê đặc biệt Gan</h2>
       <div className={stylesCss['choose']}>
         <span>Biên ngày </span> 

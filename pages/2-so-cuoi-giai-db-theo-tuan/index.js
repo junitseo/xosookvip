@@ -36,7 +36,7 @@ function StatisticsSpecialPrize({result, y}) {
 
   return (
     <div className={stylesCss['wrapper']}>
-      <Meta title="Thống kê 2 số cuối giải đặc biệt theo tuần"/>
+      <Meta title="Thống kê 2 số cuối giải đặc biệt theo tuần - Xổ số OKVIP"/>
       {loading && <LoadingPage />}
       <div className={stylesCss['title']}>Thống kê 2 số cuối Giải ĐB năm 2023 theo tuần</div>
       <div className={stylesCss['choose-day']}>

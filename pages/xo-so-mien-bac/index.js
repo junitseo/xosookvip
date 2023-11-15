@@ -20,7 +20,7 @@ function NorthernLottery({data, date, dataPost}) {
   const dateFormat = useMemo(() => date.replace(/-/g, '/'))
   return (
     <>
-      <Meta title="Xổ số miền bắc"/>
+      <Meta title="Xố Số miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP"/>
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>

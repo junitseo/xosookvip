@@ -77,12 +77,12 @@ function StatisticFrequencyPairs({result, startDate, endDate}) {
 
   return (
     <div className={stylesCss['wrapper']}>
-    <Meta title="Thống kê 2 số cuối của kết quả xổ số"/>
+    <Meta title="Thống kê 2 số cuối của kết quả xổ số  - Xổ số OKVIP"/>
     {loading && <LoadingPage />}
     <h2 className={stylesCss['title']}>TThống kê 2 số cuối của kết quả xổ số</h2>
     <div className={stylesCss['choose']}>
         <span>Nhập 2 số cuối </span> 
-        <input type="string" value={number} onChange={e => setNumber(e.target.value)}/>
+        <input className="wrap-input" type="string" value={number} onChange={e => setNumber(e.target.value)}/>
       </div>
       <div className={stylesCss['choose']}>
         <span>Từ ngày </span>

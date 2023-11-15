@@ -28,7 +28,7 @@ function ThreeRegionLottery({data, province, date, dataPost}) {
 
   return (
     <>
-      <Meta title="Xổ số ba miền"/>
+      <Meta title={`Xổ số ${province.name} - KQXS - XS - XS3M - XSKT - Xổ số OKVIP`}/>
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>

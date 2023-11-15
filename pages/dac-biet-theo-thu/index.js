@@ -61,7 +61,7 @@ function StatisticsSpecialByDayOfWeek({result, startDate, endDate}) {
   return (
     <div className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
-    <Meta title="Thống kê các cặp số đặc biệt theo từng thứ trong tuần"/>
+    <Meta title="Thống kê các cặp số đặc biệt theo từng thứ trong tuần - Xổ số OKVIP"/>
     <h2 className={stylesCss['title']}>Thống kê các cặp số đặc biệt theo từng thứ trong tuần</h2> 
     <div className={stylesCss['choose']}>
         <span>Từ ngày </span>
