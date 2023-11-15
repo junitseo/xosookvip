@@ -28,7 +28,7 @@ const Meta = (props) => {
           <meta name="RATING" content="GENERAL"></meta>
           <meta name="geo.placename" content="ho chi minh"></meta>
           {/* <meta name="robots" content="index,follow,noydir,noodp"></meta> */}
-          <meta name="robots" content="noindex"></meta>
+          {/* <meta name="robots" content="noindex"></meta> */}
           <meta
             property="og:description"
             content={props.description || "xosookvip"}
@@ -45,10 +45,10 @@ const Meta = (props) => {
             property="og:title"
             content="xosookvip"
           ></meta>
-          <meta
+          {/* <meta
             name="robots"
             content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
-          ></meta>
+          ></meta> */}
       </Head>
     
     </>

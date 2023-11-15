@@ -41,10 +41,10 @@ const PostSchema = (props) => {
           ></meta>
           <meta name="RATING" content="GENERAL"></meta>
           <meta name="geo.placename" content="ho chi minh"></meta>
-          <meta
+          {/* <meta
             name="robots"
             content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
-          ></meta>
+          ></meta> */}
           <meta
             property="og:url"
             content={`${process.env.NEXT_PUBLIC_SCHEMA_URL}/${data?.slug}`}

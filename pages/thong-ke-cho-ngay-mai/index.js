@@ -124,6 +124,11 @@ export default StatisticsTomorrow;
 
 export const getServerSideProps = async () => {
   const data = await getResultTomorrow();
+  if(!data || !data.current){
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: { 
       result:data

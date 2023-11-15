@@ -2101,7 +2101,7 @@ img {
 }
 
 .content-root {
-  background-image: url(https://i0.wp.com/www.knoxalliance.store/wp-content/uploads/2017/05/light-color-background-images-for-website-top-hd-images-for-free-background-for-website-in-light-color-1-1024x640.jpg?ssl=1);
+  background-image: url("/bg.webp");
   background-size: cover;
   background-position: center;
   background-clip: content-box;

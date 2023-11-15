@@ -33,12 +33,12 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate, data
   },[dataMt])
 
  
-  const dayofWeek = useMemo(() => getDayOfWeek(dateMb))
-  const dateFormat = useMemo(() => dateMb.replace(/-/g, '/'))
-  const dayofWeekMn = useMemo(() => getDayOfWeek(dateMn))
-  const dateFormatMn = useMemo(() => dateMn.replace(/-/g, '/'))
-  const dayofWeekMt = useMemo(() => getDayOfWeek(dateMt))
-  const dateFormatMt = useMemo(() => dateMt.replace(/-/g, '/'))
+  const dayofWeek = useMemo(() => getDayOfWeek(dateMb),[dateMb])
+  const dateFormat = useMemo(() => dateMb.replace(/-/g, '/'),[dateMb])
+  const dayofWeekMn = useMemo(() => getDayOfWeek(dateMn),[dateMn])
+  const dateFormatMn = useMemo(() => dateMn.replace(/-/g, '/'),[dateMn])
+  const dayofWeekMt = useMemo(() => getDayOfWeek(dateMt),[dateMt])
+  const dateFormatMt = useMemo(() => dateMt.replace(/-/g, '/'),[dataMt])
 
 
   const handleChangeDateOfWeek = (value) => {
