@@ -6,11 +6,11 @@ const Meta = (props) => {
     <>
       <Head>
           <title>
-            {props.title || "xosookvip"} 
+            {props.title || "Xổ số okvip"} 
           </title>
           <meta
             name="description"
-            content={props.description || "xosookvip"}
+            content={props.description || "Xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com"}
           />
           <link rel="icon" href="/logo.png" />
           <link
@@ -18,39 +18,30 @@ const Meta = (props) => {
             href={`${process.env.NEXT_PUBLIC_SCHEMA_URL}`}
           />
           <meta
-            name="keywords"
-            content={props.keywords}
+              name="google-site-verification"
+              content="5ontnxwmnfkdkizt7evfgm5xcxooitqw"
           />
-          <meta
-            name="COPYRIGHT"
-            content="Copyright (C) 2007 xosookvip.com"
-          ></meta>
-          <meta name="RATING" content="GENERAL"></meta>
-          <meta name="geo.placename" content="ho chi minh"></meta>
-          {/* <meta name="robots" content="index,follow,noydir,noodp"></meta> */}
-          <meta name="robots" content="noindex"></meta>
-          <meta
-            property="og:description"
-            content={props.description || "xosookvip"}
-          ></meta>
-          <meta
-            property="og:site_name"
-            content={`${process.env.NEXT_PUBLIC_SCHEMA_NAME}`}
-          ></meta>
           <meta
             property="og:url"
             content={`${process.env.NEXT_PUBLIC_SCHEMA_URL}`}
+          />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content="Xổ số okvip" />
+          <meta
+            property="og:description"
+            content={props.description || "Xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com"}
           ></meta>
           <meta
-            property="og:title"
-            content="xosookvip"
-          ></meta>
+            property="og:image"
+            content="https://xosookvip.com/_next/image?url=%2Flogo.png&w=256&q=75"
+          />
           <meta
-            name="robots"
-            content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
-          ></meta>
+            name="keywords"
+            content={props.keywords}
+          />
+          {/* <meta name="robots" content="index,follow,noydir,noodp"></meta> */}
+          <meta name="robots" content="noindex"></meta>
       </Head>
-    
     </>
   );
 };
