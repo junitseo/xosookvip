@@ -2095,9 +2095,9 @@ img {
 }
 
 .menu-root {
-  width: 18%;
+  width: 15%;
   min-width: 250px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .content-root {
@@ -2126,6 +2126,7 @@ img {
 
 .react-datepicker {
   width: 100%;
+  font-size: 14px !important;
 }
 
 .react-datepicker__month-container {
@@ -2224,5 +2225,9 @@ img {
 }
 
 .ant-table {
-  font-size: 16px;
+  font-size: 15px;
+}
+
+.ant-menu {
+  font-size: 15px !important; 
 }
