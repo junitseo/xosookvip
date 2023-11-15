@@ -1,4 +1,4 @@
-import Head, { defaultHead } from 'next/head';
+import Head from 'next/head';
 
 const Meta = (props) => {
 
@@ -6,7 +6,7 @@ const Meta = (props) => {
     <>
       <Head>
           <title>
-            {props.title || "Xổ số okvip"} 
+            {props.title || "Xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com"} 
           </title>
           <meta
             name="description"
@@ -26,14 +26,14 @@ const Meta = (props) => {
             content={`${process.env.NEXT_PUBLIC_SCHEMA_URL}`}
           />
           <meta property="og:type" content="article" />
-          <meta property="og:title" content="Xổ số okvip" />
+          <meta property="og:title" content="Xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com" />
           <meta
             property="og:description"
             content={props.description || "Xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com"}
           ></meta>
           <meta
             property="og:image"
-            content="https://xosookvip.com/_next/image?url=%2Flogo.png&w=256&q=75"
+            content="https://xosookvip.com/logo.png"
           />
           <meta
             name="keywords"
