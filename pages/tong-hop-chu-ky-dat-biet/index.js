@@ -94,7 +94,7 @@ function SpecialCycleStatistics({data, d}) {
   return (
     <div className={stylesCss['wrapper']}>
         {loading && <LoadingPage />}
-        <Meta title="Tổng hợp chu kỳ của giải đặc biệt"/>
+        <Meta title="Tổng hợp chu kỳ của giải đặc biệt  - Xổ số OKVIP"/>
         <div className={stylesCss['title']}>Tổng hợp chu kỳ của giải đặc biệt</div>
         <div className={stylesCss['choose']}>
           <span>Biên ngày :</span> 

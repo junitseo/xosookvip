@@ -45,7 +45,7 @@ function SpecialStagingStatistics() {
   }
   return (
     <div className={stylesCss['wrapper']}>
-    <Meta title="Ghép chọn lô xiên 2,3,4"/>
+    <Meta title="Ghép chọn lô xiên 2,3,4 - Xổ số OKVIP"/>
     <h2 className={stylesCss['title']}>Ghép chọn lô xiên 2,3,4</h2> 
     <div><strong>Chú ý:</strong></div>
     <div>1. Dãy số nhập vào phải là các cặp số khác nhau và cách nhau bởi dấu phẩy (,) - không có khoảng cách trắng giữa 2 cặp số. VD: 02,03,04,05,06,07,08,09</div>

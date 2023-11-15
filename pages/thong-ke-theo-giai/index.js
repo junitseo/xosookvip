@@ -22,7 +22,7 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
   return (
     <div className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
-    <Meta title="Thống kê tần suất theo từng giải"/>
+    <Meta title="Thống kê tần suất theo từng giải  - Xổ số OKVIP"/>
     <h2 className={stylesCss['title']}>Thống kê tần suất theo từng giải</h2>
     <div className={stylesCss['choose']}>
         <span>Từ ngày </span>

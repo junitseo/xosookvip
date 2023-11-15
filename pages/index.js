@@ -56,7 +56,7 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate, data
   }
   return (
     <>
-      <Meta title="Xổ số ba miền"/>
+      <Meta title="Xổ Số Hôm Nay - Kết Quả Xổ Số 3 Miền - KQXS - XS - XSKT Xổ số OKVIP™ - XSMN - XSMB - XSMT"/>
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>

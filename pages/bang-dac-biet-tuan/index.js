@@ -52,7 +52,7 @@ function Page({result, startDate, endDate}) {
   return (
     <div  className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
-    <Meta title="Thống kê kết quả đặc biệt theo tuần"/>
+    <Meta title="Thống kê kết quả đặc biệt theo tuần - Xổ số OKVIP"/>
       <h2 className={stylesCss['title']}>Thống kê kết quả đặc biệt theo tuần</h2>
       <div className={stylesCss['choose']}>
         <span>Từ ngày </span>

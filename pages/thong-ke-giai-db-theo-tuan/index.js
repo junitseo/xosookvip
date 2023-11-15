@@ -38,7 +38,7 @@ function StatisticsSpecialPrize({result, y}) {
   return (
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
-      <Meta title="Thống kê giải đặc biệt theo tuần"/>
+      <Meta title="Thống kê giải đặc biệt theo tuần - Xổ số OKVIP"/>
       <div className={stylesCss['title']}>Thống kê Giải ĐB năm {textYear} theo tuần</div>
       <div className={stylesCss['choose-day']}>
         <span>Từ năm:</span>
