@@ -40,6 +40,11 @@
   max-width: 100px;
   width: 100px;
 }
+
+.rightcl p {
+  margin: 0px;
+}
+
 .day {
   font-size: 13px;
   font-weight: bold;

@@ -1,10 +1,20 @@
+.container-calendar{
+    display: flex;
+    padding:15px;
+}
+
 .calendar-form {
     display: block;
     margin: 0px;
+    width: 80%;
+}
+
+.menu-rigth{
+    width: 20%;
 }
 
 .perpetual-calendar {
-    max-width: 600px;
+    max-width: 80%;
     margin: 0 auto;
 }
 

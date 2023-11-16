@@ -74,7 +74,7 @@ const FrequencyOfOccurrenceOfTwoNumbers = (props) => {
                                 <table cellPadding="5" cellSpacing="5" width="100%" className={stylesCss["form-group-form-inline"]}>
                                     <tbody>
                                         <tr>
-                                            <td align="center" className="display-center-col">
+                                            <td align="center" className={stylesCss["display-center-col"]}>
                                                 <span className={stylesCss["item-select"]}>
                                                     <div className={stylesCss["choose"]}>
                                                         2 cặp số khảo sát:

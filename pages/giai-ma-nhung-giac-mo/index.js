@@ -1,8 +1,11 @@
 import { Table } from "antd";
 import stylesCss from "../../styles/InterpretTheDreams.module.css";
-import {interpretTheDreams} from "../../app/data/interpretTheDreams";
+import { interpretTheDreams } from "../../app/data/interpretTheDreams";
 import { useState } from "react";
 import Meta from "app/components/Meta"
+import Link from "next/link";
+import Post from "../../app/components/Post";
+
 
 const InterpretTheDreams = () => {
     const [data, setData] = useState(interpretTheDreams);
@@ -22,12 +25,12 @@ const InterpretTheDreams = () => {
         },
     ];
 
-    const searchInterpretTheDreams =(event)=>{
-        if(event.length > 0){
-            const search = new RegExp(event , 'i');
+    const searchInterpretTheDreams = (event) => {
+        if (event.length > 0) {
+            const search = new RegExp(event, 'i');
             const searchData = [];
             interpretTheDreams.map((item) => {
-                if(search.test(item.name)){
+                if (search.test(item.name)) {
                     searchData.push(item);
                 }
             })
@@ -41,20 +44,26 @@ const InterpretTheDreams = () => {
         <div className={stylesCss["page-wrapper"]}>
             <Meta title="Giải mã những giấc mơ" />
             <div className={stylesCss["container"]}>
-                <h1>Giải mã bí ẩn của những giấc mơ (tham khảo)</h1>
-                <div className={stylesCss["example-wrapper"]}>
-                    <div className={stylesCss["row"]}>
-                        <div className={stylesCss["col-sm-6-left"]}></div>
-                        <div className={stylesCss["col-sm-6-right"]}>
-                            <div className={stylesCss["dataTables-filter"]}>
-                                <label>Search:
-                                    <input onChange={(e)=> searchInterpretTheDreams(e.target.value)} className={stylesCss["input-sm"]} type="search" placeholder="" aria-controls="example" />
-                                </label>
+                <div className={stylesCss["panel-heading"]}>
+                    <h1>Giải mã bí ẩn của giấc mơ (tham khảo)</h1>
+                </div>
+                <div className={stylesCss["container-dream"]}>
+                    <div className={stylesCss["post-dream"]}>
+                        <Post/>
+                    </div>
+                    <div className={stylesCss["table-dream"]}>
+                        <div className={stylesCss["row"]}>
+                            <div className={stylesCss["col-sm-6-right"]}>
+                                <div className={stylesCss["dataTables-filter"]}>
+                                    <label>Search:
+                                        <input onChange={(e) => searchInterpretTheDreams(e.target.value)} className={stylesCss["input-sm"]} type="search" placeholder="" aria-controls="example" />
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={stylesCss["container-table"]}>
-                        <Table columns={columns} dataSource={data} pagination={{ pageSize: 13}}/>
+                        <div className={stylesCss["container-table"]}>
+                            <Table columns={columns} dataSource={data} pagination={{ pageSize: 13 }} />
+                        </div>
                     </div>
                 </div>
             </div>

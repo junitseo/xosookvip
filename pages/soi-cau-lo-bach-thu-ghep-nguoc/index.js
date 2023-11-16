@@ -141,7 +141,7 @@ const PredictReverseLotteryNumbers = (props) => {
                                 </table>
                             </div>
 
-                            <div className={stylesCss["title-bar-box"]}>
+                              {/* <div className={stylesCss["title-bar-box"]}>
                                 <b>{listHistoryOne[0]?.title}</b> - là những cầu có chiều dài cầu vượt số ngày cầu chạy bạn nhập vào
                             </div>
                             <div>
@@ -201,7 +201,7 @@ const PredictReverseLotteryNumbers = (props) => {
                                     })
                                 }
                                 <div class="clb"></div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

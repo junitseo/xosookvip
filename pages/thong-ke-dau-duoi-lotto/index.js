@@ -25,8 +25,8 @@ const LottoStatistics = (props) => {
     };
 
     const handleLoadData = async () => {
-        const data  = await getHeadAndEndLotteryStatistic(dateNow);
-        if(data){
+        const data = await getHeadAndEndLotteryStatistic(dateNow);
+        if (data) {
             setDataTable(data);
             loadDataTableFirst(data);
             loadDataTableLast(data);
@@ -77,17 +77,17 @@ const LottoStatistics = (props) => {
         setDataTotalTableLast(totalTableLast);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         loadDataTableFirst(dataTable);
         loadDataTableLast(dataTable);
-    },[]);
+    }, []);
 
     return (
         <div className={stylesCss["page-wrapper"]}>
             <Meta title="Thống kê đầu đuôi lotto" />
-            <Meta title="thống kê kết quả xổ số đầu đuôi" 
-            description="thống kê kết quả xổ số đầu đuôi" 
-            keywords="thống kê kết quả xổ số đầu đuôi,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc"/>
+            <Meta title="thống kê kết quả xổ số đầu đuôi"
+                description="thống kê kết quả xổ số đầu đuôi"
+                keywords="thống kê kết quả xổ số đầu đuôi,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -97,15 +97,21 @@ const LottoStatistics = (props) => {
                         <div className={stylesCss["panel-body"]}>
                             <div align="center" className={stylesCss["form-group-form-inline"]}>
                                 <table cellpadding="5" cellSpacing="0">
-                                    <tbody><tr>
-                                        <td>
-                                            Biên độ ngày (Ngày/Tháng/Năm)&nbsp;
-                                            &nbsp;
-                                            <DatePicker defaultValue={moment(dateTime, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString)=> handleDateTime(date, dateString)} />
-                                            &nbsp;<input onClick={()=> handleLoadData()} type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Biên độ ngày (Ngày/Tháng/Năm)&nbsp;
+                                                &nbsp;
+                                                <DatePicker defaultValue={moment(dateTime, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTime(date, dateString)} />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" align="center">
+                                                <input onClick={() => handleLoadData()} type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div className={stylesCss["container-bottom"]}>
@@ -137,30 +143,30 @@ const LottoStatistics = (props) => {
                                                         }
                                                     </tr>
                                                     {
-                                                        dataTableFirst && dataTableFirst?.map((item, index)=>{
-                                                            return(
+                                                        dataTableFirst && dataTableFirst?.map((item, index) => {
+                                                            return (
                                                                 <tr key={index}>
                                                                     {
-                                                                        item?.map((val, indexVal)=>{
-                                                                            return(
+                                                                        item?.map((val, indexVal) => {
+                                                                            return (
                                                                                 <>
                                                                                     {
                                                                                         indexVal === 0 ?
-                                                                                        <td align="center" key={indexVal} style={{color: '#333333'}}>
-                                                                                        {val.data_item}
-                                                                                        </td>
-                                                                                        :
-                                                                                        <>
-                                                                                            { val.data_item.indexOf('0') > 0 ? 
-                                                                                                <td align="center" key={indexVal} style={{color: '#999999'}}>
-                                                                                                    {val.data_item}
-                                                                                                </td>
+                                                                                            <td align="center" key={indexVal} style={{ color: '#333333' }}>
+                                                                                                {val.data_item}
+                                                                                            </td>
                                                                                             :
-                                                                                                <td align="center" key={indexVal} style={{color: 'blue', background: '#CCCCCC'}}>
-                                                                                                    {val.data_item}
-                                                                                                </td>
-                                                                                            }
-                                                                                        </>
+                                                                                            <>
+                                                                                                {val.data_item.indexOf('0') > 0 ?
+                                                                                                    <td align="center" key={indexVal} style={{ color: '#999999' }}>
+                                                                                                        {val.data_item}
+                                                                                                    </td>
+                                                                                                    :
+                                                                                                    <td align="center" key={indexVal} style={{ color: 'blue', background: '#CCCCCC' }}>
+                                                                                                        {val.data_item}
+                                                                                                    </td>
+                                                                                                }
+                                                                                            </>
                                                                                     }
                                                                                 </>
                                                                             )
@@ -210,33 +216,33 @@ const LottoStatistics = (props) => {
                                                                 )
                                                             })
                                                         }
-                                                        
+
                                                     </tr>
                                                     {
-                                                        dataTableLast && dataTableLast?.map((item, index)=>{
-                                                            return(
+                                                        dataTableLast && dataTableLast?.map((item, index) => {
+                                                            return (
                                                                 <tr key={index}>
                                                                     {
-                                                                        item?.map((val, indexVal)=>{
-                                                                            return(
+                                                                        item?.map((val, indexVal) => {
+                                                                            return (
                                                                                 <>
                                                                                     {
                                                                                         indexVal === 0 ?
-                                                                                        <td align="center" key={indexVal} style={{color: '#333333'}}>
-                                                                                        {val.data_item}
-                                                                                        </td>
-                                                                                        :
-                                                                                        <>
-                                                                                            { val.data_item.indexOf('0') > 0 ? 
-                                                                                                <td align="center" key={indexVal} style={{color: '#999999'}}>
-                                                                                                    {val.data_item}
-                                                                                                </td>
+                                                                                            <td align="center" key={indexVal} style={{ color: '#333333' }}>
+                                                                                                {val.data_item}
+                                                                                            </td>
                                                                                             :
-                                                                                                <td align="center" key={indexVal} style={{color: 'blue', background: '#CCCCCC'}}>
-                                                                                                    {val.data_item}
-                                                                                                </td>
-                                                                                            }
-                                                                                        </>
+                                                                                            <>
+                                                                                                {val.data_item.indexOf('0') > 0 ?
+                                                                                                    <td align="center" key={indexVal} style={{ color: '#999999' }}>
+                                                                                                        {val.data_item}
+                                                                                                    </td>
+                                                                                                    :
+                                                                                                    <td align="center" key={indexVal} style={{ color: 'blue', background: '#CCCCCC' }}>
+                                                                                                        {val.data_item}
+                                                                                                    </td>
+                                                                                                }
+                                                                                            </>
                                                                                     }
                                                                                 </>
                                                                             )

@@ -20,10 +20,7 @@
 }
 
 .choose {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    text-align: center;
 }
 
 .panel-default {
@@ -53,13 +50,13 @@
 
 .panel-body {
     padding: 5px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .form-group-form-inline {
     margin-top: 15px;
     margin-bottom: 15px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .form-group-form-inline-check {
@@ -90,27 +87,21 @@
 
 .btn-btn-default {
     cursor: pointer;
-    color: #333;
-    background-color: #fff;
+    color: #fff;
+    background-color: #BB2649;
     border-color: #ccc;
-    display: inline-block;
     padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.42857143;
     text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px
 }
 
 .btn-btn-default:hover {
-    color: #333;
-    background-color: #e6e6e6;
+    color: #fff;
+    background-color: #ff9804;
     border-color: #adadad;
 }
 
@@ -121,7 +112,7 @@
 .container-bottom {
     padding: 5px;
     overflow: scroll;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .container-item-box {
@@ -139,7 +130,7 @@
 }
 
 .pair-of-number-title {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .content-date {
@@ -149,7 +140,7 @@
 }
 
 .title-bar-box-show {
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     padding-left: 20px;
     line-height: 24px;
@@ -203,7 +194,7 @@
 }
 
 .max-date-item {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 20px;
     color: #000000;
     background-color: #e9edf2;
@@ -350,18 +341,15 @@
 }
 
 .table-bordered tr th {
-    /* background-color: #f9f9f9; */
     background-color: #c2c2c2;
     border: 1px solid #aeabab;
 }
 
 .table-bordered tbody tr td {
-    /* border: 1px solid #ddd; */
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
     width: 60px;
-    min-width: 60px;
     border: 1px solid #aeabab;
 }
 
@@ -391,7 +379,7 @@
     width: 180px;
     float: left;
     line-height: 25px;
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 50px;
 }
 
@@ -404,11 +392,11 @@
 }
 
 .botop {
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
 .botop-title {
-    font-size: 14px;
+    /* font-size: 14px; */
     font-weight: bold;
 
 }
@@ -458,6 +446,32 @@
 
 .data-item-td{
     border: 1px solid #aeabab;
+}
+
+.container-filter{
+    align-items: center;
+    display: grid;
+    grid-template-columns: 20% 22% 20% 38%;
+}
+
+.display-center-col {
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+@media screen and (max-width: 560px)  {
+    .container-filter{
+        display: block !important;
+    } 
+    .display-center-col {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 1200px)  {
+    .container-filter{
+        grid-template-columns: 33.3% 33.3% 33.3% !important;
+    } 
 }
 
 @media screen and (max-width: 380px) {

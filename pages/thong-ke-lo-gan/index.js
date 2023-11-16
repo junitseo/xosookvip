@@ -78,16 +78,18 @@ const LotteryStatistics = (props) => {
                                                     <br></br>
                                                     <DatePicker defaultValue={moment(dateFrom, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateFrom(date, dateString)} />
                                                 </td>
-                                                <td align="left">
+                                                <td align="center">
                                                     Đến ngày: Ngày/Tháng/Năm&nbsp;
                                                     <br></br>
                                                     <DatePicker defaultValue={moment(dateTo, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleDateTo(date, dateString)} />
                                                 </td>
+                                                <td align="left">
+                                                    nhập số ngày
+                                                    <input type="text" name="biendo" value={amplitude} className={stylesCss["form-control"]} onChange={(e) => setAmplitude(e.target.value)}/>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" align="center">
-                                                    nhập số ngày
-                                                    <input type="text" name="biendo" value={amplitude} className={stylesCss["form-control"]} onChange={(e) => setAmplitude(e.target.value)}/>
                                                     <input type="submit" name="sbtFind" value="Xem kết quả" className={stylesCss["btn-btn-default"]} onClick={() => handleLotteryStatistics()}/>
                                                 </td>
                                             </tr>
