@@ -9,26 +9,37 @@ import { getKqxsMt } from 'app/api/kqxsApi'
 import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
 import { getPosts } from 'api/postApi';
+import HeaderCalendar from "app/components/HeaderCalendar"
 
-function CentralLottery({data, date, dataPost}) {
-  const dataLoto = useMemo(() => {
-    if(!data) return;
-    return data.map((item) => (
-      {resultHead: item.resultHead, resultEnd: item.resultEnd, provinceName: item.provinceName}
-    ))
+function CentralLottery({data, arrayOfDate, dataPost}) {
+  const mapData = useMemo(() => {
+    if(!data) return [];
+    return data.map((item, index) => {
+      return {
+        lotos: item.map(i => ({resultHead: i.resultHead, resultEnd: i.resultEnd, provinceName: i.provinceName})),
+        dataItem: item,
+        dayofWeek: getDayOfWeek(arrayOfDate[index]),
+        dateFormat: arrayOfDate[index].replace(/-/g, '/')
+      }
+    })
   },[data])
-
-  const dayofWeek = useMemo(() => getDayOfWeek(date))
-  const dateFormat = useMemo(() => date.replace(/-/g, '/'))
   return (
     <>
       <Meta title="Xố Số miền Trung - KQXS - XS - XSMT - XSKT - Xổ số OKVIP"/>
       <div className={stylesCss['wrapper']}>
         <SideBarLeft dataPost={dataPost} />
         <div style={{flex: 1}}>
-          <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN TRUNG</h2>
-          <BlockResultSX data={data} title={`xsmt ${dayofWeek}, xsmt ngày ${dateFormat}`} />
-          <BlockResultLoto dataLoto={dataLoto} title={`Bảng Loto xổ số Miền Trung -  ${dateFormat}`}/>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ MiỀN TRUNG</h2>
+        <HeaderCalendar />
+
+        {mapData.map(item => {
+          return (
+            <div key={item.dateFormat} style={{marginBottom: 15}}>
+              <BlockResultSX data={item.dataItem} title={`xsmt ${item.dayofWeek}, xsmt ngày ${item.dateFormat}`} />
+              <BlockResultLoto dataLoto={item.lotos} title={`Bảng Loto xổ số Miền Trung -  ${item.dateFormat}`}/>
+            </div>
+          )
+        })}
         </div>
         <SideBarRight />
       </div>
@@ -46,14 +57,23 @@ export const getServerSideProps = async () => {
   }else {
     date = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
   }
+  const arrayOfDate = [];
+  let i = 0;
+  while (i <= 6) {
+    arrayOfDate.push(moment(date, "DD-MM-YYYY").subtract(i, "days").format("DD-MM-YYYY"))
+    i++;
+  }
+  const dataPromises = arrayOfDate.map(async (d) => {
+      return getKqxsMt(d);
+  });
   const [data, dataPost] = await Promise.all([
-    getKqxsMt(date),
+    Promise.all(dataPromises),
     getPosts()
   ])
   return {
     props: { 
       data,
-      date,
+      arrayOfDate,
       dataPost
     }
   }

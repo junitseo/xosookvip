@@ -94,7 +94,7 @@ function Page({data, d}) {
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
       <Meta title="Thống kê giải đặc biệt Gan - Xổ số OKVIP"/>
-      <h2 className={stylesCss['title']}>Thống kê đặc biệt Gan</h2>
+      <h2 className="title-heading">Thống kê đặc biệt Gan</h2>
       <div className={stylesCss['choose']}>
         <span>Biên ngày </span> 
         <DatePicker defaultValue={moment(date, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setDate(dateString)}  />

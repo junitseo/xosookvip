@@ -3,6 +3,9 @@
   font-size: 20px;
   max-width: 600px;
   margin: 0 auto;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  overflow: hidden;
 }
 @media (min-width: 1800px) {
   .wrapper {
@@ -18,10 +21,10 @@
   /* background: #d00e0e; */
   background-color: #BB2649;
   height: 36px;
-  line-height: 34px;
+  line-height: 36px;
   color: #fff;
   font-family: "Times New Roman",Times,serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -33,10 +36,10 @@
   text-align: center;
   padding: 0px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: #322c20;
-  max-width: 100px;
-  width: 100px;
+  max-width: 120px;
+  width: 120px;
 }
 
 .rightcl td {
@@ -49,49 +52,49 @@
 .day {
   font-size: 13px;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
   background-color: #f3f3f3;
 }
 .rank {
   font-size: 13px;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .tinh {
   font-size: 13px;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .matinh {
   background-color: #f3f3f3;
   font-size: 13px;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .giai7 {
   background-color: #f3f3f3;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .giai6 {
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .giai5 {
   background-color: #f3f3f3;
   font-weight: bold;
   line-height: 120%;
-  height: 57px;
+  height: 60px;
 }
 .giai4 {
   font-weight: bold;
-  height: 57px;
+  height: 60px;
   line-height: 120%;
 }
 .giai3 {
   background-color: #f3f3f3;
   font-weight: bold;
-  height: 57px;
+  height: 60px;
   line-height: 120%;
 }
 .giai2 {
@@ -101,11 +104,21 @@
 .giai1 {
   background-color: #f3f3f3;
   font-weight: bold;
-  height: 32px;
+  height: 35px;
 }
 .giaidb {
   color: #AD0000;
   /* color: #ff0000; */
   font-weight: bold;
-  height: 32px;
+  height: 35px;
+}
+@media (max-width: 600px) {
+  .rightcl th  {
+    font-size: 13px;
+    max-width: 100px;
+    width: 100px;
+  }
+  .head {
+    font-size: 16px;
+  }
 }

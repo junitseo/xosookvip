@@ -7,6 +7,7 @@ import SideBarRight from 'components/SideBarRight'
 import SideBarLeft from 'components/SideBarLeft'
 import stylesCss from '../styles/ThreeRegionLottery.module.css'
 import Meta from "app/components/Meta"
+import HeaderCalendar from "app/components/HeaderCalendar"
 import { getKqxsMb, getKqxsMn, getKqxsMt } from 'app/api/kqxsApi'
 import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
@@ -60,7 +61,7 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate, data
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ {isQueryDate?`NGÀY ${dateFormat}`: "HÔM NAY"}</h2>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ {isQueryDate?`NGÀY ${dateFormat}`: "HÔM NAY"}</h2>
            <ul className={stylesCss['tab_select']}>
            <li>
              <div onClick={() => handleChangeDateOfWeek(1)}>
@@ -98,7 +99,7 @@ function Home({dataMb, dataMn, dataMt, dateMb, dateMn, dateMt, isQueryDate, data
              </div>
            </li>
           </ul>
-         
+          <HeaderCalendar />
           {dataMn && dataMn.length > 0 ?
             <>
                 <BlockResultSX data={dataMn} title={`xsmn ${dayofWeekMn}, xsmn ngày ${dateFormatMn}`} />

@@ -3,6 +3,9 @@
   font-size: 20px;
   max-width: 600px;
   margin: 0 auto;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  overflow: hidden;
 }
 @media (min-width: 1800px) {
   .wrapper {
@@ -12,11 +15,11 @@
 .head {
   /* background: #d00e0e; */
   background-color: #BB2649;
-  height: 36px;
-  line-height: 34px;
+  height: 40px;
+  line-height: 40px;
   color: #fff;
   font-family: "Times New Roman",Times,serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -35,10 +38,10 @@
   text-align: center;
   padding: 0px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: #322c20;
-  max-width: 100px;
-  width: 100px;
+  max-width: 120px;
+  width: 120px;
 }
 .day {
   font-size: 13px;
@@ -52,9 +55,9 @@
   height: 32px;
 }
 .tinh {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: bold;
-  height: 32px;
+  height: 36px;
 }
 .matinh {
   background-color: #f3f3f3;
@@ -118,5 +121,16 @@
   }
   .leftcl td {
     font-size: 12px;
+  }
+  .rightcl tr th:first-child {
+    font-size: 13px;
+    max-width: 100px;
+    width: 100px;
+  }
+  .tinh {
+    font-size: 15px;
+  }
+  .head {
+    font-size: 16px;
   }
 }

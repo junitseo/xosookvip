@@ -1,5 +1,12 @@
 .wrapper {
   font-size: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media (min-width: 1800px) {
+  .wrapper {
+    max-width: 70%;
+  }
 }
 .head {
   background: #c2c2c2;
@@ -14,15 +21,12 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  max-width: 600px;
-  margin: 0 auto;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: hidden;
 }
 
-@media (min-width: 1800px) {
-  .head {
-    max-width: 70%;
-  }
-}
+
 .loto-title {
   background-color: #CCCCCC;
   text-align: center;
@@ -30,6 +34,10 @@
 .loto-center {
   background-color: #EFEFEF;
   max-width: 70px;
+}
+.wrapper-item {
+  border-radius: 5px;
+  overflow: hidden;
 }
 .wrapper-item tr {
   display: flex;

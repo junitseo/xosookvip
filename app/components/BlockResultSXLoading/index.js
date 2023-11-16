@@ -35,7 +35,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai8']}> Giải tám</td>
+                              <th className={stylesCss['giai8']}> Giải tám</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "8"} className={stylesCss['giai8']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (
@@ -54,7 +54,7 @@ function BlockResultSXLoading({ title }) {
 
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai7']}> Giải bảy</td>
+                              <th className={stylesCss['giai7']}> Giải bảy</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "7"} className={stylesCss['giai7']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (
@@ -72,7 +72,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai6']}> Giải sáu</td>
+                              <th className={stylesCss['giai6']}> Giải sáu</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "6"} className={stylesCss['giai6']}>
                                   {Array.from({ length: 3 }).map((i, indx) => (
@@ -90,7 +90,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai5']}> Giải năm</td>
+                              <th className={stylesCss['giai5']}> Giải năm</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "5"} className={stylesCss['giai5']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (
@@ -108,7 +108,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai4']}> Giải bốn</td>
+                              <th className={stylesCss['giai4']}> Giải bốn</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "4"} className={stylesCss['giai4']}>
                                   {Array.from({ length: 7 }).map((i, indx) => (
@@ -126,7 +126,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai3']}> Giải ba</td>
+                              <th className={stylesCss['giai3']}> Giải ba</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "3"} className={stylesCss['giai3']}>
                                   {Array.from({ length: 2 }).map((i, indx) => (
@@ -143,7 +143,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai2']}>Giải hai</td>
+                              <th className={stylesCss['giai2']}>Giải hai</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "2"} className={stylesCss['giai2']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (
@@ -161,7 +161,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giai1']}> Giải nhất</td>
+                              <th className={stylesCss['giai1']}> Giải nhất</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "1"} className={stylesCss['giai1']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (
@@ -179,7 +179,7 @@ function BlockResultSXLoading({ title }) {
                               ))}
                             </tr>
                             <tr>
-                              <td className={stylesCss['giaidb']}> Giải đặc biệt</td>
+                              <th className={stylesCss['giaidb']}> Giải đặc biệt</th>
                               {dataKq.map((item, idx) => (
                                 <td key={idx + "db"} className={stylesCss['giaidb']}>
                                   {Array.from({ length: 1 }).map((i, indx) => (

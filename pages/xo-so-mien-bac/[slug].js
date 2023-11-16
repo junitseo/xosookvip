@@ -26,7 +26,7 @@ function NorthernLottery({data, date, dataPost}) {
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN BẮC</h2>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ MiỀN BẮC</h2>
         {data? 
           <>
               <BlockResultSX data={data} title={`xsmb ${dayofWeek}, xsmb ngày ${dateFormat}`} />
