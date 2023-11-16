@@ -9,27 +9,41 @@ import { getKqxsMb } from 'app/api/kqxsApi'
 import moment from 'moment'
 import { getDayOfWeek } from 'app/utils/getDayOfWeek'
 import { getPosts } from 'api/postApi';
+import HeaderCalendar from "app/components/HeaderCalendar"
 
-function NorthernLottery({data, date, dataPost}) {
+function NorthernLottery({data, arrayOfDate, dataPost}) {
 
-  const dataLoto = useMemo(() => {
+  const mapData = useMemo(() => {
     if(!data) return [];
-    return [{resultHead: data.resultHead, resultEnd: data.resultEnd, provinceName: data.provinceName}]
+    return data.map((item, index) => {
+      return {
+        lotos: [{resultHead: item.resultHead, resultEnd: item.resultEnd, provinceName: item.provinceName}],
+        dataItem: item,
+        dayofWeek: getDayOfWeek(arrayOfDate[index]),
+        dateFormat: arrayOfDate[index].replace(/-/g, '/')
+      }
+    })
   },[data])
-  const dayofWeek = useMemo(() => getDayOfWeek(date))
-  const dateFormat = useMemo(() => date.replace(/-/g, '/'))
   return (
     <>
-      <Meta title="Xố Số miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP"/>
+ 
+    <Meta title="Xố Số miền Bắc - KQXS - XS - XSMB - XSKT - Xổ số OKVIP"/>
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN BẮC</h2>
-        <BlockResultSX data={data} title={`xsmb ${dayofWeek}, xsmb ngày ${dateFormat}`} />
-        <BlockResultLoto dataLoto={dataLoto} title={`Bảng Loto xổ số Miền Bắc -  ${dateFormat}`}/>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ MiỀN BẮC</h2>
+        <HeaderCalendar />
+        {mapData.map(item => {
+          return (
+            <div key={item.dateFormat} style={{marginBottom: 15}}>
+              <BlockResultSX data={item.dataItem} title={`xsmb ${item.dayofWeek}, xsmb ngày ${item.dateFormat}`} />
+              <BlockResultLoto dataLoto={item.lotos} title={`Bảng Loto xổ số Miền Bắc -  ${item.dateFormat}`}/>
+            </div>
+          )
+        })}
       </div>
       <SideBarRight />
-    </div>
+    </div> 
     </>
 
   )
@@ -44,15 +58,23 @@ export const getServerSideProps = async () => {
   }else {
     date = dateNow.subtract(1, 'days').format("DD-MM-YYYY");
   }
-
+  const arrayOfDate = [];
+  let i = 0;
+  while (i <= 6) {
+    arrayOfDate.push(moment(date, "DD-MM-YYYY").subtract(i, "days").format("DD-MM-YYYY"))
+    i++;
+  }
+  const dataPromises = arrayOfDate.map(async (d) => {
+      return getKqxsMb(d);
+  });
   const [data, dataPost] = await Promise.all([
-    getKqxsMb(date),
+    Promise.all(dataPromises),
     getPosts()
   ])
   return {
     props: { 
       data,
-      date,
+      arrayOfDate,
       dataPost
     }
   }

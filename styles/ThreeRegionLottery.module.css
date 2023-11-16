@@ -23,17 +23,21 @@
 .tab_select li {
   color: #333;
   display: inline-block;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 700;
   line-height: 12px;
   padding: 9px 8px;
   white-space: nowrap;
   cursor: pointer;
 }
+@media screen and (max-width: 1600px) {
+  .tab_select li {
+    font-size: 14px;
+  }
+}
 @media screen and (max-width: 1100px) {
   .tab_select li {
     font-size: 11px;
-    
   }
 }
 @media screen and (max-width: 800px) {

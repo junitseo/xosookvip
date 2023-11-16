@@ -15,8 +15,8 @@ function SideBarLeft({dataPost = []}) {
         Tin Tức Mới Nhất
       </div>
       <div className={stylesCss['list']}>
-        {dataPost.map(item => (
-          <Link href={`/post/${item.post_slug}`} key={item.post_slug} >
+        {dataPost.map((item, idx) => (
+          <Link href={`/post/${item.post_slug}`} key={idx} >
             {/* <div className={stylesCss['item']}>
               <img src={item.post_image} alt="" />
               <div>{item.post_title}</div>

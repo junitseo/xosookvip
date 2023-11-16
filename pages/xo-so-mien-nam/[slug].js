@@ -29,7 +29,7 @@ function SouthernLottery({data, date, dataPost}) {
       <div className={stylesCss['wrapper']}>
       <SideBarLeft dataPost={dataPost} />
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ MiỀN NAM</h2>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ MiỀN NAM</h2>
         {data && data.length > 0 ?
           <>
             <BlockResultSX data={data} title={`xsmn ${dayofWeek}, xsmn ngày ${dateFormat}`} />

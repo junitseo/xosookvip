@@ -22,6 +22,9 @@
   padding: 6px 10px;
   background-color: #BB2649;
   /* background: linear-gradient(180deg, rgba(156,143,142,1) 30%, rgba(93,90,86,0.9865196078431373) 100%); */
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  overflow: hidden;
 }
 .post-title {
   display: -webkit-box;

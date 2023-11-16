@@ -46,7 +46,7 @@ function SpecialStagingStatistics() {
   return (
     <div className={stylesCss['wrapper']}>
     <Meta title="Ghép chọn lô xiên 2,3,4 - Xổ số OKVIP"/>
-    <h2 className={stylesCss['title']}>Ghép chọn lô xiên 2,3,4</h2> 
+    <h2 className="title-heading">Ghép chọn lô xiên 2,3,4</h2> 
     <div><strong>Chú ý:</strong></div>
     <div>1. Dãy số nhập vào phải là các cặp số khác nhau và cách nhau bởi dấu phẩy (,) - không có khoảng cách trắng giữa 2 cặp số. VD: 02,03,04,05,06,07,08,09</div>
     <div>2. Chương trình tạo các cặp xiên chỉ sử dụng cho 10 cặp số khác nhau. Nếu số cặp số tạo xiên vượt quá 10 thì chương trình tự động lấy 10 cặp số đầu tiên để tạo</div>
