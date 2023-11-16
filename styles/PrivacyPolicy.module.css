@@ -23,7 +23,7 @@
     color: #337ab7 !important;
     text-decoration: none;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .content-privacy-policy {
@@ -34,7 +34,7 @@
 }
 
 .content-item-content {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .content-item-content-add {
@@ -66,5 +66,5 @@
 }
 
 .content-item-end-font{
-    font-size: 15px;
+    font-size: 14px;
 }

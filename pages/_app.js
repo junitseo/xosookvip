@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }) {
               }}
             />
             {loadPage && <LoadingPage />}
-            <Meta />
+            <Meta description="xổ số được cập nhật hàng ngày và hoàn toàn miễn phí trên trang xosookvip.com"/>
             <div className="app">
               <Menu />
               <div className="container-root">

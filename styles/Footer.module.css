@@ -6,7 +6,17 @@
 .footer-container {
   display: flex;
   justify-content: center;
-  padding: 10PX 0px;
+  padding: 10px 0px;
+}
+
+.footer-container-info {
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.footer-container-description {
+  padding: 10px 0px;
+  text-align: center;
 }
 
 .footer-container-item {}
@@ -36,14 +46,14 @@
   background: #000;
   border-radius: 6px;
   height: 2px;
-  width: 550px;
+  width: 100%;
 }
 
 .footer-container-profile {
   display: flex;
   padding-left: 10px;
   align-items: center;
-  height: 25px;
+  justify-content: center;
 }
 
 .footer-container-profile-img {
@@ -59,6 +69,10 @@
   width: 90%;
   padding-left: 5px;
   height: 100%;
+}
+
+.footer-container-profile-text p {
+  margin: 0px;
 }
 
 .footer-container-text {
@@ -111,6 +125,14 @@
     padding-left: 5px;
     font-size: 10px;
   }
+}
+
+.icon-link {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 @media screen and (max-width: 1000px) {
