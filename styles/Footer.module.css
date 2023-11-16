@@ -12,11 +12,13 @@
 .footer-container-info {
   padding: 10px 0px;
   text-align: center;
+  color: #fff !important;
 }
 
 .footer-container-description {
   padding: 10px 0px;
   text-align: center;
+  color: #fff !important;
 }
 
 .footer-container-item {}
@@ -33,7 +35,7 @@
 .footer-title h2 {
   font-weight: 900 !important;
   margin: 0px;
-  color: #fb9806;
+  color: #fff;
 }
 
 .footer-line {
@@ -43,7 +45,7 @@
 }
 
 .line {
-  background: #000;
+  background: #fff;
   border-radius: 6px;
   height: 2px;
   width: 100%;
@@ -54,6 +56,7 @@
   padding-left: 10px;
   align-items: center;
   justify-content: center;
+  color: #fff !important;
 }
 
 .footer-container-profile-img {

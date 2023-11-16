@@ -32,12 +32,14 @@ function SideBarRight() {
           cellPadding={0}
           border={0}
         >
-          <tbody>
+           <thead>
             <tr className="">
-              <td className={stylesCss['title-2']}>Miền bắc</td>
-              <td className={stylesCss['title-2']}>Miền Nam</td>
-              <td className={stylesCss['title-2']}>Miền Trung</td>
+              <th scope="col" className={stylesCss['title-2']}>Miền bắc</th>
+              <th scope="col" className={stylesCss['title-2']}>Miền Nam</th>
+              <th scope="col" className={stylesCss['title-2']}>Miền Trung</th>
             </tr>
+           </thead>
+          <tbody>
             <tr className="">
               <td className="">
                 {" "}
