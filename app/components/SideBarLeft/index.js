@@ -27,6 +27,7 @@ function SideBarLeft({dataPost = []}) {
                   src={item.post_image ?? "/no-image.jpg"} 
                   alt=""
                   width={52}
+                  quality={100}
                   height={52}
                 />
               </div>

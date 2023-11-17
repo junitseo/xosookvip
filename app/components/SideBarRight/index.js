@@ -34,7 +34,7 @@ function SideBarRight() {
         >
           <tbody>
             <tr className="">
-              <td className={stylesCss['title-2']}>Miền bắc</td>
+              <td className={stylesCss['title-2']}>Miền Bắc</td>
               <td className={stylesCss['title-2']}>Miền Nam</td>
               <td className={stylesCss['title-2']}>Miền Trung</td>
             </tr>
