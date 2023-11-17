@@ -101,7 +101,7 @@
 .article-list {
     width: 100%;
     position: relative;
-    padding: 16px;
+    padding: 0px 16px 0px 0px;
     border-bottom: solid 1px #e0e0e0;
     float: left;
 }
@@ -154,6 +154,7 @@
     width: 100%;
     text-align: center;
     margin-bottom: 16px;
+    padding-top: 15px;
 }
 
 .more {
@@ -191,5 +192,11 @@
     }
     .post-dream {
         width: 100% !important;
+    }
+    .article-list {
+        padding: 16px ;
+    }
+    .container {
+        padding: 0px;
     }
 }

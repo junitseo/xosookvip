@@ -3,12 +3,12 @@ import stylesCss from "../../styles/InterpretTheDreams.module.css";
 import { interpretTheDreams } from "../../app/data/interpretTheDreams";
 import { useState } from "react";
 import Meta from "app/components/Meta"
-import Link from "next/link";
 import Post from "../../app/components/Post";
+import { getPosts } from "../../stores/post";
 
-
-const InterpretTheDreams = () => {
+const InterpretTheDreams = (props) => {
     const [data, setData] = useState(interpretTheDreams);
+    const [news, setNew] = useState(props.data.datas);
 
     const columns = [
         {
@@ -49,7 +49,7 @@ const InterpretTheDreams = () => {
                 </div>
                 <div className={stylesCss["container-dream"]}>
                     <div className={stylesCss["post-dream"]}>
-                        <Post/>
+                        <Post data={news}/>
                     </div>
                     <div className={stylesCss["table-dream"]}>
                         <div className={stylesCss["row"]}>
@@ -62,14 +62,28 @@ const InterpretTheDreams = () => {
                             </div>
                         </div>
                         <div className={stylesCss["container-table"]}>
-                            <Table columns={columns} dataSource={data} pagination={{ pageSize: 13 }} />
+                            <Table columns={columns} dataSource={data} pagination={{ pageSize: 20 }} />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
+}
 
+export const getServerSideProps = async () => {
+
+    const [
+        data
+    ] = await Promise.all([
+        getPosts(5,0)
+    ]);
+
+    return {
+        props: {
+            data: data || [],
+        },
+    }
 }
 
 export default InterpretTheDreams;
