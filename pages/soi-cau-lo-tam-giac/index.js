@@ -4,8 +4,8 @@ import stylesCss from "../../styles/NorthernLotteryStatistics.module.css";
 import Meta from "app/components/Meta"
 import moment from "moment";
 import Link from "next/link";
-import {dataPrizes} from "../../app/data/dataPrize";
-import {dataDays} from "../../app/data/dataDay";
+import { dataPrizes } from "../../app/data/dataPrize";
+import { dataDays } from "../../app/data/dataDay";
 import { DatePicker } from "antd";
 
 const TriangularLotteryPrediction = (props) => {
@@ -66,9 +66,9 @@ const TriangularLotteryPrediction = (props) => {
 
     return (
         <div className={stylesCss["page-wrapper"]}>
-            <Meta title="Soi cầu lô tam giác,soi cau,bạch thủ,xo so mien bac,xo so,kqxs" 
-            description="Soi cầu lô tam giác và số ngày cầu chạy kiểu cầu cả cặp hoặc bạch thủ xuôi/ngược" 
-            keywords="Soi cau lotto tam gia,soi cầu lô tam giác,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,bạch thủ ghép xuôi,bạch thủ ghép ngược"/>
+            <Meta title="Soi cầu lô tam giác,soi cau,bạch thủ,xo so mien bac,xo so,kqxs"
+                description="Soi cầu lô tam giác và số ngày cầu chạy kiểu cầu cả cặp hoặc bạch thủ xuôi/ngược"
+                keywords="Soi cau lotto tam gia,soi cầu lô tam giác,xsmb,sxmb,kqxsmb,xstd,xổ số miền bắc,ket qua xsmb,xo so mien bac,xsmb hom nay,kết quả xổ số miền bắc,bạch thủ ghép xuôi,bạch thủ ghép ngược" />
             <div className={stylesCss["row"]}>
                 <div className={stylesCss["col-lg-12"]}>
                     <div className={stylesCss["panel-default"]}>
@@ -79,58 +79,58 @@ const TriangularLotteryPrediction = (props) => {
                             <div className={stylesCss["dataTable-wrapper"]}>
                                 <div className={stylesCss["form-group-form-inline"]}>
                                     <div align="center">
-                                        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                                        <div className={stylesCss["container-filter"]}>
                                             <div className={stylesCss["choose"]}>
                                                 Biên ngày&nbsp;
                                                 <DatePicker defaultValue={moment(toDate, dateFormat)} format={dateFormat} className={stylesCss["form-control"]} onChange={(date, dateString) => handleToDate(date, dateString)} />
                                             </div>
                                             <div className={stylesCss["choose"]}>
-                                            &nbsp;Soi theo :&nbsp;
-                                            <select name="level" className={stylesCss["form-control"]} onChange={(e) => handleViewBet(e)}>
-                                                {
-                                                    dataPrize.map((item, index) => {
-                                                        if(index == 0) {
-                                                            return (
-                                                                <option key={index} selected="selected" value={item.value}>{item.name}</option>
-                                                            )
-                                                        } else {
-                                                            return (
-                                                                <option key={index} value={item.value}>{item.name}</option>
-                                                            )
-                                                        }
-                                                    })
-                                                }
-                                            </select>
+                                                &nbsp;Soi theo :&nbsp;
+                                                <select name="level" className={stylesCss["form-control"]} onChange={(e) => handleViewBet(e)}>
+                                                    {
+                                                        dataPrize.map((item, index) => {
+                                                            if (index == 0) {
+                                                                return (
+                                                                    <option key={index} selected="selected" value={item.value}>{item.name}</option>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <option key={index} value={item.value}>{item.name}</option>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
+                                                </select>
                                             </div>
-                                           <div className={stylesCss["choose"]}>
-                                            &nbsp;Số ngày cầu chạy&nbsp;
-                                            <select name="days" className={stylesCss["form-control"]} onChange={(e) => handleDay(e)}>
-                                                {
-                                                    dataDay.map((item, index) => {
-                                                        if(index == 0) {
-                                                            return (
-                                                                <option key={index} selected="selected" value={item.value}>{item.name}</option>
-                                                            )
-                                                        } else {
-                                                            return (
-                                                                <option key={index} value={item.value}>{item.name}</option>
-                                                            )
-                                                        }
-                                                    })
-                                                }
-                                            </select>
-                                           </div>
-                                           
+                                            <div className={stylesCss["choose"]}>
+                                                &nbsp;Số ngày cầu chạy&nbsp;
+                                                <select name="days" className={stylesCss["form-control"]} onChange={(e) => handleDay(e)}>
+                                                    {
+                                                        dataDay.map((item, index) => {
+                                                            if (index == 0) {
+                                                                return (
+                                                                    <option key={index} selected="selected" value={item.value}>{item.name}</option>
+                                                                )
+                                                            } else {
+                                                                return (
+                                                                    <option key={index} value={item.value}>{item.name}</option>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div style={{ padding: '10px' }} >
+                                                <input type="radio" name="type" id="type_0" value="0" checked={type == "0" ? "chected" : ""} onChange={(e) => handleType(e)} />
+                                                <label for="type_0" className={stylesCss["form-label"]}>&nbsp;Cầu cả cặp&nbsp;</label>
+                                                <input type="radio" name="type" id="type_1" value="1" checked={type == "1" ? "chected" : ""} onChange={(e) => handleType(e)} />
+                                                <label for="type_1" className={stylesCss["form-label"]}>&nbsp;Bạch thủ ghép xuôi&nbsp;</label>
+                                                <input type="radio" name="type" id="type_2" value="2" checked={type == "2" ? "chected" : ""} onChange={(e) => handleType(e)} />
+                                                <label for="type_2" className={stylesCss["form-label"]}>&nbsp;Bạch thủ ghép ngược&nbsp;</label>
+                                            </div>
                                         </div>
-                                        <div style={{ padding: '10px' }} >
-                                            <input type="radio" name="type" id="type_0" value="0" checked={type == "0" ? "chected" : ""} onChange={(e) => handleType(e)}/>
-                                            <label for="type_0" className={stylesCss["form-label"]}>&nbsp;Cầu cả cặp&nbsp;</label>
-                                            <input type="radio" name="type" id="type_1" value="1" checked={type == "1" ? "chected" : ""} onChange={(e) => handleType(e)}/>
-                                            <label for="type_1" className={stylesCss["form-label"]}>&nbsp;Bạch thủ ghép xuôi&nbsp;</label>
-                                            <input type="radio" name="type" id="type_2" value="2" checked={type == "2" ? "chected" : ""} onChange={(e) => handleType(e)}/>
-                                            <label for="type_2" className={stylesCss["form-label"]}>&nbsp;Bạch thủ ghép ngược&nbsp;</label>
-                                        </div>
-                                        <input type="submit" value="Xem kết quả" name="sbtTinh" className={stylesCss["btn-btn-default"]} onClick={() => handleTriangularLotteryPrediction()}/>
+
+                                        <input type="submit" value="Xem kết quả" name="sbtTinh" className={stylesCss["btn-btn-default"]} onClick={() => handleTriangularLotteryPrediction()} />
                                     </div>
                                 </div>
                             </div>
@@ -148,12 +148,12 @@ const TriangularLotteryPrediction = (props) => {
                                                     <tr key={index}>
                                                         {
                                                             item?.map((val, indexVal) => {
-                                                                if(indexVal == 0){
-                                                                    return(
+                                                                if (indexVal == 0) {
+                                                                    return (
                                                                         <td key={indexVal} className={stylesCss["triangular-title"]}>{val?.data_item}</td>
                                                                     )
                                                                 } else {
-                                                                    if(val?.data_item?.trim().length > 0) {
+                                                                    if (val?.data_item?.trim().length > 0) {
                                                                         return (
                                                                             <td key={indexVal}>
                                                                                 <Link className={stylesCss["data-item-href"]} href="#">
@@ -162,14 +162,14 @@ const TriangularLotteryPrediction = (props) => {
                                                                             </td>
                                                                         )
                                                                     } else {
-                                                                        return(
+                                                                        return (
                                                                             <td key={indexVal}>
                                                                                 &nbsp;&nbsp;
                                                                             </td>
                                                                         )
                                                                     }
                                                                 }
-                                                                
+
                                                             })
                                                         }
                                                     </tr>

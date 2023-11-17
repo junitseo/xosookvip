@@ -1,10 +1,20 @@
+.container-calendar{
+    display: flex;
+    padding:15px;
+}
+
 .calendar-form {
     display: block;
     margin: 0px;
+    width: 75%;
+}
+
+.menu-rigth{
+    width: 25%;
 }
 
 .perpetual-calendar {
-    max-width: 600px;
+    max-width: 80%;
     margin: 0 auto;
 }
 
@@ -273,4 +283,14 @@
 .calendar-day-bottom div.calendar-day-next:after {
     -webkit-transform: rotate(-45deg);
     right: 0;
+}
+
+@media screen and (max-width: 786px) {
+    .calendar-form {
+        width: 100%;
+    }
+    
+    .menu-rigth{
+        display: none;
+    }
 }

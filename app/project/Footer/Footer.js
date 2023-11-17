@@ -18,19 +18,19 @@ const Footer = () => {
           <div className={Styles["footer-container-profile"]}>
             <FaHome />
             <div className={Styles["footer-container-profile-text"]} >
-              <p>Địa chỉ: 43 Ngô Tất Tố, Phường 21, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam</p>
+              <p>Địa chỉ: 43 Ngô Tất Tố, Phường 21, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam.</p>
             </div>
           </div>
           <div className={Styles["footer-container-profile"]}>
             <FaPhone />
             <div className={Styles["footer-container-profile-text"]} >
-              <p>Hotline: 0396237750</p>
+              <p>Hotline: 0396237750.</p>
             </div>
           </div>
           <div className={Styles["footer-container-profile"]}>
             <FaMailBulk />
             <div className={Styles["footer-container-profile-text"]} >
-              <p>Email: xosookvip.com@gmail.com</p>
+              <p>Email: xosookvip.com@gmail.com.</p>
             </div>
           </div>
         </div>

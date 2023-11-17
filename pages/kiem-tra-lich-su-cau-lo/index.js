@@ -66,8 +66,9 @@ const CheckBridgeHistory = (props) => {
                                     <span className={stylesCss["item-select"]}>
                                         &nbsp;Vị trí 2:&nbsp;<input type="text" name="index_j" value={indexTow} className={stylesCss["form-control"]} maxLength="3" onChange={(e) => setIndexTow(e.target.value)} />
                                     </span>
-
-                                    &nbsp;<input type="submit" name="sbtsubmit" value="Thống kê lịch sử cầu" className={stylesCss["btn-btn-default"]} onClick={() => handleCheckBridgeHistory()} />
+                                </div>
+                                <div align="center">
+                                    <input type="submit" name="sbtsubmit" value="Thống kê lịch sử cầu" className={stylesCss["btn-btn-default"]} onClick={() => handleCheckBridgeHistory()} />
                                     <br></br>Dữ liệu được khảo sát từ 01/01/2005 đến ngày 30/10/2023
                                 </div>
                             </div>
