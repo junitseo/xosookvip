@@ -55,7 +55,7 @@ function StatisticsTomorrow({result}) {
     <div className={stylesCss['wrapper']}>
       {loading && <LoadingPage />}
       <Meta title="Thống kê dự báo kết quả sổ xố ngày mai - Xổ số OKVIP"/>
-      <h2 className={stylesCss['title']}>Thống kê dự báo kết quả xổ số ngày mai</h2>
+      <h2 className="title-heading">Thống kê dự báo kết quả xổ số ngày mai</h2>
       <div className={stylesCss['choose-day']}>
         <span>Biên ngày:</span>
         <DatePicker defaultValue={moment(date, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setDate(dateString)}  />

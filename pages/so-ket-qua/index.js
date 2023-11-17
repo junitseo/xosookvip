@@ -9,7 +9,7 @@ function ThreeRegionLottery() {
     <div className={stylesCss['wrapper']}>
       <Meta title="Sổ kết quả"/>
       <div style={{flex: 1}}>
-        <h2 className={stylesCss['title']}>KẾT QUẢ XỔ SỐ</h2>
+        <h2 className="title-heading">KẾT QUẢ XỔ SỐ</h2>
         <BlockResultSX title="xsmn thứ 3, xsmn ngày 24/10/2023" />
         <BlockResultLoto />
         <div style={{marginTop: 20}}></div>

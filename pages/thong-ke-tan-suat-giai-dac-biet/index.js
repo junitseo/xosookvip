@@ -24,7 +24,7 @@ function StatisticFrequencyPrize({result, startDate, endDate}) {
     <div className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
     <Meta title="Thống kê tần suất giải đặc biệt - Xổ số OKVIP"/>
-    <h2 className={stylesCss['title']}>Thống kê tần suất giải đặc biệt </h2>
+    <h2 className="title-heading">Thống kê tần suất giải đặc biệt </h2>
     <div className={stylesCss['choose']}>
         <span>Từ ngày </span>
         <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />

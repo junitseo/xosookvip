@@ -49,7 +49,7 @@ function SpecialStagingStatistics({result, startDate, endDate }) {
     <div className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
     <Meta title="Thống kê dàn đặc biệt - Xổ số OKVIP"/>
-    <h2 className={stylesCss['title']}>Thống kê dàn đặc biệt </h2> 
+    <h2 className="title-heading">Thống kê dàn đặc biệt </h2> 
       <div>Dãy số đặc biệt cần thống kê: (các cặp số cách nhau bởi dấu phẩy. VD: 00,11,22,33,44,55,66,77,88,01)</div> 
       <div className={stylesCss['choose']}>
       <input className="wrap-input" style={{width: "100%", maxWidth: "500px"}} type="string" value={numbers} onChange={e => setNumbers(e.target.value)}/>

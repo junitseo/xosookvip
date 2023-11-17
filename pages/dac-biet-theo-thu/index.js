@@ -62,7 +62,7 @@ function StatisticsSpecialByDayOfWeek({result, startDate, endDate}) {
     <div className={stylesCss['wrapper']}>
     {loading && <LoadingPage />}
     <Meta title="Thống kê các cặp số đặc biệt theo từng thứ trong tuần - Xổ số OKVIP"/>
-    <h2 className={stylesCss['title']}>Thống kê các cặp số đặc biệt theo từng thứ trong tuần</h2> 
+    <h2 className="title-heading">Thống kê các cặp số đặc biệt theo từng thứ trong tuần</h2> 
     <div className={stylesCss['choose']}>
         <span>Từ ngày </span>
         <DatePicker defaultValue={moment(start, "DD-MM-YYYY")} format={"DD-MM-YYYY"} onChange={(date, dateString) => setStart(dateString)}  />
