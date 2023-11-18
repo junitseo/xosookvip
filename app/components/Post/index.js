@@ -62,7 +62,7 @@ const Post = (props) => {
                                         />
                                     </Link>
                                 </div>
-                                <div className={stylesCss["article-summary"]} dangerouslySetInnerHTML={{ __html: data ? data[0]?.post_description : "" }}></div>
+                                <div className={stylesCss["article-summary"]} dangerouslySetInnerHTML={{ __html: data ? item?.post_description : "" }}></div>
                             </div>
                         )
                     })
