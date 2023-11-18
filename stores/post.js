@@ -23,3 +23,15 @@ export async function getPostBySlug(slug) {
   } catch (error) {
   }
 }
+
+export async function getPostByTaxNew(slug, limit, skip) {
+  try {
+    const res = await fetch(`${API_URL}/posts/getPostByTaxNew?slug=${slug}&status=public&limit=${limit}&skip=${skip}`);
+    if(res.ok){
+      const data = await res.json();
+      return data;
+    }
+    return null;
+  } catch (error) {
+  }
+}

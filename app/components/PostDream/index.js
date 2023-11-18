@@ -2,16 +2,17 @@ import Link from "next/link";
 import stylesCss from "../../../styles/InterpretTheDreams.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import { getPosts } from "../../../stores/post";
+import { getPostByTaxNew } from "../../../stores/post";
 
-const Post = (props) => {
+const PostDream = (props) => {
     const [data, setData] = useState(props.data);
     const [skip, setSkip] = useState(0);
-
+    
     const handleLoadMore = async () => {
-        setSkip(skip + 1);
-        skip++;
-        const res = await getPosts(5, skip);
+        const slug = "giai-ma-giac-mo";
+        const pageNum = skip+1;
+        setSkip(pageNum);
+        const res = await getPostByTaxNew(slug, 5, pageNum);
         if (res.datas) {
             let resData = data.concat(res.datas);
             setData(resData);
@@ -22,11 +23,11 @@ const Post = (props) => {
         <section className={stylesCss["section"]}>
             <div className={stylesCss["section-content"]}>
                 <div className={stylesCss["article-list"]}>
-                    <Link className={stylesCss["thumb"]} href={`tin-tuc/${data[0]?.post_slug}`} title={data[0]?.post_title}>
+                    <Link className={stylesCss["thumb"]} href={`tin-tuc/${data ? data[0]?.post_slug : ""}`} title={data ? data[0]?.post_title : ""}>
                         <Image
                             className={stylesCss["image"]}
-                            alt={data[0]?.post_title}
-                            src={data[0]?.post_image}
+                            alt={data ? data[0]?.post_title : ""}
+                            src={data ? data[0]?.post_image : ""}
                             width={1600}
                             height={1142}
                             loading="lazy"
@@ -34,7 +35,7 @@ const Post = (props) => {
                     </Link>
                     <div>
                         <h2 className={stylesCss["article-title-first-news"]}>
-                            <Link href={`tin-tuc/${data[0]?.post_slug}`} title="">{data[0]?.post_title}</Link>
+                            <Link href={`tin-tuc/${data ? data[0]?.post_slug : ""}`} title="">{data ? data[0]?.post_title : ""}</Link>
                         </h2>
                         <div className={stylesCss["article-summary"]} dangerouslySetInnerHTML={{ __html: data ? data[0]?.post_description : "" }}></div>
                     </div>
@@ -62,7 +63,7 @@ const Post = (props) => {
                                         />
                                     </Link>
                                 </div>
-                                <div className={stylesCss["article-summary"]} dangerouslySetInnerHTML={{ __html: data ? data[0]?.post_description : "" }}></div>
+                                <div className={stylesCss["article-summary"]} dangerouslySetInnerHTML={{ __html: item?.post_description }}></div>
                             </div>
                         )
                     })
@@ -75,4 +76,4 @@ const Post = (props) => {
     );
 }
 
-export default Post;
+export default PostDream;

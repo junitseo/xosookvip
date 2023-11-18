@@ -3,8 +3,8 @@ import stylesCss from "../../styles/InterpretTheDreams.module.css";
 import { interpretTheDreams } from "../../app/data/interpretTheDreams";
 import { useState } from "react";
 import Meta from "app/components/Meta"
-import Post from "../../app/components/Post";
-import { getPosts } from "../../stores/post";
+import PostDream from "../../app/components/PostDream";
+import { getPostByTaxNew } from "../../stores/post";
 
 const InterpretTheDreams = (props) => {
     const [data, setData] = useState(interpretTheDreams);
@@ -49,7 +49,7 @@ const InterpretTheDreams = (props) => {
                 </div>
                 <div className={stylesCss["container-dream"]}>
                     <div className={stylesCss["post-dream"]}>
-                        <Post data={news}/>
+                        <PostDream data={news}/>
                     </div>
                     <div className={stylesCss["table-dream"]}>
                         <div className={stylesCss["row"]}>
@@ -72,11 +72,11 @@ const InterpretTheDreams = (props) => {
 }
 
 export const getServerSideProps = async () => {
-
+    const slug = "giai-ma-giac-mo";
     const [
         data
     ] = await Promise.all([
-        getPosts(5,0)
+        getPostByTaxNew(slug, 5, 0)
     ]);
 
     return {

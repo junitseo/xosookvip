@@ -163,6 +163,7 @@
     display: inline-block;
     border-radius: 25px;
     background: #BB2649;
+    cursor: pointer;
 }
 
 .section {
